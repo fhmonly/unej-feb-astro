@@ -1,0 +1,53 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+const messages = {
+  en: {
+    pageTitle: "Roadmap",
+    title: "International Roadmap",
+  },
+  id: {
+    pageTitle: "Roadmap",
+    title: "Roadmap Internasional",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+const images = [
+  "https://cdn.shopify.com/s/files/1/1091/5336/products/Roadmap023Slide1_16_9.JPG?v=1514847233",
+  "https://i.pinimg.com/736x/29/f6/5c/29f65ccf55e71dd0cc1306955ee11f09.jpg",
+  "https://ares.decipherzone.com/blog-manager/uploads/ckeditor_Frontend%20Roadmap%20(2).png",
+];
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-very-light-gray" id="agents">
+    <div class="container">
+      <div class="row mb-4">
+        <div
+          class="col-12 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3
+            class="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none"
+            data-shadow-animation="true"
+            data-animation-delay="700"
+          >
+            <span class="fw-700 text-highlight d-inline-block">
+              {t.title}
+              <span
+                class="bg-base-color h-10px bottom-5px opacity-3 separator-animation"
+              ></span>
+            </span>
+          </h3>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column gap-3 align-items-center">
+        {images.map((src) => <img src={src} alt="Roadmap" loading="lazy" />)}
+      </div>
+    </div>
+  </section>
+</Layout>

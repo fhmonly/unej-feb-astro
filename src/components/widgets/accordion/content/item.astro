@@ -1,0 +1,44 @@
+---
+interface Props {
+  active?: boolean;
+  desc?: string;
+  title: string;
+  paneId: string;
+  idx: number;
+}
+
+const { active = false, desc, title, paneId, idx } = Astro.props;
+const collapseId = `accordion-style-01-${idx}`;
+---
+
+<div class={`accordion-item ${active ? "active-accordion" : ""}`}>
+  <div class="accordion-header border-bottom border-color-extra-medium-gray">
+    <a
+      href="#"
+      data-bs-toggle="collapse"
+      data-bs-target={`#${collapseId}`}
+      aria-expanded={active}
+      data-bs-parent={`#${paneId}`}
+    >
+      <div class="accordion-title mb-0 position-relative text-dark-gray">
+        <i
+          class={`feather ${active ? "icon-feather-minus" : "icon-feather-plus"}`}
+        ></i>
+        <span class="fw-500 fs-18">{title}</span>
+      </div>
+    </a>
+  </div>
+
+  <div
+    id={collapseId}
+    class={`accordion-collapse collapse ${active ? "show" : ""}`}
+  >
+    <div
+      class="accordion-body last-paragraph-no-margin border-bottom border-color-light-medium-gray"
+    >
+      <slot>
+        {desc && <p>{desc}</p>}
+      </slot>
+    </div>
+  </div>
+</div>

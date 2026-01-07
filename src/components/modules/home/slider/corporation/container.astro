@@ -1,0 +1,61 @@
+---
+import HomeSliderItem from "@/components/modules/home/slider/corporation/item.astro";
+import { getLocale } from "@i18n/i18n";
+import { wordsJson } from "@i18n/words";
+
+const t = wordsJson[getLocale(Astro)];
+
+const sliders = [
+  {
+    imageUrl: "/_astro/images/bg-feb.webp",
+    title: t.feb_unej,
+    desc: `${t.pancasila_campus} ${t.for_the_world}`,
+  },
+  {
+    imageUrl: "/_astro/images/plaza.jpg",
+    title: t.feb_unej,
+    desc: `${t.pancasila_campus} ${t.for_the_world}`,
+  },
+  {
+    imageUrl: "/_astro/images/tower-feb.jpg",
+    title: t.feb_unej,
+    desc: `${t.pancasila_campus} ${t.for_the_world}`,
+  },
+];
+---
+
+<section id="slider" class="p-0 top-space-margin">
+  <div
+    class="demo-corporate-slider_wrapper fullscreen-container"
+    data-alias="portfolio-viewer"
+    data-source="gallery"
+    style="background-color: transparent; padding: 0;"
+  >
+    <div
+      id="demo-corporate-slider"
+      class="rev_slider bg-regal-blue fullscreenbanner"
+      style="display:none"
+      data-version="5.3.1.6"
+    >
+      <!-- slides -->
+      <ul>
+        {
+          sliders.map((slider, index) => (
+            <HomeSliderItem
+              imageUrl={slider.imageUrl}
+              title={slider.title}
+              desc={slider.desc}
+              nth={index + 1}
+            />
+          ))
+        }
+      </ul>
+
+      <div
+        class="tp-bannertimer"
+        style="height:10px;background-color:rgba(0,0,0,.1);z-index:98;"
+      >
+      </div>
+    </div>
+  </div>
+</section>

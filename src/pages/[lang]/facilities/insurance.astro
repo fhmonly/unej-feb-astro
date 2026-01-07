@@ -1,0 +1,105 @@
+---
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Facility Insurance",
+    title: "Facility Insurance",
+    intro:
+      "Health insurance is a type of insurance that provides financial protection against medical expenses. In the context of a university, health insurance may be provided to students through the use of the BPJS (Badan Penyelenggara Jaminan Sosial), which is the national health insurance program in Indonesia.",
+    bpjsDescription:
+      "The BPJS is a government-run program that aims to provide affordable and accessible health care to all Indonesian citizens. Universities may require students to enroll in the BPJS as part of their enrollment process or offer it as an optional add-on to their tuition fees.",
+    benefitsTitle:
+      "The BPJS offers several benefits for students in the university, including:",
+    benefits: [
+      "Affordable healthcare: The BPJS provides access to affordable healthcare services, including medical consultations, hospitalization, and prescription drugs.",
+      "Comprehensive coverage: The BPJS covers a range of medical services, including both basic and specialized treatments.",
+      "Easy access to healthcare: Students can access healthcare services through the BPJS at any participating hospital or clinic across Indonesia.",
+      "Health promotion: The BPJS provides health education and promotion services to its members, promoting healthy lifestyles and preventing disease.",
+      "Protection against financial loss: The BPJS provides financial protection against medical expenses, helping to prevent students from incurring significant financial losses due to medical emergencies.",
+    ],
+    conclusion:
+      "In conclusion, the BPJS provides affordable and accessible healthcare services to students in the university, offering comprehensive coverage, easy access to healthcare, health promotion, and protection against financial loss. It is an important component of student welfare and plays a crucial role in promoting health and wellbeing in the university community.",
+  },
+  id: {
+    pageTitle: "Asuransi Fasilitas",
+    title: "Asuransi Fasilitas",
+    intro:
+      "Asuransi kesehatan adalah jenis asuransi yang memberikan perlindungan finansial terhadap biaya pengobatan. Dalam konteks universitas, asuransi kesehatan dapat diberikan kepada mahasiswa melalui penggunaan BPJS (Badan Penyelenggara Jaminan Sosial), yaitu program asuransi kesehatan nasional di Indonesia.",
+    bpjsDescription:
+      "BPJS adalah program yang dijalankan pemerintah yang bertujuan menyediakan layanan kesehatan yang terjangkau dan mudah diakses bagi seluruh warga negara Indonesia. Universitas dapat mewajibkan mahasiswa untuk mendaftar BPJS sebagai bagian dari proses pendaftaran atau menjadikannya sebagai opsi tambahan di luar biaya kuliah.",
+    benefitsTitle:
+      "BPJS menawarkan beberapa manfaat bagi mahasiswa di universitas, antara lain:",
+    benefits: [
+      "Layanan kesehatan terjangkau: BPJS menyediakan akses ke layanan kesehatan dengan biaya yang terjangkau, termasuk konsultasi medis, rawat inap, dan obat resep.",
+      "Cakupan komprehensif: BPJS mencakup berbagai layanan medis, termasuk perawatan dasar hingga perawatan spesialis.",
+      "Akses mudah ke layanan kesehatan: Mahasiswa dapat mengakses layanan kesehatan melalui BPJS di rumah sakit atau klinik yang bekerja sama di seluruh Indonesia.",
+      "Promosi kesehatan: BPJS menyediakan edukasi dan layanan promosi kesehatan kepada pesertanya, mendorong gaya hidup sehat dan pencegahan penyakit.",
+      "Perlindungan terhadap kerugian finansial: BPJS memberikan perlindungan finansial terhadap biaya pengobatan, membantu mahasiswa terhindar dari kerugian finansial besar akibat keadaan darurat medis.",
+    ],
+    conclusion:
+      "Kesimpulannya, BPJS menyediakan layanan kesehatan yang terjangkau dan mudah diakses bagi mahasiswa di universitas, menawarkan cakupan yang komprehensif, kemudahan akses, promosi kesehatan, serta perlindungan dari risiko finansial. BPJS merupakan komponen penting dalam kesejahteraan mahasiswa dan berperan dalam mendukung kesehatan serta kesejahteraan di lingkungan universitas.",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+const steps = Array.from({ length: 5 });
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.intro}
+          </p>
+
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.bpjsDescription}
+          </p>
+
+          <div
+            class="row row-cols-1"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            {
+              steps.map((_, index) => (
+                <div class="col-12 process-step-style-05 position-relative hover-box">
+                  <div class="process-step-item d-flex">
+                    <div class="process-step-icon-wrap position-relative">
+                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700 position-relative">
+                        <span class="number position-relative z-index-1 text-dark-gray">
+                          0{index + 1}
+                        </span>
+                        <div class="box-overlay bg-base-color rounded-circle" />
+                      </div>
+                      <span class="progress-step-separator bg-dark-gray opacity-1" />
+                    </div>
+
+                    <div class="process-content ps-30px last-paragraph-no-margin mb-30px">
+                      <p class="w-90 lg-w-100 lh-32">{t.benefits[index]}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.conclusion}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

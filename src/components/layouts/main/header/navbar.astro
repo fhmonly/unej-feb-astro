@@ -1,0 +1,484 @@
+---
+import LayoutHeaderNavNestedMenu from "@components/layouts/main/header/navbarNestedMenu.astro";
+
+/* ===== i18n helper (ringkas) ===== */
+import { navJson } from "@/i18n/navigation"; // disarankan pindah ke file terpisah
+import { getLocale, languages, switchLocalePath } from "@i18n/i18n";
+
+/* ===== locale ===== */
+const locale = getLocale(Astro);
+const t = navJson[locale].navigation;
+const fullPath = Astro.url.pathname + Astro.url.search;
+
+/* ===== menu config ===== */
+const menuConfig = [
+  {
+    label: t.main.about.title,
+    icon: { fa: "fa-solid fa-circle-info" },
+    children: [
+      {
+        label: t.main.about.profile,
+        to: "/about/profile",
+        icon: { fa: "fa-regular fa-id-card" },
+      },
+      {
+        label: t.main.about.accreditation,
+        to: "/about/accreditation",
+        icon: { fa: "fa-solid fa-certificate" },
+      },
+      {
+        label: t.main.about.partnership,
+        to: "/about/partnership",
+        icon: { fa: "fa-solid fa-handshake" },
+      },
+      {
+        label: t.main.about.leaders,
+        to: "/about/leadership",
+        icon: { fa: "fa-solid fa-user-tie" },
+      },
+      {
+        label: t.main.about.teaching_staff,
+        to: "/about/teaching-staff",
+        icon: { fa: "fa-solid fa-chalkboard-user" },
+      },
+      {
+        label: t.main.about.administrative_staff,
+        to: "/about/administrative-staff",
+        icon: { fa: "fa-solid fa-users-gear" },
+      },
+      {
+        label: t.main.about.mars_of_faculty,
+        to: "https://www.youtube.com/watch?v=Rf0MqhqsTGo&feature=youtu.be",
+        target: "_blank",
+        icon: { fa: "fa-brands fa-youtube" },
+      },
+    ],
+  },
+
+  {
+    label: t.main.inter_center.title,
+    icon: { fa: "fa-solid fa-globe" },
+    children: [
+      {
+        label: t.main.inter_center.organization_structure,
+        to: "/international-center/organization-structure",
+        icon: { bi: "bi-diagram-3" },
+      },
+      {
+        label: t.main.inter_center.roadmap,
+        to: "/international-center/inter-roadmap",
+        icon: { fa: "fa-solid fa-route" },
+      },
+      {
+        label: t.main.inter_center.existing_condition,
+        to: "/international-center/existing-condition",
+        icon: { fa: "fa-solid fa-chart-bar" },
+      },
+      {
+        label: t.main.inter_center.inter_report,
+        to: "/international-center/inter-report",
+        icon: { bi: "bi-file-earmark-text" },
+      },
+    ],
+  },
+
+  {
+    label: t.main.academic_programs.title,
+    icon: { fa: "fa-solid fa-graduation-cap" },
+    children: [
+      {
+        label: t.main.academic_programs.diploma_programs.title,
+        icon: { fa: "fa-solid fa-school" },
+        children: [
+          {
+            label: t.main.academic_programs.diploma_programs.company_management,
+            to: "https://psd3mp.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-briefcase" },
+          },
+          {
+            label:
+              t.main.academic_programs.diploma_programs
+                .financial_administration,
+            to: "https://psd3ak.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-coins" },
+          },
+          {
+            label: t.main.academic_programs.diploma_programs.secretary,
+            to: "https://psd3set.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-person-vcard" },
+          },
+          {
+            label: t.main.academic_programs.diploma_programs.accounting,
+            to: "https://psd3akt.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-calculator" },
+          },
+        ],
+      },
+
+      {
+        label: t.main.academic_programs.bachelor_programs.title,
+        icon: { fa: "fa-solid fa-user-graduate" },
+        children: [
+          {
+            label: t.main.academic_programs.bachelor_programs.accounting,
+            to: "https://psakuntansi.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-coins" },
+          },
+          {
+            label: t.main.academic_programs.bachelor_programs.management,
+            to: "https://psmanajemen.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-graph-up" },
+          },
+          {
+            label:
+              t.main.academic_programs.bachelor_programs.development_economics,
+            to: "https://psep.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-chart-line" },
+          },
+          {
+            label: t.main.academic_programs.bachelor_programs.sharia_economics,
+            to: "https://pses.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-mosque" },
+          },
+        ],
+      },
+
+      {
+        label: t.main.academic_programs.master_programs.title,
+        icon: { fa: "fa-solid fa-book-open" },
+        children: [
+          {
+            label: t.main.academic_programs.master_programs.economics,
+            to: "https://psmie.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-bar-chart" },
+          },
+          {
+            label: t.main.academic_programs.master_programs.management,
+            to: "https://psmm.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-briefcase" },
+          },
+          {
+            label: t.main.academic_programs.master_programs.accounting,
+            to: "https://psmak.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-calculator" },
+          },
+        ],
+      },
+
+      {
+        label: t.main.academic_programs.doctoral_programs.title,
+        icon: { fa: "fa-solid fa-user-ninja" },
+        children: [
+          {
+            label: t.main.academic_programs.doctoral_programs.economics,
+            to: "https://pdie.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { fa: "fa-solid fa-chart-area" },
+          },
+          {
+            label: t.main.academic_programs.doctoral_programs.management,
+            to: "https://pdim.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-people" },
+          },
+        ],
+      },
+
+      {
+        label: t.main.academic_programs.admission.title,
+        icon: { fa: "fa-solid fa-door-open" },
+        children: [
+          {
+            label: t.main.academic_programs.admission.inter.title,
+            icon: { fa: "fa-solid fa-globe" },
+            children: [
+              {
+                label: t.main.academic_programs.admission.inter.inter_office,
+                to: "https://international.unej.ac.id/",
+                target: "_blank",
+                icon: { bi: "bi-globe2" },
+              },
+            ],
+          },
+
+          {
+            label: t.main.academic_programs.admission.national.title,
+            icon: { fa: "fa-solid fa-flag" },
+            children: [
+              {
+                label:
+                  t.main.academic_programs.admission.national
+                    .national_selection,
+                to: "https://ltmpt.ac.id/?mid=4",
+                target: "_blank",
+                icon: { bi: "bi-card-checklist" },
+              },
+              {
+                label:
+                  t.main.academic_programs.admission.national.joint_selection,
+                to: "https://ltmpt.ac.id/?mid=9sbm",
+                target: "_blank",
+                icon: { bi: "bi-diagram-3" },
+              },
+              {
+                label:
+                  t.main.academic_programs.admission.national
+                    .independent_selection,
+                to: "https://unej.ac.id/penerimaan-mahasiswa-baru/",
+                target: "_blank",
+                icon: { fa: "fa-solid fa-user-check" },
+              },
+            ],
+          },
+
+          {
+            label: t.main.academic_programs.admission.bilingual_programs.title,
+            icon: { fa: "fa-solid fa-language" },
+            children: [
+              {
+                label:
+                  t.main.academic_programs.admission.bilingual_programs
+                    .recruitment,
+                to: "/admissions/recruitment",
+                icon: { fa: "fa-solid fa-users" },
+              },
+              {
+                label:
+                  t.main.academic_programs.admission.bilingual_programs
+                    .course_offered,
+                to: "/admissions/course-offered",
+                icon: { fa: "fa-solid fa-book" },
+              },
+              {
+                label:
+                  t.main.academic_programs.admission.bilingual_programs
+                    .activities,
+                to: "/admissions/activities",
+                icon: { fa: "fa-solid fa-calendar-days" },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    label: t.main.research.title,
+    icon: { fa: "fa-solid fa-microscope" },
+    children: [
+      {
+        label: t.main.research.journals,
+        to: "/research/journals",
+        icon: { bi: "bi-journal-text" },
+      },
+      {
+        label: t.main.research.research_groups,
+        to: "/research/research-groups",
+        icon: { fa: "fa-solid fa-users" },
+      },
+      {
+        label: t.main.research.conferences,
+        to: "/research/conferences",
+        icon: { fa: "fa-solid fa-flag" },
+      },
+      {
+        label: t.main.research.publications,
+        to: "/research/publications",
+        icon: { bi: "bi-file-text" },
+      },
+
+      {
+        label: t.main.community_service.title,
+        icon: { fa: "fa-solid fa-hand-holding-heart" },
+        children: [
+          {
+            label: t.main.community_service.websites,
+            to: "https://keris.feb.unej.ac.id/",
+            target: "_blank",
+            icon: { bi: "bi-browser-chrome" },
+          },
+          {
+            label: t.main.community_service.publications,
+            to: "/community-service/publications",
+            icon: { bi: "bi-journal" },
+          },
+          {
+            label: t.main.community_service.activities,
+            to: "/community-service/activities",
+            icon: { fa: "fa-solid fa-calendar-check" },
+          },
+          {
+            label: t.main.community_service.journals,
+            to: "/community-service/journals",
+            icon: { bi: "bi-journal-richtext" },
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    label: t.main.student_affairs.title,
+    icon: { fa: "fa-solid fa-user-group" },
+    children: [
+      {
+        label: t.main.student_affairs.organizations,
+        to: "/student-affairs/organization",
+        icon: { fa: "fa-solid fa-sitemap" },
+      },
+      {
+        label: t.main.student_affairs.achievements,
+        to: "/student-affairs/achievements",
+        icon: { bi: "bi-trophy" },
+      },
+      {
+        label: t.main.student_affairs.calendar,
+        to: "/student-affairs/calendar",
+        icon: { bi: "bi-calendar-event" },
+      },
+      {
+        label: t.main.student_affairs.scholarships,
+        to: "/student-affairs/scholarships",
+        icon: { fa: "fa-solid fa-graduation-cap" },
+      },
+      {
+        label: t.main.iceba,
+        to: "/conference/site/icebast25",
+        icon: { bi: "bi-megaphone" },
+      },
+      {
+        label: t.main.facility.title,
+        icon: { fa: "fa-solid fa-building" },
+        children: [
+          {
+            label: t.main.facility.report,
+            to: "https://lapor-feb.unej.my.id/",
+            target: "_blank",
+            icon: { bi: "bi-flag" },
+          },
+          {
+            label: t.main.facility.disabilities,
+            to: "/facilities/disabilities",
+            icon: { bi: "bi-universal-access" },
+          },
+          {
+            label: t.main.facility.insurance,
+            to: "/facilities/insurance",
+            icon: { fa: "fa-solid fa-shield" },
+          },
+          {
+            label: t.main.facility.medical,
+            to: "/facilities/medical-facilities",
+            icon: { fa: "fa-solid fa-kit-medical" },
+          },
+          {
+            label: t.main.facility.sport,
+            to: "/facilities/sport-leisure-facilities",
+            icon: { fa: "fa-solid fa-dumbbell" },
+          },
+          {
+            label: t.main.facility.support,
+            to: "/facilities/supporting-system",
+            icon: { bi: "bi-cpu" },
+          },
+        ],
+      },
+    ],
+  },
+];
+---
+
+<nav
+  class="navbar navbar-expand-lg mini-header header-light bg-white header-reverse header-demo glass-effect"
+  data-header-hover="light"
+>
+  <div class="container-lg">
+    <!-- logo -->
+    <div class="col-auto me-auto ps-lg-0">
+      <a class="navbar-brand" href="/">
+        <img src="/_astro/images/unej-removebg.png" class="default-logo" />
+        <img src="/_astro/images/unej-removebg.png" class="alt-logo" />
+        <img src="/_astro/images/unej-removebg.png" class="mobile-logo" />
+      </a>
+    </div>
+
+    <!-- menu -->
+    <div class="col-auto menu-order position-static">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+      </button>
+
+      <div
+        class="collapse navbar-collapse justify-content-center"
+        id="navbarNav"
+      >
+        <ul class="navbar-nav">
+          {menuConfig.map((menu) => <LayoutHeaderNavNestedMenu item={menu} />)}
+        </ul>
+      </div>
+    </div>
+
+    <!-- language -->
+    <div class="col-auto pe-lg-0 ps-lg-0">
+      <div class="header-icon">
+        <div class="header-language-icon icon">
+          <div class="dropdown header-language">
+            <div
+              class="dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="padding-left: 10px;"
+            >
+              <i class="feather icon-feather-globe"></i>
+            </div>
+            <ul class="dropdown-menu language-dropdown">
+              {
+                languages.map((lang) => (
+                  <li>
+                    <a
+                      href={
+                        lang.code === locale
+                          ? "javascript:void(0);"
+                          : switchLocalePath(fullPath, lang.code as any)
+                      }
+                      title={lang.name}
+                      class="text-truncate"
+                    >
+                      <span class="icon-country">
+                        <img
+                          src={`/_astro/images/country-flag-16X16/${lang.name}.png`}
+                          alt=""
+                        />
+                      </span>
+                      {lang.name}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

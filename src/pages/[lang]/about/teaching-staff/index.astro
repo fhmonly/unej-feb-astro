@@ -1,0 +1,141 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  "en": {
+    "pageTitle": "Teaching Staff",
+    "qualified_trusted_staff": "Qualified trusted Teaching Staff"
+  },
+  "id": {
+    "pageTitle": "Staf Pengajar",
+    "qualified_trusted_staff": "Staf Pengajar yang berpengalaman"
+  }
+}
+const t = useI18n(messages, getLocale(Astro));
+---
+
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-very-light-gray" id="agents">
+    <div class="container">
+      <div class="row mb-4">
+        <div
+          class="col-12 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3
+            class="alt-font fw-500 text-dark-gray ls-minus-1px shadow-none"
+            data-shadow-animation="true"
+            data-animation-delay="700"
+          >
+            <span class="fw-700 text-highlight d-inline-block"
+              >{t.pageTitle}<span
+                class="bg-base-color h-10px bottom-5px opacity-3 separator-animation"
+              ></span
+            ></span>
+          </h3>
+        </div>
+      </div>
+      <div
+        class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
+        data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+      >
+        <!-- start team member item -->
+        {
+          Array.from({ length: 3 }).map((_, index) => (
+            <div class="col team-style-06 mb-30px" >
+          <div
+            class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative"
+          >
+            <div class="position-relative">
+              <a
+                href="demo-real-estate-agent-details.html"
+                class="d-inline-block position-relative"
+                ><img
+                  class="rounded-circle w-150px h-150px mb-20px"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQej6wb-NkZnWVFV1bsO6pl3Jw6KrZobckHXw&s"
+                  alt=""
+                />
+                <!-- <span
+                  class="fs-13 fw-600 text-dark-gray alt-font lh-30 position-absolute top-25px right-minus-40px border-radius-30px bg-yellow ps-15px pe-15px"
+                  ><i class="fa-solid fa-star"></i> 4.9</span
+                > -->
+              </a>
+            </div>
+            <a
+              href="demo-real-estate-agent-details.html"
+              class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
+              >Elon Musk, S.E, M.Ak.</a
+            >
+            <p class="w-90 mx-auto lh-28">199410082025062006</p>
+            <div
+              class="text-center elements-social social-icon-style-02 border-top border-color-light-medium-gray w-100 pt-15px"
+            >
+              <ul class="small-icon dark">
+                <li>
+                  <a
+                    class="facebook"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                    ><i class="fa-brands fa-facebook-f"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="linkedin"
+                    href="https://www.linkedin.com/"
+                    target="_blank"
+                    ><i class="fa-brands fa-linkedin-in"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="twitter"
+                    href="https://www.twitter.com"
+                    target="_blank"
+                    ><i class="fa-brands fa-twitter"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    class="instagram"
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    ><i class="fa-brands fa-instagram"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+          ))
+        }
+        <!-- end team member item -->
+      </div>
+      <!-- <div
+        class="row justify-content-center"
+        data-anime='{ "translateX": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 50, "staggervalue": 150, "easing": "easeOutQuad" }'
+      >
+        <div class="col-auto icon-with-text-style-08">
+          <div class="feature-box feature-box-left-icon-middle">
+            <div class="feature-box-icon me-10px">
+              <i class="bi bi-patch-check icon-medium text-base-color"></i>
+            </div>
+            <div
+              class="feature-box-content alt-font text-dark-gray fs-22 fw-600"
+            >
+              15M+ Happy people with our
+              <span class="text-decoration-line-bottom"
+                >best services and agents.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+</Layout>

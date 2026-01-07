@@ -1,0 +1,122 @@
+---
+import "tabulator-tables/dist/css/tabulator_materialize.min.css";
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Course Offered",
+    table: {
+      number: "",
+      course_code: "Course Code",
+      course_name: "Course Name",
+      prerequisite: "Prerequisite",
+      credits: "Credits",
+      sks: "SKS",
+      ects: "ECTS",
+      information: "Information",
+    },
+  },
+  id: {
+    pageTitle: "Mata Kuliah Yang Diberikan",
+    table: {
+      number: "No.",
+      course_code: "Kode Mata Kuliah",
+      course_name: "Nama Mata Kuliah",
+      prerequisite: "Prasyarat",
+      credits: "Kredit",
+      sks: "SKS",
+      ects: "ECTS",
+      information: "Informasi",
+    },
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+
+const columns = [
+  { title: "", formatter: "responsiveCollapse", headerSort: false },
+  {
+    title: t.table.number,
+    formatter: "rownum",
+    headerSort: false,
+    frozen: true,
+  },
+  { title: t.table.course_code, field: "course_code", maxWidth: 120 },
+  { title: t.table.course_name, field: "course_name" },
+  { title: t.table.prerequisite, field: "prerequisite" },
+  {
+    title: t.table.credits,
+    columns: [
+      { title: t.table.sks, field: "sks" },
+      { title: t.table.ects, field: "ects" },
+    ],
+  },
+  { title: t.table.information, field: "information" },
+];
+
+const rows = [
+  {
+    course_code: "ECO101",
+    course_name: "Introduction to Economics",
+    prerequisite: "-",
+    sks: "3",
+    ects: "5",
+    information: "Basic principles of micro and macro economics.",
+  },
+  {
+    course_code: "MGT205",
+    course_name: "Principles of Management",
+    prerequisite: "ECO101",
+    sks: "3",
+    ects: "5",
+    information: "Core concepts of organization and management.",
+  },
+];
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-gradient-quartz-white border-radius-6px">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <h3 class="text-dark-gray fw-700 text-center">
+          {t.pageTitle}
+        </h3>
+      </div>
+
+      <div
+        id="course-table"
+        data-columns={JSON.stringify(columns)}
+        data-rows={JSON.stringify(rows)}
+      >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { TabulatorFull as Tabulator } from "tabulator-tables";
+  const tableEl: HTMLElement | null = document.getElementById("course-table");
+
+  const tableElDt = tableEl?.dataset;
+  if (tableElDt) {
+    const dtColumns = tableElDt.columns;
+    const dtRows = tableElDt.rows;
+    if (dtColumns && dtRows) {
+      const columns = JSON.parse(dtColumns);
+      const rows = JSON.parse(dtRows);
+
+      if (tableEl) {
+        new Tabulator(tableEl, {
+          data: rows,
+          columns,
+          layout: "fitDataFill",
+          responsiveLayout: "collapse",
+          maxHeight: window.innerHeight - 200,
+        });
+      }
+    }
+  }
+</script>

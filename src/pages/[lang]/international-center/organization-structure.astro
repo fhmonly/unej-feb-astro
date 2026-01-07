@@ -1,0 +1,229 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    org_structure: {
+      title: "Organizational Structure",
+      description:
+        "The International Center of the Faculty of Economics and Business, University of Jember (IC FEB UNEJ) is dedicated to fostering relationships with foreign universities and expanding international cooperation with various international institutions. IC FEB UNEJ strives to provide comprehensive information, streamline application procedures, and offer guidance and support to international students and foreign faculty members.",
+      activities_intro: "Our primary activities include:",
+      activities: {
+        cooperation:
+          "Developing and maintaining international cooperation with foreign partner universities and international institutions.",
+        mou: "Executing and activating Memorandums of Understanding (MoUs) with partner institutions abroad.",
+        supporting_events_intro:
+          "Supporting a wide range of international conferences and activities held at FEB UNEJ, including:",
+        supporting_events: [
+          "Student Exchange Programs",
+          "Visiting Scholar Programs",
+          "International Credit Transfers (ICT)",
+          "Short Courses",
+          "University Network Events/Meetings",
+          "Joint Workshops with International Academic Institutions",
+          "International Seminars",
+        ],
+        assistance:
+          "Providing assistance with admissions, permits, insurance, and accommodations for international students and foreign faculty members.",
+      },
+      commitment:
+        "At IC FEB UNEJ, we are committed to creating a welcoming and supportive environment for all international students and faculty members, and we look forward to promoting global awareness and cultural exchange through our various initiatives.",
+    },
+    partner: "University Partners",
+  },
+  id: {
+    org_structure: {
+      title: "Struktur Organisasi",
+      description:
+        "International Center Fakultas Ekonomi dan Bisnis Universitas Jember (IC FEB UNEJ) berkomitmen memperkuat hubungan dengan universitas luar negeri dan memperluas kerja sama internasional dengan berbagai institusi dunia. IC FEB UNEJ berupaya menyediakan informasi komprehensif, mempermudah proses aplikasi, serta memberi panduan dan dukungan bagi mahasiswa internasional dan dosen asing.",
+      activities_intro: "Kegiatan utama kami mencakup:",
+      activities: {
+        cooperation:
+          "Mengembangkan dan menjaga kerja sama internasional dengan universitas mitra dan institusi internasional.",
+        mou: "Melaksanakan dan mengaktifkan Memorandum of Understanding (MoU) dengan institusi mitra di luar negeri.",
+        supporting_events_intro:
+          "Mendukung berbagai konferensi dan kegiatan internasional yang diselenggarakan di FEB UNEJ, termasuk:",
+        supporting_events: [
+          "Program Pertukaran Mahasiswa",
+          "Program Visiting Scholar",
+          "International Credit Transfer (ICT)",
+          "Short Course",
+          "Kegiatan/Pertemuan Jaringan Universitas",
+          "Workshop bersama Institusi Akademik Internasional",
+          "Seminar Internasional",
+        ],
+        assistance:
+          "Memberikan bantuan terkait penerimaan, perizinan, asuransi, dan akomodasi bagi mahasiswa internasional dan dosen asing.",
+      },
+      commitment:
+        "IC FEB UNEJ berkomitmen menciptakan lingkungan yang ramah dan suportif bagi seluruh mahasiswa dan dosen internasional, serta berupaya meningkatkan kesadaran global dan pertukaran budaya melalui berbagai inisiatif.",
+    },
+    partner: "Mitra Universitas",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+
+const supportingEvents = t.org_structure.activities.supporting_events;
+
+const partners = Array.from({ length: 10 });
+---
+
+<Layout title={t.org_structure.title}>
+  <PageTitleTypography
+    title={t.org_structure.title}
+    image="/_astro/images/bg-feb.webp"
+  />
+  <!-- start section -->
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <!-- TITLE -->
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.org_structure.title}
+          </span>
+
+          <!-- DESCRIPTION -->
+          <p class="text-dark-gray fw-500 mb-30px">
+            {t.org_structure.description}
+          </p>
+
+          <!-- ACTIVITIES INTRO -->
+          <p class="fw-700 text-dark-gray mb-20px">
+            {t.org_structure.activities_intro}
+          </p>
+
+          <!-- ACTIVITIES LIST -->
+          <div
+            class="row row-cols-1"
+            data-anime='{ "el":"childs","translateY":[30,0],"opacity":[0,1],"duration":600,"staggervalue":300 }'
+          >
+            <!-- 01 -->
+            <div
+              class="col-12 process-step-style-05 position-relative hover-box"
+            >
+              <div class="process-step-item d-flex">
+                <div class="process-step-icon-wrap position-relative">
+                  <div
+                    class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700"
+                  >
+                    <span class="number text-dark-gray">01</span>
+                  </div>
+                  <span class="progress-step-separator bg-dark-gray"></span>
+                </div>
+                <div class="process-content ps-30px mb-20px">
+                  <p>{t.org_structure.activities.cooperation}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 02 -->
+            <div
+              class="col-12 process-step-style-05 position-relative hover-box"
+            >
+              <div class="process-step-item d-flex">
+                <div class="process-step-icon-wrap position-relative">
+                  <div
+                    class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700"
+                  >
+                    <span class="number text-dark-gray">02</span>
+                  </div>
+                  <span class="progress-step-separator bg-dark-gray"></span>
+                </div>
+                <div class="process-content ps-30px mb-20px">
+                  <p>{t.org_structure.activities.mou}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Supporting events -->
+            <div class="ms-5">
+              <p class="fw-700 text-dark-gray mt-10px mb-10px">
+                {t.org_structure.activities.supporting_events_intro}
+              </p>
+
+              {
+                supportingEvents.map((item) => (
+                  <div class="d-flex mb-10px">
+                    <div class="me-3 fw-700 text-base-color">•</div>
+                    <p class="mb-0">{item}</p>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- 03 -->
+            <div
+              class="col-12 process-step-style-05 position-relative hover-box mt-10px"
+            >
+              <div class="process-step-item d-flex">
+                <div class="process-step-icon-wrap position-relative">
+                  <div
+                    class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700"
+                  >
+                    <span class="number text-dark-gray">03</span>
+                  </div>
+                </div>
+                <div class="process-content ps-30px">
+                  <p>{t.org_structure.activities.assistance}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMMITMENT -->
+          <p class="text-dark-gray fw-700 mt-40px">
+            {t.org_structure.commitment}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end section -->
+
+  <section class="py-0 sm-pt-50px">
+    <div class="container overlap-section">
+      <div class="row justify-content-center g-0">
+        <div
+          class="col-auto text-center icon-with-text-style-08 pt-20px pb-20px ps-8 pe-8 bg-white border box-shadow-medium-bottom border-radius-100px"
+        >
+          <div
+            class="feature-box-content text-dark-gray text-uppercase fs-15 fw-700"
+          >
+            {t.partner}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-gradient-solitude-blue-transparent big-section">
+    <div class="container overlap-gap-section">
+      <div
+        class="row justify-content-center row-cols-2 row-cols-md-4 row-cols-sm-3 clients-style-03"
+      >
+        {
+          partners.map(() => (
+            <div
+              class="col text-center mb-35px"
+              data-anime='{ "translateY":[15,0],"opacity":[0,1],"duration":600 }'
+            >
+              <div class="client-box">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSTLNyHEp8ERADDJDy5wXQLoV_Lj0YTmv6eA&s"
+                  alt="partner"
+                  class="box-shadow-extra-large border-radius-100px"
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

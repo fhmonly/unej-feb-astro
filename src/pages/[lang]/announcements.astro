@@ -1,0 +1,46 @@
+---
+import {
+  generateMultiLocaleStaticPaths,
+  getLocale,
+  useI18n,
+} from "@/i18n/i18n";
+import WidgetsHeroSlider from "@components/widgets/pageTitleTypography.astro";
+import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
+import Layout from "@layouts/main.astro";
+
+export async function getStaticPaths() {
+  return generateMultiLocaleStaticPaths();
+}
+
+const messages = {
+  en: {
+    pageTitle: "Announcement",
+    title: "Announcement",
+  },
+  id: {
+    pageTitle: "Pengumuman",
+    title: "Pengumuman",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <WidgetsHeroSlider title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+        <section class="py-3"></section>
+    {
+      Array.from({ length: 4 }).map((_, i) => (
+        <section class="py-4"></section>
+          <WidgetsPillDivider text={"Announcement " + i + 1} />
+
+          <section class="px-md-5 p-2">
+            <img
+              src="https://images.pexels.com/photos/4663107/pexels-photo-4663107.jpeg"
+              alt=""
+              class="border-radius-5px"
+            />
+          </section>
+      ))
+    }
+</Layout>

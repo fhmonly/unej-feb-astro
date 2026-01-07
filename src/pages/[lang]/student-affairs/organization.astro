@@ -1,0 +1,141 @@
+---
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Student Organizations",
+    title: "Student Organizations",
+  },
+  id: {
+    pageTitle: "Organisasi Mahasiswa",
+    title: "Organisasi Mahasiswa",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+const sosmed = [
+  {
+    name: "facebook",
+    url: "https://www.facebook.com/",
+    icon: "fa-brands fa-facebook-f",
+  },
+  {
+    name: "twitter",
+    url: "https://www.twitter.com",
+    icon: "fa-brands fa-twitter",
+  },
+  {
+    name: "google",
+    url: "https://plus.google.com",
+    icon: "fa-brands fa-google-plus-g",
+  },
+  {
+    name: "dribbble",
+    url: "http://www.dribbble.com",
+    icon: "fa-brands fa-dribbble",
+  },
+  {
+    name: "linkedin",
+    url: "http://www.linkedin.com",
+    icon: "fa-brands fa-linkedin-in",
+  },
+  {
+    name: "instagram",
+    url: "https://www.instagram.com",
+    icon: "fa-brands fa-instagram",
+  },
+  {
+    name: "behance",
+    url: "http://www.behance.com/",
+    icon: "fa-brands fa-behance",
+  },
+];
+---
+
+<Layout title={t.pageTitle}>
+  <!-- start page title -->
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <!-- end page title -->
+
+  <div id="down-section" class="mt-4"></div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 filter-content">
+        <ul
+          class="portfolio-boxed portfolio-wrapper grid-loading grid grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
+        >
+          <li class="grid-sizer"></li>
+
+          <!-- portfolio item -->
+          <li class="grid-item selected digital transition-inner-all">
+            <div class="portfolio-box border-radius-4px">
+              <div class="portfolio-image border-radius-4px">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkH34ZL8i8UFrTj7RzTjTW3-Wiuvgp5WiFKw&s"
+                  alt=""
+                />
+
+                <div
+                  class="portfolio-hover d-flex justify-content-center flex-column"
+                >
+                  <div
+                    class="portfolio-icon d-flex flex-row justify-content-center align-items-center"
+                  >
+                    <a
+                      href="#"
+                      class="d-flex flex-column justify-content-center text-dark-gray text-dark-gray-hover rounded-circle bg-white w-60px h-60px move-bottom-top"
+                    >
+                      <i class="fa-solid fa-plus icon-small" aria-hidden="true"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+
+                <div
+                  class="portfolio-overlay bg-dark-gray"
+                  style="background-color: #637c8e"
+                >
+                </div>
+              </div>
+
+              <div
+                class="portfolio-caption pt-20px lg-pt-20px pb-30px lg-pb-20px"
+              >
+                <p class="fs-17 fw-600 text-dark-gray text-dark-gray-hover">
+                  Stream stones
+                </p>
+
+                <div class="text-center elements-social social-icon-style-04">
+                  <ul
+                    class="small-icon dark d-flex gap-1 flex-wrap justify-content-center align-items-center"
+                  >
+                    {
+                      sosmed.map((item) => (
+                        <li class="w-auto">
+                          <a
+                            class={item.name}
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            <i class={item.icon} />
+                            <span />
+                          </a>
+                        </li>
+                      ))
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

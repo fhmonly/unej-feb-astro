@@ -1,0 +1,149 @@
+---
+import PillDivider from "@/components/widgets/pillDivider.astro";
+import { wordsJson } from "@/i18n/words";
+import { getLocale } from "@i18n/i18n";
+import { navJson } from "@i18n/navigation";
+
+interface ProgramItem {
+  label: string;
+  url: string;
+}
+
+interface Program {
+  title: string;
+  count: number;
+  items: ProgramItem[];
+}
+
+const t = navJson[getLocale(Astro)].navigation;
+
+const prodis: Program[] = [
+  {
+    title: t.main.academic_programs.diploma_programs.title,
+    count: 4,
+    items: [
+      {
+        label: t.main.academic_programs.diploma_programs.company_management,
+        url: "https://psd3mp.feb.unej.ac.id/",
+      },
+      {
+        label:
+          t.main.academic_programs.diploma_programs.financial_administration,
+        url: "https://psd3ak.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.diploma_programs.secretary,
+        url: "https://psd3set.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.diploma_programs.accounting,
+        url: "https://psd3akt.feb.unej.ac.id/",
+      },
+    ],
+  },
+  {
+    title: t.main.academic_programs.bachelor_programs.title,
+    count: 4,
+    items: [
+      {
+        label: t.main.academic_programs.bachelor_programs.accounting,
+        url: "https://psakuntansi.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.bachelor_programs.management,
+        url: "https://psmanajemen.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.bachelor_programs.development_economics,
+        url: "https://psep.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.bachelor_programs.sharia_economics,
+        url: "https://pses.feb.unej.ac.id/",
+      },
+    ],
+  },
+  {
+    title: t.main.academic_programs.master_programs.title,
+    count: 3,
+    items: [
+      {
+        label: t.main.academic_programs.master_programs.economics,
+        url: "https://psmie.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.master_programs.management,
+        url: "https://psmm.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.master_programs.accounting,
+        url: "https://psmak.feb.unej.ac.id/",
+      },
+    ],
+  },
+  {
+    title: t.main.academic_programs.doctoral_programs.title,
+    count: 2,
+    items: [
+      {
+        label: t.main.academic_programs.doctoral_programs.economics,
+        url: "https://pdie.feb.unej.ac.id/",
+      },
+      {
+        label: t.main.academic_programs.doctoral_programs.management,
+        url: "https://pdim.feb.unej.ac.id/",
+      },
+    ],
+  },
+];
+
+const tWord = wordsJson[getLocale(Astro)];
+---
+
+<div style="padding-top:30px;padding-bottom:76px">
+  <PillDivider text={tWord.study_programs} />
+</div>
+
+<div class="container">
+  <div class="row g-4">
+    {
+      prodis.map((program) => (
+        <div class="col-md-6">
+          <div class="feature-box p-4 h-100 border radius-6 shadow-sm">
+            <h4 class="fw-semibold mb-1">{program.title}</h4>
+            <p class="small text-muted mb-3">
+              {program.count} {tWord.study_programs}
+            </p>
+
+            <ul class="list-unstyled m-0">
+              {program.items.map((item) => (
+                <li class="py-1">
+                  <a href={item.url} class="text-decoration-underline">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .feature-box {
+    background: #fff;
+    transition: 0.3s ease;
+  }
+  .feature-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  .radius-6 {
+    border-radius: 6px;
+  }
+  .shadow-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+</style>

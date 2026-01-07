@@ -1,0 +1,38 @@
+---
+import AccreditationCard from "@components/modules/about/accreditationCard.astro";
+import PillDivider from "@components/widgets/pillDivider.astro";
+
+const items = Array.from({ length: 4 });
+---
+
+<div style="padding-top:30px;padding-bottom:76px">
+  <PillDivider text="Accreditation" />
+</div>
+
+<section class="pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 filter-content">
+        <ul
+          class="portfolio-boxed portfolio-wrapper grid-loading grid grid-4col grid-4col xxl-grid-4col xl-grid-4col lg-grid-4col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
+        >
+          <li class="grid-sizer"></li>
+
+          {
+            items.map((_, i) => (
+              <li class="grid-item selected digital transition-inner-all gallery-box">
+                <div class="portfolio-box border-radius-4px">
+                  <AccreditationCard
+                    image="https://psb-planningcanada.ca/wp-content/uploads/2019/01/Accredited-gold-certif_92386558_xl-2015.jpg"
+                    accBy="FIBAA"
+                    major="Sastra Mesin"
+                  />
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

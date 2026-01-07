@@ -1,0 +1,158 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Recruitment",
+    title: "FEB Bilingual Class Program",
+    description:
+      "FEB Bilingual Class Program is an academic program that requires students to be active in various global academic activities. Students taking part in this program will experience the atmosphere of international education. The Bilingual Class is a bi-language class in which 70% English and 30% Indonesian are taught daily. In the Bilingual Class, students get used to communicating in English, have more opportunities for international exposure, and have the chance to participate in an international exchange program with partner universities.",
+    certificate_info:
+      "Graduating students who take this bilingual class program will receive a certificate indicating that they have completed the program. The issuance of the certificate can be completed here. The certificate will increase a student's credibility when they graduate and apply for jobs.",
+    admission_title: "Admission and Requirements",
+    requirements: [
+      {
+        text: "Applicants must be FEB UNEJ 2nd semester undergraduate students.",
+      },
+      {
+        text: "Applicants must have a minimum GPA of 3.00, evidenced by the 2nd semester study result sheet.",
+      },
+      {
+        text: "Applicants must demonstrate good English proficiency, evidenced by one of the following test results:",
+        english_tests: [
+          "IELTS ≥ 4.5",
+          "iBT TOEFL ≥ 33",
+          "ITP TOEFL ≥ 450",
+          "TOEIC ≥ 350",
+          "Duolingo ≥ 70",
+          "EPT LC UNEJ ≥ 450",
+        ],
+      },
+      {
+        text: "Applicants must upload a Motivation Letter (free format, handwritten or typed).",
+      },
+      {
+        text: "Applicants must attend the interview on the announced schedule.",
+      },
+    ],
+    more_info:
+      "More information can be found in the Bilingual Class Admission Handbook ",
+  },
+
+  id: {
+    pageTitle: "Pendaftaran",
+    title: "Program Kelas Bilingual FEB",
+    description:
+      "Program Kelas Bilingual FEB adalah program akademik yang mengharuskan mahasiswa aktif dalam berbagai kegiatan akademik global. Mahasiswa yang mengikuti program ini akan merasakan atmosfer pendidikan internasional. Kelas Bilingual adalah kelas dwibahasa dengan proporsi penggunaan bahasa 70% Inggris dan 30% Indonesia setiap hari. Dalam Kelas Bilingual, mahasiswa terbiasa berkomunikasi dalam bahasa Inggris, memiliki lebih banyak kesempatan untuk mendapatkan paparan internasional, serta berpeluang mengikuti program pertukaran pelajar dengan universitas mitra.",
+    certificate_info:
+      "Mahasiswa yang lulus dan mengikuti program kelas bilingual ini akan menerima sertifikat yang menyatakan bahwa mereka telah menyelesaikan program. Penerbitan sertifikat dapat dilakukan di sini. Sertifikat tersebut akan meningkatkan kredibilitas mahasiswa ketika lulus dan melamar pekerjaan.",
+    admission_title: "Pendaftaran dan Persyaratan",
+    requirements: [
+      {
+        text: "Pendaftar harus merupakan mahasiswa S1 FEB UNEJ semester 2.",
+      },
+      {
+        text: "Pendaftar harus memiliki IPK minimal 3.00, dibuktikan dengan lembar hasil studi semester 2.",
+      },
+      {
+        text: "Pendaftar harus menunjukkan kemampuan bahasa Inggris yang baik, dibuktikan dengan salah satu hasil tes berikut:",
+        english_tests: [
+          "IELTS ≥ 4.5",
+          "iBT TOEFL ≥ 33",
+          "ITP TOEFL ≥ 450",
+          "TOEIC ≥ 350",
+          "Duolingo ≥ 70",
+          "EPT LC UNEJ ≥ 450",
+        ],
+      },
+      {
+        text: "Pendaftar harus mengunggah Motivation Letter (format bebas, ditulis tangan atau diketik).",
+      },
+      {
+        text: "Pendaftar harus mengikuti wawancara sesuai jadwal yang diumumkan.",
+      },
+    ],
+    more_info:
+      "Informasi lebih lanjut dapat ditemukan pada Buku Panduan Pendaftaran Kelas Bilingual ",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <!-- TITLE -->
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+
+          <!-- DESCRIPTION -->
+          <p class="text-dark-gray fw-500 mb-30px">
+            {t.description}
+          </p>
+
+          <!-- CERTIFICATE INFO -->
+          <p class="text-dark-gray fw-500 mb-30px">
+            {t.certificate_info}
+          </p>
+
+          <!-- ADMISSION TITLE -->
+          <p class="fw-700 text-dark-gray mb-20px">
+            {t.admission_title}
+          </p>
+
+          <!-- REQUIREMENTS -->
+          <div class="row row-cols-1">
+            {
+              t.requirements.map((req, index) => (
+                <div class="col-12 process-step-style-05 position-relative hover-box">
+                  <div class="process-step-item d-flex">
+                    <div class="process-step-icon-wrap position-relative">
+                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700">
+                        <span class="number text-dark-gray">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      {index < t.requirements.length - 1 && (
+                        <span class="progress-step-separator bg-dark-gray opacity-1" />
+                      )}
+                    </div>
+
+                    <div class="process-content ps-30px mb-20px">
+                      <p>{req.text}</p>
+
+                      {/* English tests (nested list) */}
+                      {req.english_tests && (
+                        <ul class="ms-4 mt-10px">
+                          {req.english_tests.map((test) => (
+                            <li class="mb-5px">{test}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- MORE INFO -->
+          <p class="text-dark-gray fw-700 mt-40px">
+            {t.more_info}
+            <a href="#" class="ms-1">here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,86 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Journals",
+    title: "Features",
+    subtitle: "FEB Application Services",
+  },
+  id: {
+    pageTitle: "Jurnal",
+    title: "Fitur",
+    subtitle: "Layanan Aplikasi FEB",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+// dummy data (replace dengan API / content collection)
+const journals = Array.from({ length: 11 }).map((_, i) => ({
+  name: `Journal name ${i + 1}`,
+  description: "Some Description",
+  icon: "https://placehold.co/60x60",
+}));
+---
+
+<!-- start page title -->
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <!-- start section -->
+  <section id="down-section">
+    <div class="container overlap-gap-section">
+      <div
+        class="row align-items-end mb-5 md-mb-40px text-center text-md-start"
+      >
+        <div
+          class="col-xl-5 col-lg-6 col-md-10 md-mb-20px text-center text-lg-start"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+          <h3 class="text-dark-gray fw-700 mb-0 ls-minus-1px">
+            {t.subtitle}
+          </h3>
+        </div>
+      </div>
+
+      <div class="mb-5"></div>
+
+      <div
+        class="row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 justify-content-center"
+        data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+      >
+        {
+          journals.map((journal) => (
+            <div class="col custom-icon-with-text-style-02">
+              <div class="feature-box p-6 last-paragraph-no-margin overflow-hidden md-mb-20px">
+                <div class="feature-box-icon">
+                  <img
+                    class="custom-image-icon mb-20px"
+                    src={journal.icon}
+                    alt={journal.name}
+                  />
+                </div>
+                <div class="feature-box-content">
+                  <span class="d-block fs-19 fw-700 text-dark-gray mb-5px">
+                    {journal.name}
+                  </span>
+                  <p>{journal.description}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- end section -->
+</Layout>

@@ -1,0 +1,143 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import ModulesAboutLeaderCard from "@components/modules/about/leaderCard.astro";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Leadership",
+  },
+  id: {
+    pageTitle: "Kepemimpinan",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+const tLeadership = useI18n(
+  {
+    en: {
+      febLeadership: {
+        title: "Faculty Leadership",
+        subtitle: "Leaders",
+        department: {
+          dean: "Dean of Faculty of Economics and Business",
+          vice_dean: {
+            vd_1: "Vice Dean I of Faculty of Economics and Business",
+            vd_2: "Vice Dean II of Faculty of Economics and Business",
+            vd_3: "Vice Dean III of Faculty of Economics and Business",
+          },
+          coord: "Coordinator of Administrative Office Working Group",
+          vice_coord: {
+            academic:
+              "Vice Coordinator of Academic, Student and Alumni Affairs Working Group",
+            general:
+              "Vice Coordinator of General Affairs and State Property Working Group",
+            finance: "Vice Coordinator of Finance and Personnel Working Group",
+          },
+        },
+      },
+    },
+    id: {
+      febLeadership: {
+        title: "Pimpinan Fakultas",
+        subtitle: "Pimpinan",
+        department: {
+          dean: "Dekan Fakultas Ekonomi dan Bisnis",
+          vice_dean: {
+            vd_1: "Wakil Dekan I Fakultas Ekonomi dan Bisnis",
+            vd_2: "Wakil Dekan II Fakultas Ekonomi dan Bisnis",
+            vd_3: "Wakil Dekan III Fakultas Ekonomi dan Bisnis",
+          },
+          coord: "Koordinator Pokja Tata Usaha",
+          vice_coord: {
+            academic:
+              "Wakil Koordinator Pokja Akademik, Kemahasiswaan dan Alumni",
+            general: "Wakil Koordinator Pokja Umum dan BMN",
+            finance: "Wakil Koordinator Pokja Keuangan dan Kepegawaian",
+          },
+        },
+      },
+    },
+  },
+  getLocale(Astro)
+).febLeadership;
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <div class="mt-5"></div>
+  <section
+    class="bg-gradient-quartz-white border-radius-6px lg-border-radius-0px pb-0"
+  >
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-lg-7 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {tLeadership.title}
+          </h3>
+        </div>
+      </div>
+      <div class="row mb-5 sm-mb-7">
+        <div class="col-12">
+          <div
+            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2"
+            data-anime='{ "el": "childs", "translateY": [0, 0], "perspective": [800,800], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <!-- start team member item -->
+            {
+              [
+                {
+                  department: tLeadership.department.dean,
+                  fullname: "Prof. Dr. Isti Fadah, M.Si., CRA., CMA. — Dean",
+                },
+                {
+                  department: tLeadership.department.vice_dean.vd_1,
+                  fullname: "Prof. Dr. Novi Puspitasari, S.E., M.M ",
+                },
+                {
+                  department: tLeadership.department.vice_dean.vd_2,
+                  fullname: "Dr. Nining Ika Wahyuni, S.E. M.Sc, Ak.",
+                },
+                {
+                  department: tLeadership.department.vice_dean.vd_3,
+                  fullname: "Dr. Teguh Hadi Priyono, S.E., M.Si.",
+                },
+                {
+                  department: tLeadership.department.coord,
+                  fullname: "Coordinator of Administrative Office",
+                },
+                {
+                  department: tLeadership.department.vice_coord.academic,
+                  fullname: "Sugianto, S.E., M.M.",
+                },
+                {
+                  department: tLeadership.department.vice_coord.general,
+                  fullname:
+                    "Vice Coordinator for General Affairs and State Property",
+                },
+                {
+                  department: tLeadership.department.vice_coord.finance,
+                  fullname: "Nurina Fitrianingtyas, SKM.",
+                },
+              ].map((value) => (
+                <div class="col">
+                  <ModulesAboutLeaderCard
+                    fullName={value.fullname}
+                    department={value.department}
+                    image="https://gvanrossum.github.io/images/guido-headshot-2019.jpg"
+                  />
+                </div>
+              ))
+            }
+
+            <!-- end team member item -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,103 @@
+---
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@/i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const counters = [
+  "reputable_national_journal",
+  "reputable_international_journal",
+  "national_journal",
+  "international_journal",
+  "books",
+  "total",
+] as const;
+
+const t = useI18n(
+  {
+    en: {
+      pageTitle: "Publications",
+      title: "Publications",
+      reputable_national_journal: "Reputable National Journal",
+      reputable_international_journal: "Reputable International Journal",
+      national_journal: "National Journal",
+      international_journal: "International Journal",
+      books: "Books",
+      total: "Total",
+    },
+    id: {
+      pageTitle: "Publikasi",
+      title: "Publikasi",
+      reputable_national_journal: "Jurnal Nasional Bereputasi",
+      reputable_international_journal: "Jurnal Internasional Bereputasi",
+      national_journal: "Jurnal Nasional",
+      international_journal: "Jurnal Internasional",
+      books: "Buku",
+      total: "Total",
+    },
+  },
+  getLocale(Astro)
+);
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <!-- COUNTER -->
+  <section class="bg-solitude-blue my-4">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+        {
+          counters.map((key) => (
+            <div class="col mb-3">
+              <div class="bg-white p-4 border-radius-8px">
+                <h2 class="fw-700 text-dark-gray">
+                  {Math.round(Math.random() * 100)}
+                </h2>
+                <span class="fw-600 text-uppercase fs-13">{t[key]}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- LIST -->
+  <section class="position-relative bg-white">
+    <div class="container">
+      <h2 class="text-center fw-700 text-uppercase mb-4">
+        {t.title}
+      </h2>
+
+      {
+        Array.from({ length: 7 }).map(() => (
+          <div class="row align-items-center py-3 border-bottom">
+            <div class="col-md-2 text-center fw-600">2022</div>
+
+            <div class="col-md-7">
+              <span class="badge bg-primary mb-1">PUBLICATION TYPE</span>
+
+              <a
+                href="https://www.youtube.com/"
+                target="_blank"
+                class="fw-700 text-dark d-block"
+              >
+                ARTICLE TITLE
+              </a>
+
+              <div class="fs-14 text-dark-gray">AUTHOR</div>
+              <div class="fs-14 text-medium-gray">DEPARTMENT</div>
+            </div>
+
+            <div class="col-md-3 text-center">
+              <a href="#" class="text-uppercase fs-14">
+                Read more
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,80 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Achievements",
+    title: "Achievements",
+    read_more: "Read more",
+  },
+  id: {
+    pageTitle: "Prestasi",
+    title: "Prestasi",
+    read_more: "Baca selengkapnya",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+// mock data
+const items = Array.from({ length: 10 }).map((_, i) => ({
+  index: i + 1,
+  date: "Date achieved",
+  title:
+    "Title Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis, numquam!",
+}));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <section id="down-section" class="big-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        {
+          items.map((item) => (
+            <div
+              class="col-xl-10"
+              data-anime='{ "el": "childs", "translateY": [15, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
+            >
+              <div class="row border-bottom border-2 border-color-dark-gray pb-50px mb-50px sm-pb-35px sm-mb-35px align-items-center">
+                <div class="col-md-1 text-center text-md-end md-mb-15px">
+                  <div class="fs-16 fw-600 text-dark-gray">{item.index}</div>
+                </div>
+
+                <div class="col-md-7 offset-lg-1 icon-with-text-style-01 md-mb-25px">
+                  <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
+                    <div class="feature-box-icon me-50px md-me-35px">
+                      <div class="feature-box-content">
+                        <span class="d-inline-block text-dark-gray mb-5px fs-20 ls-minus-05px">
+                          {item.date}
+                        </span>
+                        <p class="w-90 md-w-100">{item.title}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 text-center text-md-end">
+                  <a
+                    href="#"
+                    class="btn btn-dark-gray btn-box-shadow btn-medium btn-switch-text btn-rounded"
+                  >
+                    <span>
+                      <span class="btn-double-text" data-text={t.read_more}>
+                        {t.read_more}
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

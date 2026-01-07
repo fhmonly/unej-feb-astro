@@ -1,0 +1,162 @@
+---
+import { getLocale } from "@/i18n/i18n";
+import { layoutsJson } from "@/i18n/layouts";
+
+const { title = "" } = Astro.props;
+
+const icon = [
+  {
+    rel: "apple-touch-icon",
+    sizes: "48x48",
+    href: "/_astro/icons/icon-48x48.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "72x72",
+    href: "/_astro/icons/icon-72x72.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "96x96",
+    href: "/_astro/icons/icon-96x96.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "128x128",
+    href: "/_astro/icons/icon-128x128.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "144x144",
+    href: "/_astro/icons/icon-144x144.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "152x152",
+    href: "/_astro/icons/icon-152x152.png",
+  },
+  {
+    rel: "apple-touch-icon",
+    sizes: "192x192",
+    href: "/_astro/icons/icon-192x192.png",
+  },
+
+  // ===== Standard Icons (Browser) =====
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "48x48",
+    href: "/_astro/icons/icon-48x48.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "72x72",
+    href: "/_astro/icons/icon-72x72.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "96x96",
+    href: "/_astro/icons/icon-96x96.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "128x128",
+    href: "/_astro/icons/icon-128x128.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "144x144",
+    href: "/_astro/icons/icon-144x144.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "152x152",
+    href: "/_astro/icons/icon-152x152.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "192x192",
+    href: "/_astro/icons/icon-192x192.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "256x256",
+    href: "/_astro/icons/icon-256x256.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "384x384",
+    href: "/_astro/icons/icon-384x384.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "512x512",
+    href: "/_astro/icons/icon-512x512.png",
+  },
+];
+
+const tLayout = layoutsJson[getLocale(Astro)].html;
+---
+
+<html class="no-js" lang={Astro.currentLocale} class="bg-dark-gray">
+  <head>
+    <title>{!!title ? `${title} | PPID FEB UNEJ` : "PPID FEB UNEJ"}</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Fhmonly" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="description" content={tLayout.desc} />
+    <!-- favicon icon -->
+    <link rel="shortcut icon" href="/_astro/favicon.ico" />
+    {
+      icon.map((link) => (
+        <link
+          rel={link.rel}
+          type={link.type}
+          sizes={link.sizes}
+          href={link.href}
+        />
+      ))
+    }
+
+    <!-- google fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- style sheets and font icons  -->
+    <link rel="stylesheet" href="/_astro/css/vendors.min.css" />
+    <link rel="stylesheet" href="/_astro/css/icon.min.css" />
+    <link rel="stylesheet" href="/_astro/css/style.min.css" />
+    <link rel="stylesheet" href="/_astro/css/responsive.min.css" />
+  </head>
+
+  <body
+    data-mobile-nav-trigger-alignment="right"
+    data-mobile-nav-style="modern"
+    data-mobile-nav-bg-color="#1d1d1d"
+  >
+    <!-- <body data-mobile-nav-style="classic"> -->
+    <!-- <Header /> -->
+    <!-- <ClientRouter /> -->
+    <slot />
+    <!-- <Footer /> -->
+    <div class="scroll-progress d-none d-xxl-block">
+      <a href="#" class="scroll-top" aria-label="scroll">
+        <span class="scroll-text">Scroll</span><span class="scroll-line"
+          ><span class="scroll-point"></span></span
+        >
+      </a>
+    </div>
+    <script is:inline src="/_astro/js/jquery.js"></script>
+    <script is:inline src="/_astro/js/vendors.min.js"></script>
+    <script is:inline src="/_astro/js/main.js"></script>
+  </body>
+</html>

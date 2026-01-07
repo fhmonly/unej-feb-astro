@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  desc?: string;
+  date: string;
+}
+
+const { title, desc, date } = Astro.props as Props;
+
+// lightweight date parsing (tanpa dayjs)
+const d = new Date(date);
+const day = String(d.getDate()).padStart(2, "0");
+const month = d.toLocaleString("en-US", { month: "short" });
+---
+
+<div
+  class="feature-box border-radius-10px feature-box-left-icon bg-white box-shadow-extra-large box-shadow-extra-large-hover p-11 last-paragraph-no-margin"
+>
+  <div class="feature-box-icon">
+    <time
+      class="text-center post-date border-radius-3px bg-dark-gray text-white text-uppercase fw-500 d-inline-block"
+      datetime={date}
+    >
+      <span class="date d-block fs-30 lh-28">{day}</span>
+      <span class="month d-block lh-24">{month}</span>
+    </time>
+  </div>
+
+  <div class="feature-box-content">
+    <a
+      href="demo-web-agency-blog-single-creative.html"
+      class="card-title text-dark-gray text-dark-gray-hover mb-10px fs-18 lh-28 fw-600 d-block"
+    >
+      {title}
+    </a>
+
+    {desc && <p>{desc}</p>}
+  </div>
+</div>

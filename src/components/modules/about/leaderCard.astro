@@ -1,0 +1,64 @@
+---
+interface Props {
+  fullName: string;
+  image: string;
+  department: string;
+  alt?: string;
+}
+
+const { fullName, image, department, alt = fullName } = Astro.props;
+---
+
+<div class="text-center team-style-05 mb-45px">
+  <div
+    class="position-relative mb-30px last-paragraph-no-margin border-radius-4px overflow-hidden"
+  >
+    <img src={image} alt={alt} loading="lazy" />
+
+    <div
+      class="w-100 h-100 d-flex flex-column justify-content-end align-items-center p-35px lg-p-20px team-content bg-gradient-dark-transparent"
+    >
+      <div class="social-icon fs-19">
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-white"
+        >
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-white"
+        >
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a
+          href="https://www.twitter.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-white"
+        >
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a
+          href="https://www.dribbble.com/"
+          target="_blank"
+          rel="noopener"
+          class="text-white"
+        >
+          <i class="fa-brands fa-dribbble"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fw-600 text-dark-gray lh-22 fs-18 ls-minus-05px mb-3">
+    {fullName}
+  </div>
+  <span class="fs-16" style="line-height: 0.3">
+    {department}
+  </span>
+</div>

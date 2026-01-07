@@ -1,0 +1,107 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import { wordsJson } from "@/i18n/words";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import WidgetsPagination from "@components/widgets/pagination.astro";
+import Layout from "@layouts/main.astro";
+
+export const prerender = false;
+
+const messages = {
+  en: {
+    pageTitle: "Journals",
+    title: "Features",
+    subtitle: "FEB Application Services",
+  },
+  id: {
+    pageTitle: "Jurnal",
+    title: "Fitur",
+    subtitle: "Layanan Aplikasi FEB",
+  },
+};
+
+const page = Number(Astro.url.searchParams.get("page") ?? 1);
+const limit = 10;
+const totalItem = 100;
+
+const t = useI18n(messages, getLocale(Astro));
+const tWords = useI18n(wordsJson, getLocale(Astro));
+const items = Array.from({ length: 6 }, (_, i) => i + 1);
+---
+
+<Layout title={t.title}>
+  <PageTitleTypography title={t.title} image="/_astro/images/bg-feb.webp" />
+  <section id="down-section" class="pb-0">
+    <div class="container overlap-gap-section">
+      <div
+        class="row align-items-end mb-5 md-mb-40px text-center text-md-start"
+      >
+        <div
+          class="col-xl-5 col-lg-6 col-md-10 md-mb-20px text-center text-lg-start"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 mb-0 ls-minus-1px">
+            {t.title}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding-top: 10px">
+    <div class="container">
+      <div class="row g-0">
+        <div class="col-12">
+          <ul
+            class="blog-grid blog-wrapper grid-loading grid grid-2col xl-grid-2col lg-grid-2col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large"
+            data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 150, "easing": "easeOutQuad" }'
+          >
+            <li class="grid-sizer"></li>
+
+            {
+              items.map((value) => (
+                <li class="grid-item">
+                  <div class="card border-0 border-radius-5px box-shadow-quadruple-large box-shadow-quadruple-large-hover">
+                    <div class="blog-image">
+                      <a href="#" class="d-block">
+                        <img src="https://via.placeholder.com/600x430" alt="" />
+                      </a>
+                      <div class="blog-categories">
+                        <a class="categories-btn bg-white text-dark-gray text-uppercase fw-700">
+                          2022
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="card-body p-12 lg-p-10 pb-10 pt-10">
+                      <a class="card-title d-block mb-3 fw-bold fs-5 text-dark-gray text-decoration-none">
+                        PUBLICATION TYPE
+                      </a>
+                      <h3 class="mb-2 fs-6 fw-semibold text-dark">TITLE</h3>
+                      <p class="text-muted mb-4 small">By: AUTHOR</p>
+                      <div class="border-top pt-3">
+                        <a class="d-flex align-items-center gap-2 text-dark-gray text-decoration-none fw-semibold small text-uppercase">
+                          {tWords.read_more}
+                          <i class="fas fa-arrow-right ms-1" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-2 d-flex justify-content-center">
+            <WidgetsPagination
+              currentPage={page}
+              perPage={limit}
+              total={totalItem}
+              basePath={`/${getLocale(Astro)}/community-service/publications`}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section></Layout
+>

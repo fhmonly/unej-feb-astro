@@ -1,0 +1,68 @@
+---
+import ModulesLeadershipCard from "@/components/widgets/lectureCard.astro";
+import WidgetsCenteredSectionTitle from "@components/widgets/centeredSectionTitle.astro";
+
+type Profile = {
+  image: string;
+  name: string;
+  department: string;
+};
+
+interface Props {
+  title: string;
+  suptitle: string;
+  leader?: Profile;
+  secretary?: Profile;
+  coordinators: Profile[];
+}
+
+const { title, suptitle, leader, secretary, coordinators } =
+  Astro.props as Props;
+
+const leaders: Profile[] = [
+  ...(leader ? [leader] : []),
+  ...(secretary ? [secretary] : []),
+];
+---
+
+<section class="pb-0">
+  <div class="container">
+    <WidgetsCenteredSectionTitle title={title} suptitle={suptitle} />
+  </div>
+</section>
+
+<section class="mt-0 py-0">
+  <div class="container">
+    {
+      leaders.length > 0 && (
+        <div
+          class="row row-cols-1 row-cols-lg-4 row-cols-md-2 justify-content-center"
+          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 50, "staggervalue": 150, "easing": "easeOutQuad" }'
+        >
+          {leaders.map(({ department, name, image }) => (
+            <ModulesLeadershipCard
+              image={image}
+              name={name}
+              department={department}
+            />
+          ))}
+        </div>
+      )
+    }
+
+    <div
+      class="row row-cols-1 row-cols-lg-4 row-cols-md-2 justify-content-center"
+      data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 50, "staggervalue": 150, "easing": "easeOutQuad" }'
+    >
+      {
+        coordinators.map(({ department, name, image }) => (
+          <ModulesLeadershipCard
+            image={image}
+            name={name}
+            department={department}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,290 @@
+---
+import { wordsJson } from "@/i18n/words";
+import {
+  generateMultiLocaleStaticPaths,
+  getLocale,
+  useI18n,
+  type Locale,
+} from "@i18n/i18n";
+import ModulesHomePreviewAccreditation from "@components/modules/home/previewAccreditation.astro";
+import ModulesHomePreviewContact from "@components/modules/home/previewContact.astro";
+import ModulesHomePreviewLeadership from "@components/modules/home/previewLeadership.astro";
+import ModulesHomePreviewNews from "@components/modules/home/previewNews.astro";
+import ModulesHomePreviewProdi from "@components/modules/home/previewProdi.astro";
+import ModulesHomePreviewProfile from "@components/modules/home/previewProfile.astro";
+import ModulesHomePreviewRegistration from "@components/modules/home/previewRegistration.astro";
+import ModulesHomePreviewVimi from "@components/modules/home/previewVimi.astro";
+import ModulesHomeSlider from "@components/modules/home/slider/corporation/container.astro";
+import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const t = useI18n(wordsJson, getLocale(Astro));
+
+const tPages = useI18n(
+  {
+    id: {
+      title: "Beranda",
+    },
+    en: {
+      title: "Home",
+    },
+  },
+  getLocale(Astro)
+);
+---
+
+<Layout title={tPages.title}>
+  <ModulesHomeSlider />
+  <section class="p-0">
+    <div class="container">
+      <div
+        class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center"
+        data-anime='{ "el": "childs", "translateX": [50, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 500, "easing": "easeOutQuad" }'
+      >
+        <!-- start content box item -->
+        <div
+          class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
+        >
+          <div
+            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+          >
+            <div class="flex-shrink-0 me-15px md-me-0">
+              <h2 class="mb-0 fw-800">
+                {t.since}<sup class="fs-24">1962</sup>
+              </h2>
+            </div>
+            <div>
+              <!-- <span class="lh-24 fw-600 d-block">Track and analyze <br />business reports.</span> -->
+            </div>
+          </div>
+        </div>
+        <!-- end content box item -->
+        <!-- start content box item -->
+        <div
+          class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
+        >
+          <div
+            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+          >
+            <div class="flex-shrink-0 me-15px md-me-0">
+              <h2 class="mb-0 fw-800 ls-minus-3px">13</h2>
+            </div>
+            <div>
+              <div
+                class="review-star-icon fs-20 d-inline-block text-gradient-orange-sky-blue"
+              >
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i>
+              </div>
+              <span class="lh-24 fw-600 d-block">
+                {t.academic_programs}
+                <br />
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- end content box item -->
+        <!-- start content box item -->
+        <div class="col pt-35px pb-35px text-dark-gray">
+          <div
+            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+          >
+            <div class="flex-shrink-0 me-15px md-me-0">
+              <h2 class="mb-0 fw-800">
+                {t.excellent}<sup class="fs-24"></sup>
+              </h2>
+            </div>
+            <div>
+              <span class="lh-24 fw-600 d-block">
+                {t.accredited}
+                <br />
+                {t.international}
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- end content box item -->
+      </div>
+    </div>
+  </section>
+  <section class="p-0">
+    <div class="container">
+      <div
+        class="row justify-content-center"
+        data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+      >
+        <div class="col-12">
+          <div
+            class="border-radius-6px h-450px md-h-350px sm-h-400px d-flex flex-wrap align-items-center justify-content-center overflow-hidden cover-background box-shadow-quadruple-large pt-15"
+            style="background-image: url('/_astro/images/image.png')"
+          >
+            <div class="opacity-full-dark bg-gradient-regal-blue-transparent">
+            </div>
+            <div class="row justify-content-center m-0">
+              <div
+                class="col-lg-7 col-md-8 z-index-1 text-center text-md-start sm-mb-20px"
+              >
+                <h3 class="text-white mb-0 fw-400 fancy-text-style-4">
+                  The Campus of
+                  <span
+                    class="fw-600"
+                    data-fancy-text='{ "effect": "rotate", "string": ["business!", "economic!", "pancasila!"] }'
+                  ></span>
+                </h3>
+              </div>
+              <div
+                class="col-md-2 position-relative z-index-1 text-center sm-mb-20px"
+              >
+                <div
+                  class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large"
+                >
+                  <WidgetsPopupYoutube
+                    url="'https://www.youtube.com/watch?v=aRXagk1rrnU'"
+                  >
+                    <span>
+                      <span class="video-icon">
+                        <i class="fa-solid fa-play fs-20 text-white"></i>
+                      </span>
+                    </span>
+                  </WidgetsPopupYoutube>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
+                                    <div class="fs-14 text-uppercase text-white fw-600 ls-05px">Learn More <a href="demo-corporate-contact.html" class="text-decoration-line-bottom text-white">Got a project in mind?</a></div>
+                                </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ModulesHomePreviewNews />
+  <ModulesHomePreviewProfile />
+  <ModulesHomePreviewAccreditation />
+  <ModulesHomePreviewProdi />
+  <ModulesHomePreviewVimi />
+  <ModulesHomePreviewRegistration />
+  <ModulesHomePreviewLeadership />
+  <ModulesHomePreviewContact />
+
+  <script is:inline slot="bodyClose">
+    var tpj = jQuery;
+    var revapi7;
+    var $ = jQuery.noConflict();
+    tpj(document).ready(function () {
+      if (tpj("#demo-corporate-slider").revolution == undefined) {
+        revslider_showDoubleJqueryError("#demo-corporate-slider");
+      } else {
+        revapi7 = tpj("#demo-corporate-slider")
+          .show()
+          .revolution({
+            sliderType: "standard",
+            /* sets the Slider's default timeline */
+            delay: 9000,
+            /* options are 'auto', 'fullwidth' or 'fullscreen' */
+            sliderLayout: "fullscreen",
+            /* RESPECT ASPECT RATIO */
+            autoHeight: "off",
+            /* options that disable autoplay */
+            stopLoop: "off",
+            stopAfterLoops: -1,
+            stopAtSlide: -1,
+            navigation: {
+              keyboardNavigation: "on",
+              keyboard_direction: "horizontal",
+              mouseScrollNavigation: "off",
+              mouseScrollReverse: "reverse",
+              onHoverStop: "off",
+              arrows: {
+                enable: true,
+                style: "hesperiden",
+                rtl: false,
+                hide_onleave: false,
+                hide_onmobile: true,
+                hide_under: 500,
+                hide_over: 9999,
+                hide_delay: 200,
+                hide_delay_mobile: 1200,
+                left: {
+                  container: "slider",
+                  h_align: "left",
+                  v_align: "center",
+                  h_offset: 50,
+                  v_offset: 0,
+                },
+                right: {
+                  container: "slider",
+                  h_align: "right",
+                  v_align: "center",
+                  h_offset: 50,
+                  v_offset: 0,
+                },
+              },
+              bullets: {
+                enable: true,
+                style: "hermes",
+                tmp: "",
+                direction: "horizontal",
+                rtl: false,
+
+                container: "layergrid",
+                h_align: "center",
+                v_align: "bottom",
+                h_offset: 0,
+                v_offset: 30,
+                space: 12,
+
+                hide_onleave: false,
+                hide_onmobile: true,
+                hide_under: 0,
+                hide_over: 500,
+                hide_delay: true,
+                hide_delay_mobile: 500,
+              },
+              touch: {
+                touchenabled: "on",
+                touchOnDesktop: "on",
+                swipe_threshold: 75,
+                swipe_min_touches: 1,
+                swipe_direction: "horizontal",
+                drag_block_vertical: true,
+              },
+            },
+            responsiveLevels: [1240, 1024, 768, 480],
+            visibilityLevels: [1240, 1024, 768, 480],
+            gridwidth: [1240, 1024, 768, 480],
+            gridheight: [930, 850, 900, 850],
+            /* Lazy Load options are "all", "smart", "single" and "none" */
+            lazyType: "smart",
+            spinner: "spinner0",
+            parallax: {
+              type: "scroll",
+              origo: "slidercenter",
+              speed: 400,
+              levels: [
+                5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 51, 5,
+              ],
+            },
+            shadow: 0,
+            shuffle: "off",
+            fullScreenAutoWidth: "on",
+            fullScreenAlignForce: "on",
+            fullScreenOffsetContainer: "nav",
+            fullScreenOffset: "",
+            hideThumbsOnMobile: "off",
+            hideSliderAtLimit: 0,
+            hideCaptionAtLimit: 0,
+            hideAllCaptionAtLilmit: 0,
+            debugMode: false,
+            fallbacks: {
+              simplifyAll: "off",
+              nextSlideOnWindowFocus: "off",
+              disableFocusListener: false,
+            },
+          });
+      }
+    }); /*ready*/
+  </script>
+</Layout>

@@ -1,0 +1,96 @@
+---
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Facility Sport and Leisure",
+    title: "Facility Sport and Leisure",
+    intro:
+      "Facility sport and leisure refers to the range of facilities and activities that universities offer to promote physical activity, health, and wellness among their students, faculty, and staff. These facilities and activities may include sports facilities, food court, and outdoor recreational spaces.",
+    intro2:
+      "Sports facilities: Universities may provide students with access to sports facilities, such as basketball courts, soccer fields, tennis courts, rock climbing, and indoor sports halls. These facilities may be available for both recreational use and organized team sports.",
+  },
+  id: {
+    pageTitle: "Fasilitas Olahraga dan Rekreasi",
+    title: "Fasilitas Olahraga dan Rekreasi",
+    intro:
+      "Fasilitas olahraga dan rekreasi mengacu pada berbagai fasilitas dan aktivitas yang ditawarkan universitas untuk mempromosikan aktivitas fisik, kesehatan, dan kesejahteraan di antara mahasiswa, fakultas, dan staf mereka. Fasilitas dan aktivitas ini dapat mencakup fasilitas olahraga, food court, dan ruang rekreasi luar ruangan.",
+    intro2:
+      "Fasilitas olahraga: Universitas dapat menyediakan akses kepada mahasiswa ke fasilitas olahraga, seperti lapangan basket, lapangan sepak bola, lapangan tenis, panjat tebing, dan aula olahraga dalam ruangan. Fasilitas ini dapat digunakan untuk rekreasi maupun olahraga tim yang terorganisir.",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.intro}
+          </p>
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.intro2}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- start section -->
+  </section>
+  <section class="bg-gradient-quartz-white border-radius-6px pt-0">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.title}
+          </h3>
+        </div>
+      </div>
+      <div class="row row-cols-3 blog-standard md-mb-50px sm-mb-40px">
+        <!-- start blog item -->
+        <div class="mb-40px" v-for="value in 11">
+          <div class="card border-0 no-border-radius box-shadow-extra-large">
+            <div class="blog-image">
+              <a href="demo-elearning-blog-single-simple.html"
+                ><img
+                  src="https://thumbs.dreamstime.com/b/wildflowers-blooming-sunset-nature-scenery-wildflowers-blooming-sunset-nature-scenery-388164189.jpg"
+                  alt=""
+                /></a
+              >
+            </div>
+            <div class="card-body p-9 bg-white">
+              <a
+                href="demo-elearning-blog-single-simple.html"
+                class="text-dark-gray card-title mb-20px fw-600 fs-24 d-block"
+              >
+                dissabilities facility name
+              </a>
+              <p class="text-medium-gray mb-20px">
+                dissabilities facility description Lorem ipsum is simply dummy
+                text of the printing and typesetting industry ipsum has been the
+                industry standard dummy text ever since the unknown printer took
+                a galley of typesetting industry standard...
+              </p>
+              <!-- <a href="demo-elearning-blog-single-simple.html"
+                                class="btn btn-link btn-large text-base-color fw-600">Continue reading<span
+                                    class="bg-base-color"></span></a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

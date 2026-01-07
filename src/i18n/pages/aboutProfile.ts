@@ -1,0 +1,185 @@
+export const aboutProfilePageJson = {
+    en: {
+        "aboutPage": {
+            "title": "FEB Profile",
+            "videoUrl": "https://www.youtube.com/watch?v=R5L6m6a7yD8",
+
+            "visionMission": {
+                "title": "Vision and Mission",
+                "vision": "Becoming a leading faculty in the development of environmentally conscious and agro-industrial economics and business at an international level.",
+                "items": [{
+                    "icon": "bx bx-border-all",
+                    "title": "Governance",
+                    "description": "Implementing good faculty governance principles."
+                },
+                {
+                    "icon": "ri-leaf-fill",
+                    "title": "Agroindustry and Technology",
+                    "description": "Organizing learning processes focused on environmental awareness and agroindustry inside and outside the campus with outcome-based curriculum and information technology."
+                },
+                {
+                    "icon": "bx bx-atom",
+                    "title": "Research and Community Service",
+                    "description": "Increasing research and community service outputs that are utilized and recognized nationally and internationally."
+                },
+                {
+                    "icon": "bx bxs-user-check",
+                    "title": "Quality Educators",
+                    "description": "Improving the quality of human resources for teaching and administrative staff."
+                },
+                {
+                    "icon": "bx bx-station",
+                    "title": "Quality Graduates",
+                    "description": "Producing graduates who are competent, creative, innovative, adaptive, and have Pancasila values."
+                },
+                {
+                    "icon": "bx bxs-certification",
+                    "title": "Collaboration and Partnerships",
+                    "description": "Developing collaboration networks with stakeholders both domestically and internationally."
+                },
+                {
+                    "icon": "bx bx-sun",
+                    "title": "Conducive Academic Environment",
+                    "description": "Developing a conducive academic atmosphere."
+                }
+                ]
+            },
+
+            "history": {
+                "title": "History",
+                "timeline": [{
+                    "title": "Mid May 1962",
+                    "body": "The Chancellor of UNITA Jember together with the management of the UNITA Jember Foundation met the Banyuwangi District Head to discuss the opening of the Tawanalun Banyuwangi Faculty of Economics. The Regional Government welcomed the plan with several conditions."
+                },
+                {
+                    "title": "Mid 1962",
+                    "body": "With the blessing of the Regional Government, the Faculty of Economics at the Tawang Alun Private University in Banyuwangi Regency was officially opened. The event was attended by the Regent of Banyuwangi Mr. R. Soegito Natasagito and BPH Member Mr. R. Djoko Soeroso, Dr. R. Ahmad, Mr. R.Th. Soengedi, and Mr. E. Utrecht from UNITA Jember. The Dean of the Faculty of Economics was assigned to Mr. E. Utrecht, with Soeryopoetro as the Faculty Secretary. The first lecture took place at the Regency Hall with 100 students."
+                },
+                {
+                    "title": "Mid 1963",
+                    "body": "After finding out that the PTIP Ministerial Decree No. 11/1963 dated January 5, 1963 regarding the nationalization of faculties within UNITA did not include the Faculty of Economics in Banyuwangi, the plans promised by the UNITA Jember delegates in mid-May 1962 did not materialize. The preparatory committee of the Faculty of Economics Banyuwangi urged UNITA Jember to complete the nationalization process immediately. The founders of UNITA Jember went to Jakarta, while the secretary of the supervisory committee of the Faculty of Economics UNITA Banyuwangi traveled separately. They met in Jakarta and together urged the Minister of PTIP to immediately nationalize the Faculty of Economics at the Tawang Alun Private University in Banyuwangi."
+                },
+                {
+                    "title": "November 10, 1964",
+                    "body": "By the PTIP Ministerial Decree No. 151/1964 dated November 9, 1964, the Faculty of Economics of Tawang Alun Private University Banyuwangi was officially nationalized into the University of Jember. The Dean remained Prof. Mr. E. Utrecht, and Drs. Soeryopoetro served from the Regional Government of Banyuwangi Regency."
+                },
+                {
+                    "title": "December 31, 1965",
+                    "body": "Prior to the G30S/PKI incident, academic activities were not running smoothly and the acting faculty leaders were inactive. Improvements were made by both the local government and the university. The Faculty of Economics was then supervised by the Banyuwangi branch of the Jember University Coordinating Council. Under the Chancellor's Decree No. 583/UA/22/65 dated December 31, 1965, signed by Acting Rector Lt. Col. TNI AD Winoto, the faculty's status was changed to the Branch Faculty of Economics. A campus was provided by the local government to support branch academic programs for the Faculties of Economics, Law, and Education."
+                },
+                {
+                    "title": "End of 1974",
+                    "body": "The Banyuwangi branch of the Faculty of Economics, University of Jember, was closed at the end of 1974. This left Banyuwangi without any higher education institutions for high school graduates. The closure followed a decree from the Minister of Education and Culture ordering the shutdown of all faculty branches across state universities and institutions to reintegrate them with their parent institutions."
+                },
+                {
+                    "title": "End of 1975",
+                    "body": "The campus previously provided by the Banyuwangi Regency Government was temporarily used for education and skills training. These activities were later moved to the Youth Skills Training Center (PLKP) in Labanasem, Kabat District, Banyuwangi."
+                },
+                {
+                    "title": "September 1976",
+                    "body": "A response from the Rector of the University of Jember, Mr. Soetardjo SH, regarding the establishment of a non-degree higher education institution was well received by the Regent of Banyuwangi, Col. Djoko Supaat Slamet. This institution was created under the Minister of Education and Culture Decree No. 042/II/1907 dated March 16, 1975, concerning the establishment and development of corporate administration expert education. This PAAP program was officially realized through the Rector’s Decree No. 5617/V3207/1976 dated September 29, 1976."
+                },
+                {
+                    "title": "March 14, 1977",
+                    "body": "The PAAP was inaugurated on March 14, 1977, at the Banyuwangi Regency Hall by Rector Soetardjo DH. The ceremony was attended by the Dean of the Faculty of Economics, University of Jember, Drs. Hardiyanto Purbangkoro, and Regent Lt. Col. TNI AD Djoko Sutana Wijaya at Jl. Jaksa Agung Suprapto No. 140 Banyuwangi."
+                },
+                {
+                    "title": "February 12, 1986",
+                    "body": "At the Pendopo of Banyuwangi Regency, the Chancellor Drs. P. Warsito, accompanied by Regent Djoko Wasito, officially closed the Banyuwangi PAAP program in accordance with the decision of the Minister of Education and Culture concerning Corporate Administration Science. All PAAP students had completed their studies and were working across Indonesia."
+                }
+                ]
+            }
+        }
+    },
+    id: {
+        "aboutPage": {
+            "title": "Profil FEB",
+            "videoUrl": "https://www.youtube.com/watch?v=R5L6m6a7yD8",
+
+            "visionMission": {
+                "title": "Visi dan Misi",
+                "vision": "Menjadi fakultas terkemuka dalam pengembangan ekonomi dan bisnis yang berwawasan lingkungan dan agroindustri di tingkat internasional.",
+                "items": [{
+                    "icon": "bx bx-border-all",
+                    "title": "Tata Kelola",
+                    "description": "Menerapkan prinsip tata kelola fakultas yang baik."
+                },
+                {
+                    "icon": "ri-leaf-fill",
+                    "title": "Agroindustri dan Teknologi",
+                    "description": "Menyelenggarakan proses pembelajaran yang berfokus pada kesadaran lingkungan dan agroindustri di dalam dan luar kampus dengan kurikulum berbasis capaian dan teknologi informasi."
+                },
+                {
+                    "icon": "bx bx-atom",
+                    "title": "Penelitian dan Pengabdian Masyarakat",
+                    "description": "Meningkatkan output penelitian dan pengabdian kepada masyarakat yang dimanfaatkan dan diakui secara nasional maupun internasional."
+                },
+                {
+                    "icon": "bx bxs-user-check",
+                    "title": "Pendidik Berkualitas",
+                    "description": "Meningkatkan kualitas sumber daya manusia tenaga pengajar dan tenaga kependidikan."
+                },
+                {
+                    "icon": "bx bx-station",
+                    "title": "Lulusan Berkualitas",
+                    "description": "Menghasilkan lulusan yang kompeten, kreatif, inovatif, adaptif, dan memiliki nilai-nilai Pancasila."
+                },
+                {
+                    "icon": "bx bxs-certification",
+                    "title": "Kolaborasi dan Kemitraan",
+                    "description": "Mengembangkan jaringan kolaborasi dengan para pemangku kepentingan baik di dalam maupun luar negeri."
+                },
+                {
+                    "icon": "bx bx-sun",
+                    "title": "Lingkungan Akademik Kondusif",
+                    "description": "Mengembangkan suasana akademik yang kondusif."
+                }
+                ]
+            },
+            "history": {
+                "title": "Sejarah",
+                "timeline": [{
+                    "title": "Pertengahan Mei 1962",
+                    "body": "Rektor UNITA Jember bersama pengurus Yayasan UNITA Jember bertemu dengan Kepala Daerah Banyuwangi untuk membahas pembukaan Fakultas Ekonomi Tawanalun Banyuwangi. Pemerintah Daerah menyambut baik rencana tersebut dengan beberapa syarat."
+                },
+                {
+                    "title": "Pertengahan 1962",
+                    "body": "Dengan restu Pemerintah Daerah, Fakultas Ekonomi Universitas Swasta Tawang Alun di Kabupaten Banyuwangi resmi dibuka. Acara tersebut dihadiri oleh Bupati Banyuwangi Bapak R. Soegito Natasagito dan Anggota BPH Bapak R. Djoko Soeroso, Dr. R. Ahmad, Bapak R.Th. Soengedi, dan Bapak E. Utrecht dari UNITA Jember. Dekan Fakultas Ekonomi dijabat oleh Bapak E. Utrecht, dengan Soeryopoetro sebagai Sekretaris Fakultas. Kuliah pertama berlangsung di Pendopo Kabupaten dengan 100 mahasiswa."
+                },
+                {
+                    "title": "Pertengahan 1963",
+                    "body": "Setelah mengetahui bahwa SK Menteri PTIP No. 11/1963 tanggal 5 Januari 1963 tentang nasionalisasi fakultas di lingkungan UNITA tidak mencantumkan Fakultas Ekonomi di Banyuwangi, rencana yang dijanjikan oleh delegasi UNITA Jember pada pertengahan Mei 1962 tidak terwujud. Panitia persiapan Fakultas Ekonomi Banyuwangi mendesak UNITA Jember untuk segera menyelesaikan proses nasionalisasi. Para pendiri UNITA Jember berangkat ke Jakarta, sementara sekretaris panitia pengawas Fakultas Ekonomi UNITA Banyuwangi berangkat terpisah. Mereka bertemu di Jakarta dan bersama-sama mendesak Menteri PTIP untuk segera menasionalisasi Fakultas Ekonomi Universitas Swasta Tawang Alun di Banyuwangi."
+                },
+                {
+                    "title": "10 November 1964",
+                    "body": "Dengan SK Menteri PTIP No. 151/1964 tanggal 9 November 1964, Fakultas Ekonomi Universitas Swasta Tawang Alun Banyuwangi resmi dinasionalisasi menjadi Universitas Jember. Dekan tetap Prof. Mr. E. Utrecht, dan Drs. Soeryopoetro bertugas dari Pemerintah Daerah Kabupaten Banyuwangi."
+                },
+                {
+                    "title": "31 Desember 1965",
+                    "body": "Sebelum peristiwa G30S/PKI, kegiatan akademik tidak berjalan lancar dan pimpinan fakultas tidak aktif. Perbaikan dilakukan oleh pemerintah daerah dan universitas. Fakultas Ekonomi kemudian diawasi oleh cabang Dewan Koordinasi Universitas Jember di Banyuwangi. Berdasarkan SK Rektor No. 583/UA/22/65 tanggal 31 Desember 1965 yang ditandatangani oleh Pejabat Rektor Letkol TNI AD Winoto, status fakultas diubah menjadi Fakultas Ekonomi Cabang. Sebuah kampus disediakan oleh pemerintah daerah untuk mendukung program akademik cabang Fakultas Ekonomi, Hukum, dan Keguruan."
+                },
+                {
+                    "title": "Akhir 1974",
+                    "body": "Cabang Fakultas Ekonomi Universitas Jember di Banyuwangi ditutup pada akhir 1974. Hal ini membuat Banyuwangi tidak memiliki perguruan tinggi bagi lulusan SMA. Penutupan ini mengikuti keputusan Menteri Pendidikan dan Kebudayaan yang memerintahkan penutupan seluruh cabang fakultas di universitas dan institusi negeri untuk digabungkan kembali dengan institusi induknya."
+                },
+                {
+                    "title": "Akhir 1975",
+                    "body": "Kampus yang sebelumnya disediakan oleh Pemerintah Kabupaten Banyuwangi digunakan sementara untuk pendidikan dan pelatihan keterampilan. Kegiatan ini kemudian dipindahkan ke Pusat Latihan Keterampilan Pemuda (PLKP) di Labanasem, Kecamatan Kabat, Banyuwangi."
+                },
+                {
+                    "title": "September 1976",
+                    "body": "Tanggapan dari Rektor Universitas Jember, Bapak Soetardjo SH, terkait pendirian lembaga pendidikan tinggi non-gelar disambut baik oleh Bupati Banyuwangi, Kol. Djoko Supaat Slamet. Lembaga ini dibentuk berdasarkan SK Menteri Pendidikan dan Kebudayaan No. 042/II/1907 tanggal 16 Maret 1975 tentang pendirian dan pengembangan pendidikan ahli administrasi perusahaan. Program PAAP ini secara resmi direalisasikan melalui SK Rektor No. 5617/V3207/1976 tanggal 29 September 1976."
+                },
+                {
+                    "title": "14 Maret 1977",
+                    "body": "PAAP diresmikan pada 14 Maret 1977 di Pendopo Kabupaten Banyuwangi oleh Rektor Soetardjo DH. Acara tersebut dihadiri oleh Dekan Fakultas Ekonomi Universitas Jember, Drs. Hardiyanto Purbangkoro, dan Bupati Letkol TNI AD Djoko Sutana Wijaya di Jl. Jaksa Agung Suprapto No. 140 Banyuwangi."
+                },
+                {
+                    "title": "12 Februari 1986",
+                    "body": "Di Pendopo Kabupaten Banyuwangi, Rektor Drs. P. Warsito didampingi Bupati Djoko Wasito secara resmi menutup program PAAP Banyuwangi sesuai keputusan Menteri Pendidikan dan Kebudayaan tentang Ilmu Administrasi Perusahaan. Seluruh mahasiswa PAAP telah menyelesaikan studi dan bekerja di seluruh Indonesia."
+                }
+                ]
+            }
+        }
+    }
+}

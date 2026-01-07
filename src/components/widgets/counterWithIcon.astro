@@ -1,0 +1,28 @@
+---
+export interface FeatureBoxProps {
+  text: string;
+  value: string;
+  icon: string;
+}
+
+const { text, value, icon } = Astro.props as FeatureBoxProps;
+---
+
+<div class="feature-box">
+  <div class="feature-box-icon">
+    <i class={`icon-large text-dark-gray mb-20px d-block ${icon}`}></i>
+  </div>
+
+  <div class="feature-box-content last-paragraph-no-margin">
+    <h2
+      class="d-inline-block align-middle counter-number fw-700 text-dark-gray mb-0 counter"
+      data-speed="2000"
+      data-to={value}
+    >
+    </h2>
+
+    <span class="d-block text-dark-gray fw-500">
+      {text}
+    </span>
+  </div>
+</div>

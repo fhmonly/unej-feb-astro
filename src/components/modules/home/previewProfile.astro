@@ -1,0 +1,162 @@
+---
+import { getLocale } from "@i18n/i18n"; // sesuaikan helper i18n kamu
+
+const messages = {
+  en: {
+    badge: "About Us",
+    title: "FEB UNEJ",
+    description:
+      "Proud to be part of the academic community of the Faculty of Economics and Business, University of Jember, which always seeks to spread benefits to many people, especially in the Tridharma of Higher Education, namely education, research and community service in the economic and business fields.",
+    read_more: "Read More",
+    stats: {
+      active_students: "Active Student",
+      international_cooperation: "International Cooperation",
+      national_cooperation: "National Cooperation",
+      lectures: "Lectures",
+      professor: "Professor",
+    },
+  },
+  id: {
+    badge: "Tentang Kami",
+    title: "FEB UNEJ",
+    description:
+      "Bangga menjadi bagian dari civitas akademika Fakultas Ekonomi dan Bisnis Universitas Jember yang selalu berupaya memberikan manfaat kepada banyak orang, khususnya dalam Tridharma Perguruan Tinggi yaitu pendidikan, penelitian, dan pengabdian kepada masyarakat di bidang ekonomi dan bisnis.",
+    read_more: "Selengkapnya",
+    stats: {
+      active_students: "Mahasiswa Aktif",
+      international_cooperation: "Kerja Sama Internasional",
+      national_cooperation: "Kerja Sama Nasional",
+      lectures: "Dosen",
+      professor: "Profesor",
+    },
+  },
+};
+
+const t = messages[getLocale(Astro)];
+---
+
+<section>
+  <div class="container">
+    <div class="row justify-content-center align-items-center mb-6 sm-pb-9">
+      <div
+        class="col-lg-6 col-md-9 position-relative md-mb-15 text-center text-lg-start"
+        data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 15, "easing": "easeOutQuad" }'
+      >
+        <div
+          class="absolute-middle-center z-index-9 counter-style-02 text-center"
+        >
+          <span
+            class="fs-100 fw-800 text-base-color ls-minus-10px xs-ls-minus-5px position-relative lg-fs-130 xs-fs-75"
+          >
+            4000<sub
+              class="align-top fs-80 lg-fs-70 text-base-color position-relative top-minus-3px"
+              >+</sub
+            >
+          </span>
+          <span
+            class="d-block mx-auto fs-20 fw-500 lh-26 w-70 text-center text-base-color xs-w-100"
+          >
+            {t.stats.active_students}
+          </span>
+        </div>
+
+        <img src="/_astro/images/demo-corporate-03.png" alt="" />
+        <img
+          src="/_astro/images/hero-feb-min.webp"
+          class="position-absolute top-50 left-minus-100px lg-left-minus-40px sm-left-minus-30px lg-w-50 sm-w-55"
+          data-bottom-top="transform: translateY(50px)"
+          data-top-bottom="transform: translateY(-220px)"
+          alt=""
+        />
+        <img
+          src="/_astro/images/demo-corporate-02.png"
+          class="position-absolute top-0px xl-top-minus-10px w-170px right-20px md-right-40px xs-w-40"
+          data-bottom-top="transform: translateY(-50px)"
+          data-top-bottom="transform: translateY(50px)"
+          alt=""
+        />
+      </div>
+
+      <div
+        class="col-lg-6 ps-6 text-center text-lg-start lg-ps-15px"
+        data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+      >
+        <span
+          class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+        >
+          {t.badge}
+        </span>
+
+        <h3 class="text-dark-gray fw-700 ls-minus-1px">{t.title}</h3>
+
+        <p class="w-80 xl-w-90 lg-w-100 mb-40px sm-mb-25px">
+          {t.description}
+        </p>
+
+        <a
+          href="/about/profile"
+          class="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
+        >
+          <span>
+            <span class="btn-text">{t.read_more}</span>
+            <span class="btn-icon"
+              ><i class="feather icon-feather-arrow-right"></i></span
+            >
+            <span class="btn-icon"
+              ><i class="feather icon-feather-arrow-right"></i></span
+            >
+          </span>
+        </a>
+      </div>
+
+      <div
+        class="row row-cols-1 row-cols-md-4 row-cols-sm-2 justify-content-center counter-style-07 ps-3 pe-3"
+        data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+      >
+        <div class="col text-center sm-mb-30px">
+          <h2
+            class="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+            data-to="50"
+          >
+          </h2>
+          <span class="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+            {t.stats.international_cooperation}
+          </span>
+        </div>
+
+        <div class="col text-center sm-mb-30px">
+          <h2
+            class="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+            data-to="100"
+          >
+          </h2>
+          <span class="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+            {t.stats.national_cooperation}
+          </span>
+        </div>
+
+        <div class="col text-center sm-mb-30px">
+          <h2
+            class="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+            data-to="127"
+          >
+          </h2>
+          <span class="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+            {t.stats.lectures}
+          </span>
+        </div>
+
+        <div class="col text-center">
+          <h2
+            class="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+            data-to="9"
+          >
+          </h2>
+          <span class="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+            {t.stats.professor}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

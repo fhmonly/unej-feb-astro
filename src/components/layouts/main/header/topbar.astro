@@ -1,0 +1,62 @@
+---
+import { getLocale, getLocaleLink, useI18n } from "@i18n/i18n";
+const locale = getLocale(Astro);
+const messages = {
+  en: {
+    tuk: "TUK - LSP TA",
+    event: "Event",
+    news: "News",
+    announcement: "Announcement",
+    gallery: "Gallery",
+    videos: "Videos",
+    download: "Download",
+    quality_assurance: "Quality Assurance",
+    ppid: "PPID",
+    simfeb: "SIMFEB",
+  },
+  id: {
+    tuk: "TUK - LSP TA",
+    event: "Acara",
+    news: "Berita",
+    announcement: "Pengumuman",
+    gallery: "Galeri",
+    videos: "Video",
+    download: "Unduh",
+    quality_assurance: "Quality Assurance",
+    ppid: "PPID",
+    simfeb: "SIMFEB",
+  },
+};
+const t = useI18n(messages, locale);
+---
+
+<div
+  class="header-top-bar top-bar-dark bg-gradient-flamingo-amethyst-green disable-fixed"
+>
+  <div class="container-fluid">
+    <div class="top-menu-wrapper">
+      <ul class="top-menu">
+        <li><a href={getLocaleLink(locale, "/tuk/lspta")}>{t.tuk}</a></li>
+        <li><a href={getLocaleLink(locale, "/event")}>{t.event}</a></li>
+        <li><a href={getLocaleLink(locale, "/news")}>{t.news}</a></li>
+        <li>
+          <a href={getLocaleLink(locale, "/announcements")}>{t.announcement}</a>
+        </li>
+        <li><a href={getLocaleLink(locale, "/gallery")}>{t.gallery}</a></li>
+        <li>
+          <a href={getLocaleLink(locale, "/video_gallery")}>{t.videos}</a>
+        </li>
+        <li><a href="javascript:void(0);">{t.download}</a></li>
+        <li>
+          <a href="https://gpm.feb.unej.ac.id/" target="_blank"
+            >{t.quality_assurance}</a
+          >
+        </li>
+        <li>
+          <a href="https://ppid.feb.unej.ac.id/" target="_blank">{t.ppid}</a>
+        </li>
+        <li><a href={getLocaleLink(locale, "/")}>{t.simfeb}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

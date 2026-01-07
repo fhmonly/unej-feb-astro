@@ -1,0 +1,189 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+import "tabulator-tables/dist/css/tabulator_materialize.min.css";
+import type { ColumnDefinition } from "tabulator-tables";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Partnership",
+    table: {
+      number: "#",
+      partners: "Partners",
+      activity: "Activity",
+      from: "From",
+      category: "Category",
+    },
+  },
+  id: {
+    pageTitle: "Kemitraan",
+    table: {
+      number: "",
+      partners: "Mitra",
+      activity: "Kegiatan",
+      from: "Dari",
+      category: "Kategori",
+    },
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+const columns: ColumnDefinition[] = [
+  {
+    title: "",
+    formatter: "responsiveCollapse",
+    headerSort: false,
+  },
+  {
+    title: t.table.number,
+    formatter: "rownum",
+    headerSort: false,
+    frozen: true,
+  },
+  {
+    title: t.table.partners,
+    field: "partners",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+  },
+  {
+    title: t.table.activity,
+    field: "activity",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+    widthGrow: 1,
+  },
+  {
+    title: t.table.from,
+    field: "from",
+  },
+  {
+    title: t.table.category,
+    field: "category",
+    responsive: 2,
+  },
+];
+
+interface PartnerRow {
+  partners: string;
+  activity: string;
+  from: string;
+  category: string;
+}
+
+const rows: PartnerRow[] = [
+  {
+    partners: "PT Mahendra Maharani Makmur",
+    activity: "Pelaksanaan Magang Praktik Kerja Nyata",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "Badan Perencanaan Pembangunan Daerah Kabupaten Lumajang",
+    activity:
+      "Penguatan dan Pengembangan Penyelenggaraan Tridharma Perguruan Tinggi",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "PT Ragasport Gunawan Mandiri",
+    activity: "Program Magang Mahasiswa",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "PT Graha Makmur Cipta Pratama",
+    activity:
+      "Program Merdeka Belajar Kampus Merdeka Mahasiswa DIII Fakultas Ekonomi dan Bisnis Universitas Jember",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "Dinas Perindustrian dan Perdagangan Kabupaten Mojokerto",
+    activity: "Program Merdeka Belajar Kampus Merdeka",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "Bank Mandiri Utama Finance Kabupaten Jember",
+    activity: "Program Merdeka Belajar Kampus Merdeka",
+    from: "2024",
+    category: "National",
+  },
+  {
+    partners: "Kantor Imigrasi Kelas 1 TPI Jember",
+    activity: "Program Merdeka Belajar Kampus Merdeka",
+    from: "2024",
+    category: "National",
+  },
+];
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-gradient-quartz-white border-radius-6px">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.pageTitle}
+          </h3>
+        </div>
+      </div>
+      <div>
+        <div
+          id="tabulator"
+          data-columns={JSON.stringify(columns)}
+          data-rows={JSON.stringify(rows)}
+        >
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+<script>
+  import { TabulatorFull as Tabulator } from "tabulator-tables";
+  const tableEl: HTMLElement | null = document.getElementById("tabulator");
+
+  const tableElDt = tableEl?.dataset;
+  if (tableElDt) {
+    const dtColumns = tableElDt.columns;
+    const dtRows = tableElDt.rows;
+    if (dtColumns && dtRows) {
+      const columns = JSON.parse(dtColumns);
+      const rows = JSON.parse(dtRows);
+
+      if (tableEl) {
+        new Tabulator(tableEl, {
+          data: rows, //link data to table
+          reactiveData: true, //enable data reactivity
+          columns: columns, //define table columns
+          layout: "fitDataFill",
+          maxHeight: window.innerHeight - 200,
+          responsiveLayout: "collapse",
+          responsiveLayoutCollapseStartOpen: false,
+        });
+      }
+    }
+  }
+</script>

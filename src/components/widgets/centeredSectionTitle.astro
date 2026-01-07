@@ -1,0 +1,27 @@
+---
+interface Props {
+  suptitle?: string;
+  title: string;
+}
+
+const { suptitle, title } = Astro.props as Props;
+---
+
+<div class="row justify-content-center mb-3">
+  <div
+    class="col-lg-8 text-center"
+    data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 900, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+  >
+    {
+      suptitle && (
+        <span class="text-base-color fw-600 mb-5px text-uppercase d-block">
+          {suptitle}
+        </span>
+      )
+    }
+
+    <h2 class="text-dark-gray fw-700 ls-minus-2px">
+      {title}
+    </h2>
+  </div>
+</div>

@@ -1,0 +1,327 @@
+---
+import "tabulator-tables/dist/css/tabulator_materialize.min.css";
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import ModulesAboutAccreditationCard from "@components/modules/about/accreditationCard.astro";
+import Layout from "@layouts/main.astro";
+import type { ColumnDefinition } from "tabulator-tables";
+import { wordsJson } from "@/i18n/words";
+
+export const prerender = false;
+
+const messages = {
+  en: {
+    pageTitle: "Accreditation",
+    download_previous: "Previous accreditation files can be downloaded",
+    download_previous2: 'use the "Accreditation Decree" search filter.',
+    download_letter_intro:
+      "To download the letter stating the status of the Study Programs S1 Accounting, S1 Development Economics, and S1 Management, Faculty of Economics and Business, University of Jember: these programs are ACCREDITED with Rank A — can be downloaded.",
+    inter_cert: "International Certification",
+    national_cert: "National Certification",
+    table: {
+      number: "#",
+      study_program: "STUDY PROGRAM",
+      accredited: "ACCREDITED",
+      start: "START",
+      until: "UNTIL",
+      by: "By",
+    },
+  },
+  id: {
+    pageTitle: "Akreditasi",
+    download_previous: "File akreditasi sebelumnya dapat diunduh",
+    download_previous2: 'gunakan filter Pencarian "Keputusan Akreditasi".',
+    download_letter_intro:
+      "Untuk mengunduh surat yang menyatakan status Program Studi S1 Akuntansi, S1 Ilmu Pembangunan, dan S1 Manajemen, Fakultas Ekonomi dan Bisnis, Universitas Jember: program studi tersebut TERAKREDITASI dengan Peringkat A — dapat diunduh.",
+    inter_cert: "Sertifikasi Internasional",
+    national_cert: "Sertifikasi Nasional",
+    table: {
+      number: "NO",
+      study_program: "PROGRAM STUDI",
+      accredited: "TERAKREDITASI",
+      start: "MULAI",
+      until: "SAMPAI",
+      by: "Oleh",
+    },
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+const tWords = useI18n(wordsJson, getLocale(Astro));
+const columns: ColumnDefinition[] = [
+  {
+    title: "",
+    formatter: "responsiveCollapse",
+    headerSort: false,
+  },
+  {
+    title: t.table.number,
+    formatter: "rownum",
+    headerSort: false,
+    frozen: true,
+    hozAlign: "center",
+  },
+  {
+    title: t.table.study_program,
+    field: "study_program",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+  },
+  {
+    title: t.table.accredited,
+    field: "accredited",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+    widthGrow: 1,
+  },
+  {
+    title: t.table.start,
+    field: "start",
+  },
+  {
+    title: t.table.until,
+    field: "until",
+  },
+  {
+    title: t.table.by,
+    field: "by",
+  },
+];
+
+const rows = [
+  {
+    study_program: "Doctor of Management",
+    accredited: "Very Good",
+    start: "05 January 2024",
+    until: "21 November 2028",
+    by: "LAMEMBA",
+  },
+  {
+    study_program: "Bachelor of Management",
+    accredited: "Excellence",
+    start: "20 September 2023",
+    until: "20 September 2028",
+    by: "FIBAA",
+  },
+  {
+    study_program: "Bachelor of Development Economics",
+    accredited: "Excellence",
+    start: "20 September 2023",
+    until: "19 September 2028",
+    by: "FIBAA",
+  },
+];
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <!-- start section -->
+  <section id="down-section" class="">
+    <div class="container overlap-gap-section">
+      <div
+        class="row align-items-end justify-content-center mb-5 md-mb-40px text-center text-md-start"
+      >
+        <div
+          class="col-xl-5 col-lg-6 col-md-10 md-mb-20px text-center text-lg-start"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {tWords.accreditation}
+          </span>
+          <h3 class="text-dark-gray fw-700 mb-0 ls-minus-1px">
+            {tWords.feb} UNEJ
+          </h3>
+        </div>
+        <div
+          class="col-xl-6 col-lg-6 col-md-10 offset-xl-1 text-center text-lg-start last-paragraph-no-margin"
+        >
+          <p
+            class="w-90 xl-w-100"
+            data-anime='{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            {t.download_letter_intro}
+            <a href="" class="text-primary link-underline-primary">
+              {tWords.here.toLowerCase()}
+            </a>
+          </p>
+        </div>
+      </div>
+      <p
+        class="w-90 xl-w-100 text-center"
+        data-anime='{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+      >
+        {t.download_previous}
+        <a href="" class="text-primary link-underline-primary">
+          {tWords.here.toLowerCase()}
+        </a>,
+        {t.download_previous2}
+      </p>
+    </div>
+  </section>
+  <!-- end section -->
+  <!-- start section -->
+  <section class="pb-0 ipad-top-space-margin md-pt-0">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-lg-7 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.national_cert}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pt-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 filter-content">
+          <ul
+            class="portfolio-boxed portfolio-wrapper grid-loading grid grid-3col grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
+          >
+            <li class="grid-sizer"></li>
+            <!-- start portfolio item -->
+            {
+              Array.from({ length: 3 }, (_, i) => (
+                <li class="grid-item selected digital transition-inner-all gallery-box">
+                  <div class="portfolio-box border-radius-4px">
+                    <ModulesAboutAccreditationCard
+                      image="https://psb-planningcanada.ca/wp-content/uploads/2019/01/Accredited-gold-certif_92386558_xl-2015.jpg"
+                      accBy="FIBAA"
+                      major="Sastra Mesin"
+                    />
+                  </div>
+                </li>
+              ))
+            }
+            <!-- end portfolio item -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pb-0 ipad-top-space-margin md-pt-0">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-lg-7 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.inter_cert}
+          </h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pt-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 filter-content">
+          <ul
+            class="portfolio-boxed portfolio-wrapper grid-loading grid grid-3col grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
+          >
+            <li class="grid-sizer"></li>
+            <!-- start portfolio item -->
+            {
+              Array.from({ length: 7 }, (_, index) => (
+                <li class="grid-item selected digital transition-inner-all gallery-box">
+                  <a
+                    href="https://psb-planningcanada.ca/wp-content/uploads/2019/01/Accredited-gold-certif_92386558_xl-2015.jpg"
+                    class="portfolio-box border-radius-4px"
+                    data-group="lightbox-group-gallery-item-6"
+                  >
+                    <div class="portfolio-image border-radius-4px">
+                      <img
+                        src="https://psb-planningcanada.ca/wp-content/uploads/2019/01/Accredited-gold-certif_92386558_xl-2015.jpg"
+                        alt=""
+                      />
+                      <div class="portfolio-hover d-flex justify-content-center flex-column">
+                        <div class="portfolio-icon d-flex flex-row justify-content-center align-items-center">
+                          <div class="d-flex flex-column justify-content-center text-dark-gray text-dark-gray-hover rounded-circle bg-white w-60px h-60px move-bottom-top">
+                            <i
+                              class="bi bi-search icon-small"
+                              aria-hidden="true"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="portfolio-overlay bg-dark-gray"
+                        style="background-color: #637c8e"
+                      />
+                    </div>
+                    <div class="portfolio-caption pt-20px pb-30px lg-pt-20px lg-pb-20px">
+                      <div class="fs-14 lh-20 text-uppercase">
+                        Accredited with Excellence by the Ministry of Education
+                      </div>
+                      <div class="fs-17 fw-600 text-dark-gray text-dark-gray-hover">
+                        Diploma III Manajemen Perusahaan
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              ))
+            }
+            <!-- end portfolio item -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div
+        id="tabulator"
+        data-columns={JSON.stringify(columns)}
+        data-rows={JSON.stringify(rows)}
+      >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { TabulatorFull as Tabulator } from "tabulator-tables";
+  const tableEl: HTMLElement | null = document.getElementById("tabulator");
+
+  const tableElDt = tableEl?.dataset;
+  if (tableElDt) {
+    const dtColumns = tableElDt.columns;
+    const dtRows = tableElDt.rows;
+    if (dtColumns && dtRows) {
+      const columns = JSON.parse(dtColumns);
+      const rows = JSON.parse(dtRows);
+      if (tableEl) {
+        new Tabulator(tableEl, {
+          data: rows, //link data to table
+          reactiveData: true, //enable data reactivity
+          columns, //define table columns
+          layout: "fitDataFill",
+          maxHeight: window.innerHeight - 200,
+          responsiveLayout: "collapse",
+          responsiveLayoutCollapseStartOpen: false,
+        });
+      }
+    }
+  }
+</script>

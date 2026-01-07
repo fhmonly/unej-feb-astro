@@ -1,0 +1,90 @@
+---
+import {
+  generateMultiLocaleStaticPaths,
+  getLocale,
+  useI18n,
+} from "@/i18n/i18n";
+import ModulesEventCard from "@components/modules/event/card.astro";
+import WidgetsHeroSlider from "@components/widgets/pageTitleTypography.astro";
+import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
+import Layout from "@layouts/main.astro";
+
+export async function getStaticPaths() {
+  return generateMultiLocaleStaticPaths();
+}
+
+const messages = {
+  en: {
+    pageTitle: "Event",
+    title: "Event",
+    event_title: "Event Title",
+    start: "Start",
+    finish: "Finish",
+    executive_member: "Executive Member",
+    department_or_organization: "Department / Organization",
+    event_location: "Event Location",
+    officer: "Officer",
+  },
+  id: {
+    pageTitle: "Acara",
+    title: "Acara",
+    event_title: "Judul Acara",
+    start: "Mulai",
+    finish: "Selesai",
+    executive_member: "Anggota Ek",
+    department_or_organization: "Departemen / Organisasi",
+    event_location: "Lokasi Acara",
+    officer: "Petugas",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+// mock data
+const events = Array.from({ length: 11 }).map((_, i) => ({
+  date: `2025-11-${String(i + 1).padStart(2, "0")}`,
+  title: "Title",
+  desc: "Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur pariatur porro reprehenderit nobis odit delectus labore explicabo architecto veniam similique?",
+}));
+---
+
+<Layout title={t.pageTitle}>
+  <!-- start page title -->
+  <WidgetsHeroSlider title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <div>
+    <WidgetsPillDivider
+      text="2025"
+      htmlAttributes={{
+        style: "margin-top: 76px;",
+      }}
+    />
+
+    <section class="pt-0 ps-10 pe-10 xl-ps-2 xl-pe-2 sm-mx-0">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <ul
+              class="blog-date blog-wrapper grid-loading grid grid-3col xl-grid-3col lg-grid-2col md-grid-2col sm-grid-1col xs-grid-1col gutter-extra-large"
+            >
+              <li class="grid-sizer"></li>
+
+              {
+                events.map((event) => (
+                  <li class="grid-item">
+                    <ModulesEventCard
+                      date={event.date}
+                      title={event.title}
+                      desc={event.desc}
+                    />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- end page title -->
+</Layout>

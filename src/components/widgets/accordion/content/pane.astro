@@ -1,0 +1,24 @@
+---
+interface Props {
+  active?: boolean;
+  tabId: string;
+  paneId: string;
+}
+
+const { active = false, tabId, paneId } = Astro.props;
+---
+
+<div id={tabId} class={`tab-pane fade ${active ? "active show" : ""}`}>
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="accordion accordion-style-02"
+        id={paneId}
+        data-active-icon="icon-feather-minus"
+        data-inactive-icon="icon-feather-plus"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

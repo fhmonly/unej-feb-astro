@@ -1,0 +1,71 @@
+---
+interface Props {
+  total: number;
+  perPage?: number;
+  currentPage: number;
+  maxPages?: number;
+  basePath: string;
+}
+
+const {
+  total,
+  perPage = 10,
+  currentPage,
+  maxPages = 5,
+  basePath,
+} = Astro.props;
+
+const totalPages = Math.max(1, Math.ceil(total / perPage));
+const isFirstPage = currentPage === 1;
+const isLastPage = currentPage === totalPages;
+
+// pagination window logic (same as Vue)
+let start = Math.max(1, currentPage - Math.floor(maxPages / 2));
+let end = Math.min(totalPages, start + maxPages - 1);
+
+if (end - start + 1 < maxPages) {
+  start = Math.max(1, end - maxPages + 1);
+}
+
+const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+
+const link = (p: number) => `${basePath}?page=${p}`;
+---
+
+<ul
+  class="pagination pagination-style-01 fs-13 fw-500 mb-0"
+  data-anime='{ "translate": [0, 0], "opacity": [0,1], "duration": 600, "delay": 100, "staggervalue": 150, "easing": "easeOutQuad" }'
+>
+  <!-- Prev -->
+  <li class={`page-item ${isFirstPage ? "disabled" : ""}`}>
+    <a
+      class="page-link"
+      href={isFirstPage ? undefined : link(currentPage - 1)}
+      aria-disabled={isFirstPage}
+    >
+      <i class="feather icon-feather-arrow-left fs-18 d-xs-none"></i>
+    </a>
+  </li>
+
+  <!-- Pages -->
+  {
+    pages.map((p) => (
+      <li class={`page-item ${p === currentPage ? "active" : ""}`}>
+        <a class="page-link" href={link(p)}>
+          {p}
+        </a>
+      </li>
+    ))
+  }
+
+  <!-- Next -->
+  <li class={`page-item ${isLastPage ? "disabled" : ""}`}>
+    <a
+      class="page-link"
+      href={isLastPage ? undefined : link(currentPage + 1)}
+      aria-disabled={isLastPage}
+    >
+      <i class="feather icon-feather-arrow-right fs-18 d-xs-none"></i>
+    </a>
+  </li>
+</ul>

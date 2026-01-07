@@ -1,0 +1,11 @@
+---
+interface Props {
+  image: string;
+}
+
+const { image } = Astro.props;
+---
+
+<a href={image} data-group="lightbox-group-gallery-item-6">
+  <slot />
+</a>

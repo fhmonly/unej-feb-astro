@@ -1,0 +1,72 @@
+---
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@/i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Disabilities",
+    title: "Disabilities",
+  },
+  id: {
+    pageTitle: "Disabilitas",
+    title: "Disabilitas",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-gradient-quartz-white border-radius-6px">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.title}
+          </h3>
+        </div>
+      </div>
+
+      <div class="row row-cols-3 blog-standard md-mb-50px sm-mb-40px">
+        {
+          Array.from({ length: 11 }).map(() => (
+            <div class="mb-40px">
+              <div class="card border-0 no-border-radius box-shadow-extra-large">
+                <div class="blog-image">
+                  <a href="#">
+                    <img
+                      src="https://thumbs.dreamstime.com/b/wildflowers-blooming-sunset-nature-scenery-wildflowers-blooming-sunset-nature-scenery-388164189.jpg"
+                      alt=""
+                    />
+                  </a>
+                </div>
+
+                <div class="card-body p-9 bg-white">
+                  <a
+                    href="#"
+                    class="text-dark-gray card-title mb-20px fw-600 fs-24 d-block"
+                  >
+                    disabilities facility name
+                  </a>
+                  <p class="text-medium-gray mb-20px">
+                    disabilities facility description Lorem ipsum is simply
+                    dummy text of the printing and typesetting industry ipsum
+                    has been the industry standard dummy text ever since the
+                    unknown printer took a galley of typesetting industry
+                    standard...
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,42 @@
+---
+import ModulesLeadershipCard from "@/components/widgets/lectureCard.astro";
+import WidgetsCenteredSectionTitle from "@components/widgets/centeredSectionTitle.astro";
+interface Item {
+  image: string;
+  name: string;
+  department: string;
+}
+
+interface Props {
+  title: string;
+  suptitle: string;
+  items: Item[];
+}
+
+const { title, suptitle, items } = Astro.props as Props;
+---
+
+<section class="pb-0">
+  <div class="container">
+    <WidgetsCenteredSectionTitle title={title} suptitle={suptitle} />
+  </div>
+</section>
+
+<section class="mt-0 py-0">
+  <div class="container">
+    <div
+      class="row row-cols-1 row-cols-lg-4 row-cols-md-2"
+      data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 50, "staggervalue": 150, "easing": "easeOutQuad" }'
+    >
+      {
+        items.map(({ image, name, department }) => (
+          <ModulesLeadershipCard
+            image={image}
+            name={name}
+            department={department}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

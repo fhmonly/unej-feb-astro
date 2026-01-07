@@ -1,0 +1,72 @@
+---
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Academic Calendar",
+    title: "Academic Calendar",
+  },
+  id: {
+    pageTitle: "Kalender Akademik",
+    title: "Kalender Akademik",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+// mock data
+const items = Array.from({ length: 7 }).map((_, i) => ({
+  index: i + 1,
+  period: "January, 9th - 27th 2023",
+  desc: "Offer and Currency Change Lectures/Lecture Schedule Announcements Respectively each Study Program",
+}));
+---
+
+<Layout title={t.pageTitle}>
+  <!-- start page title -->
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <!-- end page title -->
+
+  <section
+    id="down-section"
+    class="overflow-hidden bg-light-majorelle-blue big-section"
+  >
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          {
+            items.map((item) => (
+              <div class="row g-0 align-items-center text-center text-sm-start">
+                <div class="col-12">
+                  <div class="separator-line-5px w-100 bg-medium-gray opacity-3 bg-sliding-line" />
+                </div>
+
+                <div class="col-sm-1 text-center xs-mt-20px">
+                  <span class="text-dark-gray fs-16 ls-minus-1px fw-600">
+                    {String(item.index).padStart(2, "0")}
+                  </span>
+                </div>
+
+                <div class="col-sm-3 offset-sm-1">
+                  <span class="fw-600 text-dark-gray fs-22 ls-minus-05px">
+                    {item.period}
+                  </span>
+                </div>
+
+                <div class="col-sm-7 p-35px sm-p-25px xs-p-20px xs-pt-10px last-paragraph-no-margin">
+                  <p class="w-95 sm-w-100">{item.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

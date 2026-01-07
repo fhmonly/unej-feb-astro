@@ -1,0 +1,71 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import ModulesNewsCard from "@components/modules/news/card.astro";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import WidgetsPagination from "@components/widgets/pagination.astro";
+import Layout from "@layouts/main.astro";
+
+export const prerender = false;
+
+const items = Array.from({ length: 10 }).map((_, i) => i + 1);
+
+const page = Number(Astro.url.searchParams.get("page") ?? 1);
+const limit = 10;
+const totalItem = 100;
+
+const t = useI18n(
+  {
+    en: {
+      pageTitle: "News",
+      title: "News",
+    },
+    id: {
+      pageTitle: "Berita",
+      title: "Berita",
+    },
+  },
+  getLocale(Astro)
+);
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section id="down-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 px-0">
+          <ul
+            class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
+          >
+            <li class="grid-sizer"></li>
+
+            {
+              items.map((value) => (
+                <li class="grid-item">
+                  <ModulesNewsCard
+                    date={`2025-10-${value}`}
+                    title="Congrats!!"
+                    desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
+                    newsType="Achievement News"
+                    image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f"
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mt-2 d-flex justify-content-center">
+          <WidgetsPagination
+            currentPage={page}
+            perPage={limit}
+            total={totalItem}
+            basePath={`/${getLocale(Astro)}/news`}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

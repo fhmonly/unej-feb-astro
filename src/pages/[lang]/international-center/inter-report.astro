@@ -1,0 +1,29 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import EmbedPdf from "@components/widgets/embedPDF.astro";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+
+export { getStaticPaths } from "@i18n/i18n";
+const messages = {
+  en: {
+    pageTitle: "International Report",
+    title: "International Report",
+  },
+  id: {
+    pageTitle: "Laporan Internasional",
+    title: "Laporan Internasional",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section>
+    <EmbedPdf
+      url="https://s2.q4cdn.com/175719177/files/doc_presentations/Placeholder-PDF.pdf"
+    />
+  </section>
+</Layout>

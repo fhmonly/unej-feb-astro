@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  suptitle?: string;
+}
+
+const { title, image, suptitle = "PPID FEB UNEJ" } = Astro.props as Props;
+---
+
+<!-- start page title -->
+<section
+  class="page-title-big-typography ipad-top-space-margin"
+  data-parallax-background-ratio="0.5"
+  style={`background-image: url('${image}')`}
+>
+  <div class="opacity-extra-medium bg-dark-gray"></div>
+
+  <div class="container">
+    <div class="row align-items-center justify-content-center small-screen">
+      <div
+        class="col-xl-5 col-lg-7 col-md-8 position-relative text-center page-title-extra-small"
+      >
+        <h1
+          class="text-uppercase mb-15px alt-font text-white opacity-7 fw-500 ls-1px"
+        >
+          {suptitle}
+        </h1>
+
+        <h2
+          class="mb-0 text-white ls-minus-2px fw-500 text-shadow-double-large"
+        >
+          {title}
+        </h2>
+      </div>
+
+      <div class="down-section text-center">
+        <a href="#down-section" class="section-link">
+          <div
+            class="d-flex justify-content-center align-items-center mx-auto rounded-circle h-55px w-55px fs-22 text-white bg-dark-gray"
+          >
+            <i class="feather icon-feather-arrow-down"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end page title -->

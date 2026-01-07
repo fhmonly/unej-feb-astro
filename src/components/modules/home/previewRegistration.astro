@@ -1,0 +1,62 @@
+---
+import { getLocale } from "@i18n/i18n";
+
+const i18n = {
+  en: {
+    title: "FEB UNEJ Registration",
+    desc1: "Want to study at the Faculty of Economics and Business UNEJ?",
+    desc2:
+      "Get to know us and follow the registration to become part of the Faculty of Economics and Business, University of Jember.",
+    button: "Registration Information",
+  },
+  id: {
+    title: "Pendaftaran FEB UNEJ",
+    desc1: "Ingin belajar di Fakultas Ekonomi dan Bisnis UNEJ?",
+    desc2:
+      "Kenali kami dan ikuti proses pendaftaran untuk menjadi bagian dari Fakultas Ekonomi dan Bisnis Universitas Jember.",
+    button: "Informasi Pendaftaran",
+  },
+};
+
+const t = i18n[getLocale(Astro)];
+---
+
+<section id="registration" class="registration">
+  <div class="container">
+    <div class="row content align-items-center">
+      <div class="col-md-5" data-aos="fade-right">
+        <img
+          src="https://feb.unej.ac.id/assets/temabiru/img/register.webp"
+          class="img-fluid"
+          loading="lazy"
+          alt="Registration Image"
+        />
+      </div>
+
+      <div class="col-md-7 pt-4" data-aos="fade-up">
+        <h3 class="text-dark-gray fw-700 ls-minus-1px">
+          {t.title}
+        </h3>
+
+        <p class="w-80 xl-w-90 lg-w-100 mb-40px sm-mb-25px">
+          {t.desc1}
+        </p>
+
+        <p class="w-80 xl-w-90 lg-w-100 mb-40px sm-mb-25px">
+          {t.desc2}
+        </p>
+
+        <div class="text-center text-lg-start mt-4">
+          <a
+            href="https://unej.ac.id/penerimaan-mahasiswa-baru/"
+            target="_blank"
+            rel="noopener"
+            class="btn btn-primary btn-lg"
+          >
+            {t.button}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

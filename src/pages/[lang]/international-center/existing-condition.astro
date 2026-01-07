@@ -1,0 +1,138 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+export const messages = {
+  en: {
+    existing_condition: {
+      title: "Existing Condition",
+      introduction:
+        "The internationalization of higher education is defined as a process in which universities integrate international components into their goals, functions, or delivery of education. This section outlines the current condition analysis, covering all activities and programs that have been implemented to support internationalization at the Faculty of Economics and Business (FEB), University of Jember. These activities and programs include:",
+      items: [
+        {
+          title: "FIBAA International Accreditation",
+          content:
+            "Out of all study programs at FEB University of Jember, three programs—Bachelor of Management, Bachelor of Accounting, and Bachelor of Development Economics—successfully achieved FIBAA accreditation in September 2023.",
+        },
+        {
+          title: "Bilingual Class",
+          content:
+            "Further information regarding the Bilingual Class can be accessed on this Admissions page: Bilingual Class.",
+        },
+        {
+          title: "Strengthening International Cooperation",
+          content:
+            "In 2022, there were 21 active cooperation agreements at the University of Jember, several of which were initiated by FEB. These include partnerships with San Carlos University, Universiti Sultan Zainal Abidin Malaysia, and Universiti College Bestari. FEB University of Jember is also in the process of initiating MoUs with Universiti Kebangsaan Malaysia and the Indian Institute of Technology.",
+        },
+        {
+          title: "Lecturer Exchange",
+          content:
+            "To support the internationalization of FEB University of Jember and enhance lecturer competencies, lecturer exchange programs have been implemented since 2017. These exchanges involve foreign universities that already have MoUs with the University of Jember, as well as universities currently in the process of initiating MoUs. The program is strengthened by the qualifications of FEB lecturers—55 out of 113 (59%) hold doctoral degrees, many of whom graduated from reputable universities in Indonesia and abroad.",
+        },
+        {
+          title: "Student Mobility (Inbound & Outbound)",
+          content:
+            "FEB UNEJ consistently opens opportunities for international students to study either full-time or part-time. International student enrollment can be processed through the UNEJ International Office. FEB also encourages active students to gain overseas learning experiences through various exchange schemes such as the Indonesian International Student Mobility Awards (IISMA) and the International Credit Transfer Program (ICTP). Additionally, students can participate in exchange programs managed by the International Office in collaboration with foreign institutions.",
+        },
+        {
+          title: "Joint Research & Publication",
+          content:
+            "Internationalization in FEB UNEJ is also supported through joint research and joint publication activities. In 2021, three collaborative research projects were conducted with lecturers from Universiti Sultan Zainal Abidin, Malaysia and published in CPC-indexed international proceedings.",
+        },
+        {
+          title: "International Conference",
+          content:
+            "From 2021 to 2023, FEB UNEJ has actively participated in organizing international conferences either as the main organizer or as a co-host.",
+        },
+      ],
+    },
+  },
+  id: {
+    existing_condition: {
+      title: "Kondisi Saat Ini",
+      introduction:
+        "Internasionalisasi perguruan tinggi didefinisikan sebagai proses di perguruan tinggi yang mengintegrasikan komponen internasional ke dalam tujuan, fungsi, atau penyampaian pendidikan. Pada bagian ini akan digambarkan mengenai analisis kondisi saat ini yang meliputi seluruh kegiatan dan program-program yang telah diimplementasikan untuk mendukung internasionalisasi di Fakultas Ekonomi dan Bisnis (FEB) Universitas Jember. Kegiatan dan program tersebut antara lain:",
+      items: [
+        {
+          title: "Akreditasi Internasional FIBAA",
+          content:
+            "Dari seluruh program studi di FEB Universitas Jember, 3 program studi yang telah terakreditasi FIBAA pada bulan September 2023, yaitu S1 Manajemen, S1 Akuntansi dan S1 Ekonomi Pembangunan.",
+        },
+        {
+          title: "Kelas Bilingual",
+          content:
+            "Informasi lebih lanjut mengenai Kelas Bilingual dapat diakses pada halaman ini Admisi Kelas Bilingual.",
+        },
+        {
+          title: "Peningkatan Kerjasama Luar Negeri",
+          content:
+            "Pada tahun 2022 terdapat 21 perjanjian kerjasama yang aktif pada Universitas Jember dimana sebagian MoU tersebut merupakan hasil inisiasi dari FEB.",
+        },
+        {
+          title: "Lecturer Exchange",
+          content:
+            "Sejak tahun 2017 telah diimplementasikan kegiatan pertukaran dosen dengan universitas luar negeri baik yang telah maupun yang sedang dalam tahap inisiasi MoU.",
+        },
+        {
+          title: "Students Mobility (Inbound & Outbound)",
+          content:
+            "FEB UNEJ membuka peluang bagi mahasiswa asing serta mendorong mahasiswa aktif mengikuti program mobilitas internasional seperti IISMA dan ICTP.",
+        },
+        {
+          title: "Joint Research & Publication",
+          content:
+            "FEB UNEJ telah melakukan joint research dengan universitas luar negeri meskipun jumlahnya masih terbatas.",
+        },
+        {
+          title: "International Conference",
+          content:
+            "FEB UNEJ aktif dalam penyelenggaraan International Conference periode 2021–2023.",
+        },
+      ],
+    },
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+const items = Array.from({ length: 7 }, (_, i) => i + 1);
+---
+
+<Layout title={t.existing_condition.title}>
+  <PageTitleTypography
+    title={t.existing_condition.title}
+    image="/_astro/images/bg-feb.webp"
+  />
+  <section>
+    <div class="container">
+      <span class="badge">
+        {t.existing_condition.title}
+      </span>
+
+      <p class="fw-700">
+        {t.existing_condition.introduction}
+      </p>
+
+      <div class="row">
+        {
+          items.map((_, i) => (
+            <div class="col-12 process-step-style-05">
+              <div class="d-flex">
+                <div class="me-4 fw-700" style="flex-shrink: 0;">
+                  0{_}
+                </div>
+                <div>
+                  <div class="fw-700 fs-18">
+                    {t.existing_condition.items[i].title}
+                  </div>
+                  <p>{t.existing_condition.items[i].content}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

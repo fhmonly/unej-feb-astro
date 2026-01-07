@@ -1,0 +1,120 @@
+---
+import FooterColumn from "@components/layouts/main/footer/footerColumn.astro";
+import { getLocale } from "@i18n/i18n";
+const lang = getLocale(Astro);
+
+const i18n = {
+  en: {
+    pancasila_campus: "Pancasila Campus",
+    for_the_world: "for the World",
+    unej_address:
+      "Jl. Kalimantan 37 – Bumi Tegal Boto Campus, P.O. Box 159, Jember",
+    other: "Other",
+  },
+  id: {
+    pancasila_campus: "Kampus Pancasila",
+    for_the_world: "Untuk Dunia",
+    unej_address:
+      "Jl.Kalimantan 37 - Kampus Bumi Tegal Boto Kotak Pos159 Jember",
+    other: "Lainnya",
+  },
+};
+
+const t = (key: keyof (typeof i18n)[keyof typeof i18n]) => i18n[lang][key];
+
+const siteLinks = [
+  { label: "SimFEB", href: "/" },
+  { label: "Sister", href: "https://sister.unej.ac.id/" },
+  { label: "UC3", href: "https://uc3.unej.ac.id/" },
+  { label: "Web UNEJ", href: "https://unej.ac.id/" },
+  { label: "Library UNEJ", href: "https://library.unej.ac.id/" },
+  { label: "Career Center", href: "https://careercenter.unej.ac.id/jobs" },
+];
+
+const journalLinks = [
+  { label: "Bisma", href: "https://jurnal.unej.ac.id/index.php/BISMA" },
+  { label: "JAUJ", href: "https://jurnal.unej.ac.id/index.php/JAUJ" },
+  { label: "JEAM", href: "https://jurnal.unej.ac.id/index.php/JEAM" },
+  { label: "E Jurnal", href: "https://jurnal.unej.ac.id/index.php/e-JEBAUJ" },
+  { label: "JEK", href: "https://jurnal.unej.ac.id/index.php/JEK" },
+  { label: "Value", href: "https://jurnal.unej.ac.id/index.php/value" },
+  { label: "JPMA", href: "https://jurnal.unej.ac.id/index.php/JPMA" },
+  { label: "JPWP", href: "https://jurnal.unej.ac.id/index.php/JPWP" },
+  { label: "Ijabah", href: "https://journal.unej.ac.id/IJABAH/" },
+];
+
+const otherLinks = [
+  { label: "TUK - LSP TA", href: "/tuk/lspta" },
+  { label: "Event", href: "/event" },
+  { label: "News", href: "/news" },
+  { label: "Announcement", href: "/announcements" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Videos", href: "/video_gallery" },
+  { label: "Quality Assurance", href: "https://gpm.feb.unej.ac.id/" },
+  { label: "PPID", href: "https://ppid.feb.unej.ac.id/" },
+];
+---
+
+<div class="mt-5"></div>
+<footer class="position-relative pb-0">
+  <div class="bg-light border-top border-2 footer-break-wall-wrapper">
+    <div class="container position-relative footer-break-wall">
+      <!-- CTA -->
+      <div class="text-center mb-5">
+        <img src="/_astro/images/unej-removebg.png" alt="UNEJ" width="100" />
+        <h2 class="fw-bold mt-3">FEB UNEJ</h2>
+        <div class="text-muted">
+          <p class="mb-1">{t("pancasila_campus")} {t("for_the_world")}</p>
+          <p>{t("unej_address")}</p>
+          <address>
+            <ul class="list-unstyled">
+              <li><strong>Phone:</strong> 0331-337990</li>
+              <li><strong>Facsimile:</strong> 0331-332150</li>
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:feb@unej.ac.id">feb@unej.ac.id</a>
+              </li>
+            </ul>
+          </address>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Grid -->
+      <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4">
+        <FooterColumn title="Sites Links" items={siteLinks} />
+        <FooterColumn title="Journal Links" items={journalLinks} />
+        <FooterColumn title={t("other")} items={otherLinks} />
+      </div>
+
+      <hr />
+
+      <p class="text-center text-muted">
+        © Copyright FEB UNEJ {new Date().getFullYear()}
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    --break-wall-height: 37.5px;
+    padding-top: calc(var(--break-wall-height) + 10px);
+  }
+  .footer-break-wall-wrapper {
+    border-color: rgb(141, 141, 141);
+  }
+  .footer-break-wall {
+    top: calc(var(--break-wall-height) * -1);
+  }
+  .hover-link {
+    transition:
+      color 0.3s ease,
+      padding-left 0.3s ease;
+  }
+  .hover-link:hover {
+    color: #0d6efd;
+    padding-left: 5px;
+  }
+</style>

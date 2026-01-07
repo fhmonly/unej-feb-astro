@@ -1,0 +1,148 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import { wordsJson } from "@/i18n/words";
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    community_service: {
+      title: "Community Services Activities",
+      intro:
+        "Community service by lecturers in the Faculty of Economics and Business provides significant benefits for the community, students, and the lecturers themselves. Some of these benefits include:",
+      benefits: {
+        research:
+          "Improving the quality and quantity of research. Lecturers involved in community service directly interact with the community and industry, helping them understand real challenges and develop more relevant research.",
+        education_quality:
+          "Improving the quality of education. Lecturers can guide students through community service projects that strengthen their skills and knowledge in economics and business.",
+        relationship_strength:
+          "Strengthening relationships with the community and industry. This helps the faculty build a wide network of cooperation with various stakeholders.",
+        real_world_relevance:
+          "Improving the relevance of education to real-world needs. Experience gained from community service supports the development of an updated and relevant curriculum.",
+        community_welfare:
+          "Improving community welfare. Lecturers help communities design and implement solutions for economic and business problems.",
+      },
+      closing:
+        "Overall, community service activities create meaningful impact for all sides—community, students, and lecturers—while strengthening the connection between academic knowledge and real-world needs.",
+    },
+  },
+  id: {
+    community_service: {
+      title: "Kegiatan Pengabdian kepada Masyarakat",
+      intro:
+        "Pengabdian kepada masyarakat oleh dosen Fakultas Ekonomi dan Bisnis memberikan manfaat signifikan bagi masyarakat, mahasiswa, dan dosen itu sendiri. Beberapa manfaat tersebut antara lain:",
+      benefits: {
+        research:
+          "Meningkatkan kualitas dan kuantitas penelitian. Dosen yang terlibat dalam pengabdian akan berinteraksi langsung dengan masyarakat dan industri, sehingga memahami kebutuhan dan tantangan nyata untuk menghasilkan riset yang lebih relevan.",
+        education_quality:
+          "Meningkatkan kualitas pendidikan. Dosen dapat membimbing mahasiswa dalam proyek pengabdian yang membantu masyarakat sekaligus mengasah kemampuan mereka di bidang ekonomi dan bisnis.",
+        relationship_strength:
+          "Memperkuat hubungan dengan masyarakat dan industri. Kegiatan ini mendukung fakultas dalam membangun jejaring kerja sama yang lebih luas.",
+        real_world_relevance:
+          "Meningkatkan relevansi pendidikan dengan dunia nyata. Pengalaman dari pengabdian membantu dosen menyusun kurikulum yang mutakhir dan sesuai kebutuhan lapangan.",
+        community_welfare:
+          "Meningkatkan kesejahteraan masyarakat. Dosen membantu merancang dan menerapkan solusi atas persoalan ekonomi dan bisnis di masyarakat.",
+      },
+      closing:
+        "Secara keseluruhan, kegiatan pengabdian memberi dampak nyata bagi masyarakat, mahasiswa, dan dosen, sekaligus menghubungkan ilmu akademik dengan kebutuhan dunia nyata.",
+    },
+  },
+};
+const benefits = [
+  "research",
+  "education_quality",
+  "relationship_strength",
+  "real_world_relevance",
+  "community_welfare",
+] as const;
+
+const videos = Array.from({ length: 7 }, (_, i) => i + 1);
+const t = useI18n(messages, getLocale(Astro)).community_service;
+const tWords = useI18n(wordsJson, getLocale(Astro));
+---
+
+<Layout title={t.title}>
+  <PageTitleTypography title={t.title} image="/_astro/images/bg-feb.webp" />
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.intro}
+          </p>
+
+          <div
+            class="row row-cols-1"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            {
+              benefits.map((value, index) => (
+                <div class="col-12 process-step-style-05 position-relative hover-box">
+                  <div class="process-step-item d-flex">
+                    <div class="process-step-icon-wrap position-relative">
+                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700 position-relative">
+                        <span class="number position-relative z-index-1 text-dark-gray">
+                          0{index + 1}
+                        </span>
+                        <div class="box-overlay bg-base-color rounded-circle" />
+                      </div>
+                      <span class="progress-step-separator bg-dark-gray opacity-1" />
+                    </div>
+
+                    <div class="process-content ps-30px last-paragraph-no-margin mb-30px">
+                      <p class="w-90 lg-w-100 lh-32">{t.benefits[value]}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.closing}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- video section -->
+  <section class="bg-very-light-gray py-5">
+    <div class="container">
+      <div class="row g-4">
+        {
+          videos.map((value) => (
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="bg-white p-40px sm-p-30px h-100 box-shadow-small d-flex flex-column">
+                <div class="flex-grow-1">
+                  <h5 class="mb-3">Video Title {value}</h5>
+                  <p class="text-muted mb-0">
+                    Deskripsi singkat tentang video ini. Jelaskan konten yang
+                    akan ditonton.
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mt-4">
+                  <a
+                    href="https://www.youtube.com/watch?v=cfXHhfNy7tU"
+                    class="popup-youtube d-inline-flex align-items-center gap-2 text-decoration-none"
+                  >
+                    <i class="bi bi-play-circle fs-4" />
+                    <span>{tWords.play} Video</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

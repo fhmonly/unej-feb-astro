@@ -1,0 +1,205 @@
+---
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Supporting System",
+    title: "Supporting System",
+  },
+  id: {
+    pageTitle: "Sistem Pendukung",
+    title: "Sistem Pendukung",
+  },
+};
+const t = useI18n(messages, getLocale(Astro));
+
+const links = [
+  {
+    title: "Learning Management System",
+    url: "https://mmp.unej.ac.id/?lang=en",
+    img: "/_astro/images/lms.jpg",
+  },
+  {
+    title: "Journal Library",
+    url: "https://oailib.unej.ac.id/",
+    img: "/_astro/images/journals-lib.jpg",
+  },
+  {
+    title: "E Library",
+    url: "https://library.unej.ac.id/",
+    img: "/_astro/images/e-library_4x.jpg",
+  },
+  {
+    title: "Helpdesk",
+    url: "https://uc3.unej.ac.id/",
+    img: "/_astro/images/it_help_desk.png",
+  },
+  {
+    title: "Eduroam",
+    url: "https://uptti.unej.ac.id/eduroam-world-wide-education-roaming-for-research-and-education/",
+    img: "/_astro/images/earth_eduroam.png",
+  },
+  {
+    title: "Office 365",
+    url: "https://uptti.unej.ac.id/office-365-education/",
+    img: "/_astro/images/office-65.jpg",
+  },
+  {
+    title: "VPN",
+    url: "https://vpnuser.unej.ac.id/",
+    img: "/_astro/images/VPN-UNEJ.png",
+  },
+];
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-gradient-quartz-white border-radius-6px">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.title}
+          </h3>
+        </div>
+      </div>
+      <div
+        class="row row-cols-1 row-cols-lg-4 row-cols-sm-2"
+        data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 150, "easing": "easeOutQuad" }'
+      >
+        <!-- start team member item -->
+        {links.map((link) => (
+          <div
+          class="col team-style-08 border-radius-6px md-mb-30px mb-3"
+        >
+          <figure
+            class="mb-0 position-relative overflow-hidden border-radius-4px"
+          >
+            <div
+              style={
+                `width: 100%; height: 320px;background-image: url(${link.img});
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+              `}
+            >
+            </div>
+            <figcaption
+              class="w-100 h-100 d-flex align-items-end p-13 lg-p-8 md-p-10 bg-gradient-base-transparent border-radius-6px"
+            >
+              <div class="w-100">
+                <span class="team-member-name fw-500 text-white d-block">
+                  {link.title}
+                </span>
+                <!-- <span class="member-designation fs-15 lh-20 text-white d-block">Director</span> -->
+              </div>
+              <div class="social-icon d-flex flex-column flex-shrink-1">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  class="text-dark-gray bg-white"
+                  ><i class="fa-solid fa-paper-plane icon-small"></i></a
+                >
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+        ))}
+        <!-- end team member item -->
+      </div>
+    </div>
+  </section>
+</Layout>
+<style >
+  .team-style-008 figure {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition: all 0.5s cubic-bezier(0.2, 0, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.2, 0, 0.3, 1);
+  }
+
+  .team-style-008 figure figcaption {
+    position: absolute;
+    /* opacity: 0; */
+    bottom: 0;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+
+  .team-style-008 figure figcaption .social-icon a {
+    margin: 0 0 10px;
+    opacity: 0;
+    display: inline-block;
+    background-color: var(--dark-gray);
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-transform: translate3d(0, 15px, 0);
+    transform: translate3d(0, 15px, 0);
+    -webkit-transition: all 0.3s cubic-bezier(0.2, 0, 0.3, 1);
+    transition: all 0.3s cubic-bezier(0.2, 0, 0.3, 1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  .team-style-008 figure figcaption .social-icon a:last-child {
+    margin-bottom: 0;
+  }
+
+  .team-style-008 figure figcaption .team-member-name {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 15px, 0);
+    transform: translate3d(0, 15px, 0);
+    -webkit-transition: all 0.5s cubic-bezier(0.2, 0, 0.3, 1);
+    transition: all 0.5s cubic-bezier(0.2, 0, 0.3, 1);
+  }
+
+  .team-style-008 figure figcaption .member-designation {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20px, 0);
+    transform: translate3d(0, 20px, 0);
+    -webkit-transition: all 0.7s cubic-bezier(0.2, 0, 0.3, 1);
+    transition: all 0.7s cubic-bezier(0.2, 0, 0.3, 1);
+  }
+
+  .team-style-008 figure {
+    -webkit-transform: translate3d(0, -8px, 0);
+    transform: translate3d(0, -8px, 0);
+  }
+
+  .team-style-008 figure figcaption {
+    opacity: 1;
+  }
+
+  .team-style-008 figure figcaption .social-icon a:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  .team-style-008 figure figcaption .team-member-name {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .team-style-008 figure figcaption .member-designation {
+    opacity: 0.6;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .team-style-008 figure figcaption a {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+</style>

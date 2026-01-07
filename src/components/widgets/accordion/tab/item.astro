@@ -1,0 +1,26 @@
+---
+interface Props {
+  icon?: string;
+  text?: string;
+  tabId?: string;
+  active?: boolean;
+}
+
+const { icon, text, tabId, active = false } = Astro.props;
+---
+
+<li class="nav-item">
+  <a
+    data-bs-toggle="tab"
+    href={`#${tabId}`}
+    class={`nav-link ${active ? "active" : ""}`}
+  >
+    <span>
+      <span class="me-5px">
+        {icon && <i class={icon} />}
+      </span>
+      <span>{text}</span>
+    </span>
+    <span class="bg-hover bg-base-color"></span>
+  </a>
+</li>

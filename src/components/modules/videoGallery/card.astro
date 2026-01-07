@@ -1,0 +1,41 @@
+---
+import WidgetsPopupYoutube from "@/components/widgets/popupYT.astro";
+
+interface Props {
+  title: string;
+  thumbnail: string;
+  url: string;
+}
+
+const { title, thumbnail, url } = Astro.props as Props;
+---
+
+<WidgetsPopupYoutube url={url}>
+  <div class="portfolio-image border-radius-4px">
+    <img src={thumbnail} alt="" />
+
+    <div class="portfolio-hover d-flex justify-content-center flex-column">
+      <div
+        class="portfolio-icon d-flex flex-row justify-content-center align-items-center"
+      >
+        <div
+          class="d-flex flex-column justify-content-center text-dark-gray text-dark-gray-hover rounded-circle bg-white w-60px h-60px move-bottom-top"
+        >
+          <i class="bi bi-play icon-small" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="portfolio-overlay bg-dark-gray"
+      style="background-color: #637c8e"
+    >
+    </div>
+  </div>
+
+  <div class="portfolio-caption pt-20px pb-30px lg-pt-20px lg-pb-20px">
+    <div class="fs-17 fw-600 text-dark-gray text-dark-gray-hover">
+      {title}
+    </div>
+  </div>
+</WidgetsPopupYoutube>

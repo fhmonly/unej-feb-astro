@@ -1,0 +1,44 @@
+---
+import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const messages = {
+  en: {
+    pageTitle: "Medical Facilities",
+    title: "Medical Facilities",
+    intro:
+      "UNEJ Medical Center (UMC) is headquartered in East Java. The address of the UNEJ Medical Center (UMC) is Jl. Kalimantan, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121, Indonesia.You can be find more information on their website:http://www.unej.ac.id/. You can refer to a few comments below before coming to this place. There are 5247 related addresses around UNEJ Medical Center (UMC) already listed on soamaps.com.",
+  },
+  id: {
+    pageTitle: "Fasilitas Medis",
+    title: "Fasilitas Medis",
+    intro:
+      "UNEJ Medical Center (UMC) berkantor pusat di Jawa Timur. Alamat UNEJ Medical Center (UMC) adalah Jl. Kalimantan, Krajan Timur, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur 68121, Indonesia. Anda dapat menemukan informasi lebih lanjut di situs web mereka: http://www.unej.ac.id/. Anda dapat merujuk pada beberapa komentar di bawah ini sebelum datang ke tempat ini. Sudah ada 5247 alamat terkait di sekitar UNEJ Medical Center (UMC) yang terdaftar di soamaps.com.",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+
+  <section>
+    <div class="container position-relative">
+      <div class="row align-items-center">
+        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+          <span
+            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
+          >
+            {t.title}
+          </span>
+          <p class="text-dark-gray fw-700 mb-40px">
+            {t.intro}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

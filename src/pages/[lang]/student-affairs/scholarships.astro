@@ -1,0 +1,76 @@
+---
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+export { getStaticPaths } from "@i18n/i18n";
+
+const { locale = "id" } = Astro.props;
+
+const messages = {
+  en: {
+    pageTitle: "Scholarships",
+    title: "Scholarships",
+  },
+  id: {
+    pageTitle: "Beasiswa",
+    title: "Beasiswa",
+  },
+};
+
+const t = useI18n(messages, getLocale(Astro));
+
+// dummy data (ganti dengan API / content collection)
+const scholarships = Array.from({ length: 10 }).map(() => ({
+  name: "Scholarship name",
+  provider: "scholarship provider",
+  icon: "https://cdn-icons-png.flaticon.com/512/5944/5944574.png",
+}));
+---
+
+<Layout title={t.pageTitle}>
+  <!-- start page title -->
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <!-- end page title -->
+
+  <section id="down-section" class="bg-gradient-quartz-white border-radius-6px">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div
+          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3 class="text-dark-gray fw-700 ls-minus-1px">
+            {t.title}
+          </h3>
+        </div>
+      </div>
+
+      <div
+        class="row g-0 row-cols-1 row-cols-lg-4 row-cols-sm-2 align-items-center mb-3"
+        data-anime='{ "el": "childs", "translateX": [-15, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+      >
+        {
+          scholarships.map((item) => (
+            <div class="col services-box-style-07 text-center last-paragraph-no-margin border-end border-color-transparent-dark-very-light md-mb-50px xs-border-end-0">
+              <div class="pe-50px ps-50px pb-40px xl-ps-30px xl-pe-30px">
+                <div class="position-relative ms-auto me-auto mb-25px">
+                  <img
+                    src={item.icon}
+                    class="h-75px position-relative z-index-1 mt-35px"
+                    alt=""
+                  />
+                  <div class="h-100px w-100px rounded-circle bg-very-light-gray position-absolute top-0 start-50 translate-middle-x" />
+                </div>
+
+                <span class="fs-18 fw-600 text-dark-gray d-block mb-5px">
+                  {item.name}
+                </span>
+                <p class="lh-30">{item.provider}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
