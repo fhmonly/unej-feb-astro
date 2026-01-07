@@ -10,10 +10,58 @@ const messages = {
   en: {
     pageTitle: "Teaching Staff",
     qualified_trusted_staff: "Qualified trusted Teaching Staff",
+    personal_identity: "Personal Identity",
+    academic_information: "Academic Information",
+    employment_information: "Employment Information",
+    assignment: "Assignment",
+
+    name: "Name",
+    employee_number: "Employee Number",
+    nidn: "NIDN",
+    nuptk: "NUPTK",
+    gender: "Gender",
+    email: "Email",
+
+    field_of_study: "Field of Study",
+    education: "Education",
+    homebase_faculty: "Homebase Faculty",
+    homebase_study_program: "Homebase Study Program",
+
+    employment_status: "Employment Status",
+    functional_position: "Functional Position",
+    work_status: "Work Status",
+    rank_grade: "Rank/Grade",
+
+    assignment_faculty: "Assignment Faculty",
+    assignment_study_program: "Assignment Study Program",
   },
   id: {
     pageTitle: "Staf Pengajar",
     qualified_trusted_staff: "Staf Pengajar yang berpengalaman",
+    personal_identity: "Identitas Diri",
+    academic_information: "Informasi Akademik",
+    employment_information: "Informasi Kepegawaian",
+    assignment: "Penugasan",
+
+    name: "Nama",
+    employee_number: "Nomor Pegawai",
+    nidn: "NIDN",
+    nuptk: "NUPTK",
+    gender: "Jenis Kelamin",
+    email: "Email",
+
+    field_of_study: "Bidang Ilmu",
+    education: "Pendidikan",
+    homebase_faculty: "Homebase Fakultas",
+    homebase_study_program: "Homebase Prodi",
+
+    employment_status: "Status Pegawai",
+    functional_position: "Jabatan Fungsional",
+    work_status: "Status Kerja",
+    rank_grade: "Pangkat Golongan",
+
+    assignment_faculty: "Penugasan Fakultas",
+    assignment_study_program: "Penugasan Prodi",
   },
 };
 const t = useI18n(messages, getLocale(Astro));
@@ -150,31 +198,31 @@ const tendik = tendikRes.data;
           <div class="card shadow-sm mb-4">
             <div class="card-body">
               <h5 class="section-title">
-                <i class="bi bi-person-badge me-2"></i>Identitas Diri
+                <i class="bi bi-person-badge me-2"></i>{t.personal_identity}
               </h5>
               <div class="row g-3">
                 <div class="col-12">
-                  <div class="info-label">Nama</div>
+                  <div class="info-label">{t.name}</div>
                   <div class="info-value">[nama]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Nomor Pegawai</div>
+                  <div class="info-label">{t.employee_number}</div>
                   <div class="info-value">[nomor_pegawai]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">NIDN</div>
+                  <div class="info-label">{t.nidn}</div>
                   <div class="info-value">[nidn]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">NUPTK</div>
+                  <div class="info-label">{t.nuptk}</div>
                   <div class="info-value">[nuptk]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Jenis Kelamin</div>
+                  <div class="info-label">{t.gender}</div>
                   <div class="info-value">[jenis_kelamin]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Email</div>
+                  <div class="info-label">{t.email}</div>
                   <div class="info-value">
                     <a href="mailto:[email]">[email]</a>
                   </div>
@@ -187,23 +235,23 @@ const tendik = tendikRes.data;
           <div class="card shadow-sm mb-4">
             <div class="card-body">
               <h5 class="section-title">
-                <i class="bi bi-mortarboard me-2"></i>Informasi Akademik
+                <i class="bi bi-mortarboard me-2"></i>{t.academic_information}
               </h5>
               <div class="row g-3">
                 <div class="col-12">
-                  <div class="info-label">Bidang Ilmu</div>
+                  <div class="info-label">{t.field_of_study}</div>
                   <div class="info-value">[bidang_ilmu]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Pendidikan</div>
+                  <div class="info-label">{t.education}</div>
                   <div class="info-value">[pendidikan]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Homebase Fakultas</div>
+                  <div class="info-label">{t.homebase_faculty}</div>
                   <div class="info-value">[homebase_fakultas]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Homebase Prodi</div>
+                  <div class="info-label">{t.homebase_study_program}</div>
                   <div class="info-value">[homebase_prodi]</div>
                 </div>
               </div>
@@ -214,23 +262,23 @@ const tendik = tendikRes.data;
           <div class="card shadow-sm mb-4">
             <div class="card-body">
               <h5 class="section-title">
-                <i class="bi bi-briefcase me-2"></i>Informasi Kepegawaian
+                <i class="bi bi-briefcase me-2"></i>{t.employment_information}
               </h5>
               <div class="row g-3">
                 <div class="col-12">
-                  <div class="info-label">Status Pegawai</div>
+                  <div class="info-label">{t.employment_status}</div>
                   <div class="info-value">[status_pegawai]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Jabatan Fungsional</div>
+                  <div class="info-label">{t.functional_position}</div>
                   <div class="info-value">[jabatan_fungsional]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Status Kerja</div>
+                  <div class="info-label">{t.work_status}</div>
                   <div class="info-value">[status_kerja]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Pangkat Golongan</div>
+                  <div class="info-label">{t.rank_grade}</div>
                   <div class="info-value">[pangkat_golongan]</div>
                 </div>
               </div>
@@ -241,15 +289,15 @@ const tendik = tendikRes.data;
           <div class="card shadow-sm mb-4">
             <div class="card-body">
               <h5 class="section-title">
-                <i class="bi bi-clipboard-check me-2"></i>Penugasan
+                <i class="bi bi-clipboard-check me-2"></i>{t.assignment}
               </h5>
               <div class="row g-3">
                 <div class="col-12">
-                  <div class="info-label">Penugasan Fakultas</div>
+                  <div class="info-label">{t.assignment_faculty}</div>
                   <div class="info-value">[penugasan_fakultas]</div>
                 </div>
                 <div class="col-12">
-                  <div class="info-label">Penugasan Prodi</div>
+                  <div class="info-label">{t.assignment_study_program}</div>
                   <div class="info-value">[penugasan_prodi]</div>
                 </div>
               </div>
