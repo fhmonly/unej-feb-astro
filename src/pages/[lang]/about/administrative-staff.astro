@@ -1,7 +1,9 @@
 ---
 import { getLocale, useI18n } from "@/i18n/i18n";
+import { wordsJson } from "@/i18n/words";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
+import axios from "axios";
 export { getStaticPaths } from "@i18n/i18n";
 
 const messages = {
@@ -13,6 +15,41 @@ const messages = {
   },
 };
 const t = useI18n(messages, getLocale(Astro));
+const tWords = useI18n(wordsJson, getLocale(Astro));
+
+export type StaffData = {
+  id: string;
+  nama: string;
+  nama_gelar: string;
+  nomor_pegawai: string;
+  nidn: string;
+  nuptk: string;
+  email: string;
+  bidang_ilmu: string;
+  jenis_kelamin: string;
+  homebase_fakultas: string;
+  homebase_prodi: string;
+  status_pegawai: string;
+  jabatan_fungsional: string;
+  status_kerja: string;
+  penugasan_fakultas: string;
+  penugasan_prodi: string;
+  pangkat_golongan: string;
+  pendidikan: string;
+};
+
+const api = axios.create({
+  baseURL: "https://simfeb.feb.unej.ac.id/api/public",
+  headers: {
+    "x-api-key": "!!b@pH0m3t*00",
+  },
+  timeout: 15000,
+});
+
+const getDosen = () => api.get<StaffData[]>("/dosen");
+
+const dosenRes = await getDosen();
+const dosen = dosenRes.data;
 ---
 
 <Layout title={t.pageTitle}>
@@ -44,7 +81,7 @@ const t = useI18n(messages, getLocale(Astro));
       >
         <!-- start team member item -->
         {
-          Array.from({ length: 3 }).map(() => (
+          dosen.map((data) => (
             <div class="col team-style-06 mb-30px">
               <div class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative">
                 <div class="position-relative">
@@ -63,46 +100,21 @@ const t = useI18n(messages, getLocale(Astro));
                   href="demo-real-estate-agent-details.html"
                   class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
                 >
-                  Ir. Joko Widodo
+                  {data.nama}
                 </a>
-                <p class="w-90 mx-auto lh-28">199410082025062006</p>
+                <p class="w-90 mx-auto lh-28">{data.nomor_pegawai}</p>
                 <div class="text-center elements-social social-icon-style-02 border-top border-color-light-medium-gray w-100 pt-15px">
                   <ul class="small-icon dark">
                     <li>
-                      <a
-                        class="facebook"
-                        href="https://www.facebook.com/"
-                        target="_blank"
+                      <detail-button
+                        data-detail={JSON.stringify(data)}
+                        data-template="#detail-template"
                       >
-                        <i class="fa-brands fa-facebook-f" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        class="linkedin"
-                        href="https://www.linkedin.com/"
-                        target="_blank"
-                      >
-                        <i class="fa-brands fa-linkedin-in" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        class="twitter"
-                        href="https://www.twitter.com"
-                        target="_blank"
-                      >
-                        <i class="fa-brands fa-twitter" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        class="instagram"
-                        href="https://www.instagram.com"
-                        target="_blank"
-                      >
-                        <i class="fa-brands fa-instagram" />
-                      </a>
+                        <div class="d-flex gap-1 justify-content-center align-items-center">
+                          <i class="fa-solid fa-magnifying-glass" />
+                          <span>{tWords.read_more}</span>
+                        </div>
+                      </detail-button>
                     </li>
                   </ul>
                 </div>
@@ -114,4 +126,271 @@ const t = useI18n(messages, getLocale(Astro));
       </div>
     </div>
   </section>
+  <template id="detail-template">
+    <div class="container staff-detail">
+      <div class="row">
+        <div class="col-12">
+          <!-- Card Header -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+              <h4 class="mb-0">
+                <i class="bi bi-person-circle me-2"></i>[nama_gelar]
+              </h4>
+            </div>
+            <div class="card-body">
+              <p class="mb-0">
+                <i class="bi bi-envelope me-2"></i>
+                <a href="mailto:[email]">[email]</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Identitas Diri Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="section-title">
+                <i class="bi bi-person-badge me-2"></i>Identitas Diri
+              </h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="info-label">Nama</div>
+                  <div class="info-value">[nama]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Nomor Pegawai</div>
+                  <div class="info-value">[nomor_pegawai]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">NIDN</div>
+                  <div class="info-value">[nidn]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">NUPTK</div>
+                  <div class="info-value">[nuptk]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Jenis Kelamin</div>
+                  <div class="info-value">[jenis_kelamin]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Email</div>
+                  <div class="info-value">
+                    <a href="mailto:[email]">[email]</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informasi Akademik Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="section-title">
+                <i class="bi bi-mortarboard me-2"></i>Informasi Akademik
+              </h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="info-label">Bidang Ilmu</div>
+                  <div class="info-value">[bidang_ilmu]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Pendidikan</div>
+                  <div class="info-value">[pendidikan]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Homebase Fakultas</div>
+                  <div class="info-value">[homebase_fakultas]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Homebase Prodi</div>
+                  <div class="info-value">[homebase_prodi]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informasi Kepegawaian Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="section-title">
+                <i class="bi bi-briefcase me-2"></i>Informasi Kepegawaian
+              </h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="info-label">Status Pegawai</div>
+                  <div class="info-value">[status_pegawai]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Jabatan Fungsional</div>
+                  <div class="info-value">[jabatan_fungsional]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Status Kerja</div>
+                  <div class="info-value">[status_kerja]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Pangkat Golongan</div>
+                  <div class="info-value">[pangkat_golongan]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Penugasan Card -->
+          <div class="card shadow-sm mb-4">
+            <div class="card-body">
+              <h5 class="section-title">
+                <i class="bi bi-clipboard-check me-2"></i>Penugasan
+              </h5>
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="info-label">Penugasan Fakultas</div>
+                  <div class="info-value">[penugasan_fakultas]</div>
+                </div>
+                <div class="col-12">
+                  <div class="info-label">Penugasan Prodi</div>
+                  <div class="info-value">[penugasan_prodi]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
 </Layout>
+
+<script>
+  import Swal from "sweetalert2";
+  import type { StaffData } from "./administrative-staff.astro";
+
+  function fillStaffTemplate(templateHtml: string, data: StaffData): string {
+    let result = templateHtml;
+
+    // iterate hanya key yang ada pada StaffData
+    (Object.keys(data) as (keyof StaffData)[]).forEach((key) => {
+      const token = `[${key}]`;
+      const value = String(data[key] ?? "").trim();
+      if (value) {
+        result = result.replaceAll(token, value);
+      }
+    });
+
+    result = result.replace(/\[[^\]]+\]/g, "-");
+    return result;
+  }
+
+  class DetailButton extends HTMLElement {
+    constructor() {
+      super();
+      const detailDs = this.dataset.detail;
+      this.removeAttribute("data-detail");
+      const detailJson = detailDs ? JSON.parse(detailDs) : null;
+      const detail: StaffData | null = detailJson ? detailJson : null;
+
+      if (detail) {
+        const modalTemplateDs = this.dataset.template
+          ? this.dataset.template
+          : "modal-template";
+
+        const modalTemplate =
+          document.body.querySelector<HTMLTemplateElement>(modalTemplateDs);
+        const modalTemplateHtml = modalTemplate?.innerHTML;
+        const modalTemplateHtmlFinal = modalTemplateHtml
+          ? fillStaffTemplate(
+              modalTemplateHtml,
+              detail // bertipe StaffData
+            )
+          : null;
+
+        if (modalTemplateHtmlFinal) {
+          this.addEventListener("click", () => {
+            Swal.fire({
+              html: modalTemplateHtmlFinal,
+            });
+          });
+        }
+      }
+    }
+  }
+  customElements.define("detail-button", DetailButton);
+</script>
+<style is:global>
+  /* ====== CARD ====== */
+  .staff-detail .card {
+    border: 1px solid #e5e7eb;
+    background-color: #ffffff;
+  }
+
+  .staff-detail .card-body {
+    background-color: #fafafa;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* ====== HEADER UTAMA ====== */
+  .staff-detail .card-header {
+    background: linear-gradient(90deg, #0d6efd, #3759ff);
+    color: #fff;
+  }
+
+  .staff-detail .card-header h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* ====== SECTION TITLE ====== */
+  .container.staff-detail .section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0d6efd;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+  }
+
+  /* ====== LABEL & VALUE ====== */
+  .container.staff-detail .info-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 5px;
+  }
+
+  .container.staff-detail .info-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #212529;
+  }
+
+  /* ====== LINK ====== */
+  .staff-detail a {
+    font-size: 1rem;
+    color: #0d6efd;
+    text-decoration: none;
+  }
+
+  .staff-detail a:hover {
+    color: #0a58ca;
+    text-decoration: underline;
+  }
+
+  /* ====== ICON ====== */
+  .staff-detail i {
+    color: #2563eb;
+  }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 576px) {
+    .staff-detail .card-header h4 {
+      font-size: 1.2rem;
+    }
+    .container.staff-detail .section-title {
+      font-size: 1.05rem;
+    }
+    .container.staff-detail .info-value {
+      font-size: 0.95rem;
+    }
+  }
+</style>
