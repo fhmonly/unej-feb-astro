@@ -169,6 +169,12 @@ const tPages = useI18n(
   <ModulesHomePreviewLeadership />
   <ModulesHomePreviewContact />
 
+  <Fragment slot="script-plugin">
+    <script
+      is:inline
+      src="/_astro/revolution/js/jquery.themepunch.revolution.min.js"></script>
+  </Fragment>
+
   <script is:inline slot="bodyClose">
     var tpj = jQuery;
     var revapi7;

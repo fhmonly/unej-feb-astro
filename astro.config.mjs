@@ -8,6 +8,7 @@ import { DEFAULT_LOCALE, LOCALES } from './src/i18n/i18n';
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
+
   adapter: node({
     mode: "standalone"
   }),

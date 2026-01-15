@@ -1,9 +1,8 @@
 ---
-import { getLocale } from "@/i18n/i18n";
 import { layoutsJson } from "@/i18n/layouts";
+import { getLocale, useI18n } from "@i18n/i18n";
 
-const { title = "" } = Astro.props;
-
+const locale = getLocale(Astro);
 const icon = [
   {
     rel: "apple-touch-icon",
@@ -104,17 +103,21 @@ const icon = [
   },
 ];
 
-const tLayout = layoutsJson[getLocale(Astro)].html;
+const tLayout = useI18n(layoutsJson, getLocale(Astro));
 ---
 
-<html class="no-js" lang={Astro.currentLocale} class="bg-dark-gray">
+<html class="no-js" lang={locale} class="bg-dark-gray">
   <head>
-    <title>{!!title ? `${title} | FEB UNEJ` : "FEB UNEJ"}</title>
+    <slot name="title" />
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Fhmonly" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <meta name="description" content={tLayout.desc} />
+    <meta name="description" content={tLayout.html.desc} />
+
+    <slot name="meta" />
+
     <!-- favicon icon -->
     <link rel="shortcut icon" href="/_astro/favicon.ico" />
     {
@@ -131,11 +134,15 @@ const tLayout = layoutsJson[getLocale(Astro)].html;
     <!-- google fonts preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <!-- style sheets and font icons  -->
-    <link rel="stylesheet" href="/_astro/css/vendors.min.css" />
     <link rel="stylesheet" href="/_astro/css/icon.min.css" />
-    <link rel="stylesheet" href="/_astro/css/style.min.css" />
-    <link rel="stylesheet" href="/_astro/css/responsive.min.css" />
+
+    <slot name="head">
+      <!-- slider revolution CSS files -->
+
+      <!-- style sheets and font icons  -->
+    </slot>
   </head>
 
   <body
@@ -143,20 +150,18 @@ const tLayout = layoutsJson[getLocale(Astro)].html;
     data-mobile-nav-style="modern"
     data-mobile-nav-bg-color="#1d1d1d"
   >
-    <!-- <body data-mobile-nav-style="classic"> -->
-    <!-- <Header /> -->
-    <!-- <ClientRouter /> -->
-    <slot />
-    <!-- <Footer /> -->
-    <div class="scroll-progress d-none d-xxl-block">
-      <a href="#" class="scroll-top" aria-label="scroll">
-        <span class="scroll-text">Scroll</span><span class="scroll-line"
-          ><span class="scroll-point"></span></span
-        >
-      </a>
-    </div>
-    <script is:inline src="/_astro/js/jquery.js"></script>
-    <script is:inline src="/_astro/js/vendors.min.js"></script>
-    <script is:inline src="/_astro/js/main.js"></script>
+    <slot name="content" />
+
+    <slot name="scroll-progress">
+      <div class="scroll-progress d-none d-xxl-block">
+        <a href="#" class="scroll-top" aria-label="scroll">
+          <span class="scroll-text">Scroll</span><span class="scroll-line"
+            ><span class="scroll-point"></span></span
+          >
+        </a>
+      </div>
+    </slot>
+
+    <slot name="script" />
   </body>
 </html>

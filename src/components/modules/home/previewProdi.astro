@@ -100,9 +100,13 @@ const prodis: Program[] = [
 const tWord = wordsJson[getLocale(Astro)];
 ---
 
-<div style="padding-top:30px;padding-bottom:76px">
+<section
+  class="py-0 sm-pt-50px mb-3"
+  style="margin-top: 90px"
+  data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+>
   <PillDivider text={tWord.study_programs} />
-</div>
+</section>
 
 <div class="container">
   <div class="row g-4">

@@ -1,0 +1,44 @@
+---
+import LayoutBase from "@components/layouts/base.astro";
+import Footer from "@components/layouts/main/footer/footer.astro";
+import Header from "@components/layouts/main/header/header.astro";
+
+type Props = {
+  title: string | null;
+};
+
+const { title } = Astro.props as Props;
+---
+
+<LayoutBase>
+  <title slot="title">{!!title ? `${title} | FEB UNEJ` : "FEB UNEJ"}</title>
+
+  <Fragment slot="head">
+    <!-- style sheets and font icons  -->
+    <link rel="stylesheet" href="/_astro/v3/css/icon.css" />
+    <link rel="stylesheet" href="/_astro/v3/css/vendors.min.css" />
+    <link rel="stylesheet" href="/_astro/v3/css/style.css" />
+    <link rel="stylesheet" href="/_astro/v3/css/responsive.min.css" />
+    <link rel="stylesheet" href="/_astro/demos/corporate/corporate.css" />
+    <link rel="stylesheet" href="/_astro/custom/style.css" />
+  </Fragment>
+
+  <div slot="content">
+    <Header />
+    <slot />
+    <Footer />
+  </div>
+
+  <Fragment slot="script">
+    <slot name="script-jquery">
+      <script is:inline src="/_astro/v3/js/jquery.js"></script>
+    </slot>
+    <slot name="script-vendor">
+      <script is:inline src="/_astro/v3/js/vendors.js"></script>
+    </slot>
+    <slot name="script-plugin" />
+    <slot name="script-main">
+      <script is:inline src="/_astro/v3/js/main.js"></script>
+    </slot>
+  </Fragment>
+</LayoutBase>

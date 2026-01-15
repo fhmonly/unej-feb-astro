@@ -1,0 +1,33 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+
+const { ...attrs } = Astro.props;
+
+const placeholder = {
+  id: {
+    contentNotAvailableYet: "Konten belum tersedia saat ini",
+  },
+  en: {
+    contentNotAvailableYet: "Content is not available yet",
+  },
+};
+
+const locale = getLocale(Astro);
+const t = useI18n(placeholder, locale);
+---
+
+<div class:list={`${attrs.class}`} {...attrs}>
+  <slot>
+    <div
+      class="py-4 d-flex justify-content-center align-items-center"
+      style="background-color: #f0f4fd;"
+    >
+      <p class="text-center mb-0 text-secondary">
+        {t.contentNotAvailableYet}
+      </p>
+    </div>
+  </slot>
+</div>

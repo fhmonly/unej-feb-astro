@@ -1,8 +1,9 @@
 import type { Locale } from "@/i18n/i18n";
 
 declare module '*.astro' {
-    const Component: any;
+    const Component: (opts?: { slots?: Record<string, string> }) => string;
     export default Component;
+
     interface AstroSharedContext {
         currentLocale: Locale;
     }

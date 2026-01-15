@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"section"> {
+  title?: string;
+  subtitle?: string;
+  badge?: string;
+}
+
+const { badge, title, subtitle, ...attrs } = Astro.props;
+---
+
+<section {...attrs}>
+  <div class="container">
+    <slot name="header">
+      <div class="row align-items-center justify-content-center">
+        <div
+          class="col-12 col-xl-6 col-lg-8 text-center position-relative page-title-double-large"
+        >
+          <div
+            class="d-flex flex-column justify-content-center extra-very-small-screen"
+          >
+            {
+              badge && (
+                <span class="fs-15 mb-5px text-gradient-fast-pink-light-yellow fw-700 d-inline-block text-uppercase ls-1px">
+                  {badge}
+                </span>
+              )
+            }
+            {
+              title && (
+                <h1 class="text-dark-gray alt-font ls-minus-1px fw-700 mb-20px">
+                  {title}
+                </h1>
+              )
+            }
+            {
+              subtitle && (
+                <h2 class="text-dark-gray d-inline-block fw-400 ls-0px mb-0">
+                  {subtitle}
+                </h2>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </slot>
+    <slot />
+  </div>
+</section>

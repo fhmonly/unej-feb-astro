@@ -52,39 +52,43 @@ const events = Array.from({ length: 11 }).map((_, i) => ({
   <!-- start page title -->
   <WidgetsHeroSlider title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
 
-  <div>
+  <section
+    class="py-0 sm-pt-50px mb-3"
+    style="margin-top: 90px"
+    data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+  >
     <WidgetsPillDivider
       text="2025"
       htmlAttributes={{
         style: "margin-top: 76px;",
       }}
     />
+  </section>
 
-    <section class="pt-0 ps-10 pe-10 xl-ps-2 xl-pe-2 sm-mx-0">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <ul
-              class="blog-date blog-wrapper grid-loading grid grid-3col xl-grid-3col lg-grid-2col md-grid-2col sm-grid-1col xs-grid-1col gutter-extra-large"
-            >
-              <li class="grid-sizer"></li>
+  <section class="pt-0 ps-10 pe-10 xl-ps-2 xl-pe-2 sm-mx-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ul
+            class="blog-date blog-wrapper grid-loading grid grid-3col xl-grid-3col lg-grid-2col md-grid-2col sm-grid-1col xs-grid-1col gutter-extra-large"
+          >
+            <li class="grid-sizer"></li>
 
-              {
-                events.map((event) => (
-                  <li class="grid-item">
-                    <ModulesEventCard
-                      date={event.date}
-                      title={event.title}
-                      desc={event.desc}
-                    />
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+            {
+              events.map((event) => (
+                <li class="grid-item">
+                  <ModulesEventCard
+                    date={event.date}
+                    title={event.title}
+                    desc={event.desc}
+                  />
+                </li>
+              ))
+            }
+          </ul>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
   <!-- end page title -->
 </Layout>

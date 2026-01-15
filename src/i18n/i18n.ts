@@ -91,3 +91,4 @@ export function useI18n<T extends Record<string, any>>(
 ): T {
     return dict[locale];
 }
+

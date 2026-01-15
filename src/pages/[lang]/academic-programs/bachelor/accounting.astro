@@ -1,0 +1,489 @@
+---
+import ContentContainer from "@/components/widgets/contentContainer.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale, useI18n } from "@/i18n/i18n";
+import NewsCard from "@components/modules/news/card.astro";
+import PillDivider from "@components/widgets/pillDivider.astro";
+import Layout from "@layouts/prodi.astro";
+
+const locale = getLocale(Astro);
+
+const pageJson = {
+  en: {
+    pageTitle: "Accounting",
+
+    // table headers
+    accredited: "Accredited",
+    accreditationBoard: "Accreditation Board",
+    startDate: "Start",
+    endDate: "End",
+
+    // accreditation section
+    accreditationBadge: "Accreditation",
+    accreditationHeading: "We’re achieving recognition and awards.",
+
+    information: "Information",
+    important_information_access: "Access Important Information",
+    news: "News",
+    view_more: "View More",
+
+    academicRequirements: "Academic Requirements",
+    graduateProfile: "Graduate Profile",
+    curriculum: "Curriculum",
+  },
+  id: {
+    pageTitle: "Akuntansi",
+
+    // table headers
+    accredited: "Akreditasi",
+    accreditationBoard: "Badan Akreditasi",
+    startDate: "Mulai",
+    endDate: "Berakhir",
+
+    // accreditation section
+    accreditationBadge: "Akreditasi",
+    accreditationHeading: "Kami meraih pengakuan dan penghargaan.",
+
+    information: "Informasi",
+    important_information_access: "Akses Informasi Penting",
+    news: "Berita",
+    view_more: "Lihat Lebih Banyak",
+
+    academicRequirements: "Ketentuan Akademik",
+    graduateProfile: "Profil Lulusan",
+    curriculum: "Kurikulum",
+  },
+};
+
+const visionMissionJson = {
+  en: {
+    vision:
+      "Becoming a Leading Accounting Study Program in Accounting Technopreneur at International Level",
+    missions: [
+      {
+        title: "Professional Accounting",
+        body: "Providing professional, quality and relevant undergraduate accounting higher education services to market needs and technological developments",
+      },
+      {
+        title: "Research Activities",
+        body: "Increase research and study activities in the fields of financial accounting, management accounting, auditing, and public sector accounting that are beneficial to stakeholders",
+      },
+      {
+        title: "Research",
+        body: "Increase lecturer participation in community service activities in the small and medium business sector, the private sector and the government",
+      },
+      {
+        title: "Human Resources",
+        body: "Encouraging student involvement in research activities, community service and entrepreneurship.",
+      },
+      {
+        title: "Credible",
+        body: "Improving the quality of Lecturer Human Resources, Carrying out professional",
+      },
+      {
+        title: "Good Governance",
+        body: "transparent and accountable study program governance",
+      },
+      {
+        title: "National and International Cooperation",
+        body: "Develop a network of cooperation with stakeholders at home and abroad",
+      },
+    ],
+  },
+  id: {
+    vision:
+      "Visi Program Studi S1 Akuntansi adalah menjadi program studi akuntansi terkemuka di bidang accounting technopreneur bertaraf Internasional",
+    missions: [
+      {
+        title: "Professional Akuntan",
+        body: "Menyediakan layanan pendidikan tinggi sarjana akuntansi yang profesional, berkualitas dan relevan dengan kebutuhan pasar dan perkembangan teknologi",
+      },
+      {
+        title: "Kegiatan Penelitian",
+        body: "Meningkatkan kegiatan penelitian dan kajian bidang akuntansi keuangan, akuntansi manajemen, pengauditan, dan akuntansi sektor publik yang bermanfaat bagi stakeholders",
+      },
+      {
+        title: "Pengabdian Masyarakat",
+        body: "Meningkatkan partisipasi dosen dalam kegiatan pengabdian masyarakat pada sektor usaha kecil menengah, pihak swasta dan pihak pemerintahan",
+      },
+      {
+        title: "SDM Mahasiswa",
+        body: "Mendorong keterlibatan mahasiswa dalam kegiatan penelitian, pengabdian masyarakat dan entrepreneurship",
+      },
+      {
+        title: "Kualitas SDM",
+        body: "Meningkatkan kualitas Sumber Daya Manusia (SDM) Dosen",
+      },
+      {
+        title: "Tata Kelola yang Baik",
+        body: "Menyelenggarakan tata kelola Program Studi yang profesional, transparan, dan akuntabel",
+      },
+      {
+        title: "Kerjasama Nasional dan Internasional",
+        body: "Mengembangkan jaringan kerjasama dengan stakeholders di dalam dan di luar negeri",
+      },
+    ],
+  },
+};
+
+const prodiObjective = {
+  en: {
+    prodi_objective: "Department Objective",
+    objectives: [
+      "Demonstrate an attitude of piety to God Almighty, have the spirit of Pancasila, be professional, independent, have a global outlook as well as local wisdom, and personality as a lifelong learner",
+      "Able to apply the fields of financial accounting, management accounting, auditing, and public sector accounting and able to utilize science and technology in the fields above and able to adapt to situations encountered in solving problems",
+      "Mastering the theoretical concepts of financial accounting, management accounting, auditing, and public sector accounting in general and the theoretical concepts of special sections in these knowledge fields in depth, and being able to formulate procedural problem solving",
+      "Able to make the right decisions based on analysis of information and data on financial accounting, management accounting, auditing, and public sector accounting and able to provide guidance in choosing various alternative solutions",
+      "Responsible for own work",
+    ],
+  },
+  id: {
+    prodi_objective: "Tujuan Prodi",
+    objectives: [
+      "Menunjukkan sikap bertakwa kepada Tuhan yang Maha Esa, berjiwa Pancasila, profesional, mandiri, berwawasan global sekaligus berkearifan lokal, dan kepribadian sebagai pembelajar sepanjang hayat (lifelong learner)",
+      "Mampu mengaplikasikan bidang akuntansi keuangan, akuntansi manajemen, pengauditan, dan akuntansi sektor publik serta memanfaatkan IPTEKS pada bidang tersebut dan beradaptasi terhadap situasi dalam penyelesaian masalah",
+      "Menguasai konsep teoritis akuntansi keuangan, akuntansi manajemen, pengauditan, dan akuntansi sektor publik secara umum dan mendalam, serta mampu memformulasikan penyelesaian masalah prosedural",
+      "Mampu mengambil keputusan yang tepat berdasarkan analisis informasi dan data akuntansi keuangan, akuntansi manajemen, pengauditan, dan akuntansi sektor publik serta memberikan petunjuk dalam memilih alternatif solusi",
+      "Bertanggung jawab pada pekerjaan sendiri dan dapat diberi tanggung jawab atas pencapaian hasil kerja organisasi",
+    ],
+  },
+};
+
+const mergedJson = {
+  en: {
+    ...pageJson.en,
+    ...visionMissionJson.en,
+    ...prodiObjective.en,
+  },
+  id: {
+    ...pageJson.id,
+    ...visionMissionJson.id,
+    ...prodiObjective.id,
+  },
+};
+
+const t = useI18n(mergedJson, locale);
+
+import dayjs from "dayjs";
+import "dayjs/locale/id";
+
+dayjs.locale(locale);
+const accreditation = [
+  {
+    accredited: "Unggul",
+    accreditationBoard: "BAN-PT",
+    start: "2024-04-16",
+    end: "2025-11-17",
+    file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20240418145740.png",
+  },
+];
+
+const accreditationList = accreditation.map((item) => {
+  return {
+    accredited: item.accredited,
+    accreditationBoard: item.accreditationBoard,
+    start: dayjs(item.start).format("DD MMMM YYYY"),
+    end: dayjs(item.end).format("DD MMMM YYYY"),
+    file: item.file,
+  };
+});
+---
+
+<Layout title={t.pageTitle}>
+  <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
+  <section class="bg-very-light-gray">
+    <div class="container position-relative z-index-1">
+      <div class="row justify-content-center mb-30px">
+        <div
+          class="col-xl-7 col-lg-8 col-md-10 text-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <div
+            class="fs-11 lh-26 fw-500 text-uppercase text-white bg-majorelle-blue border-radius-30px ps-15px pe-15px mb-20px d-inline-block"
+          >
+            {t.accreditationBadge}
+          </div>
+          <h2 class="fw-600 ls-minus-2px text-dark-gray">
+            {t.accreditationHeading}
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div
+          class="col-12"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          {
+            accreditationList.map((item, index) => (
+              <div class="row g-0 align-items-center text-center text-sm-start">
+                <div class="col-12">
+                  <div class="separator-line-5px w-100 bg-medium-gray opacity-3 bg-sliding-line" />
+                </div>
+
+                {/* number */}
+                <div class="col-sm-1 text-center xs-mt-20px">
+                  <span class="text-dark-gray fs-16 ls-minus-1px fw-600">
+                    {(index + 1).toString().padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* title -> accredited */}
+                <div class="col-sm-3 offset-sm-1">
+                  <span class="fw-600 text-dark-gray fs-22 ls-minus-05px">
+                    <a href={item.file} target="_blank">
+                      {item.accredited}
+                      <i class="fa-solid fa-arrow-up-right-from-square inline-block ms-3" />
+                    </a>
+                  </span>
+                </div>
+
+                {/* content -> board + date */}
+                <div class="col-sm-7 p-35px sm-p-25px xs-p-20px xs-pt-10px last-paragraph-no-margin">
+                  <p class="w-95 sm-w-100">
+                    {item.accreditationBoard} <br />
+                    {item.start} – {item.end}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+
+          {/* closing separator */}
+          <div class="row g-0">
+            <div class="col-12">
+              <div
+                class="separator-line-5px w-100 bg-medium-gray opacity-3 bg-sliding-line"
+              >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-solitude-blue">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div
+          class="col-xl-5 col-lg-6 md-mb-50px sm-mb-20px"
+          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <h3
+            class="text-dark-gray fw-600 ls-minus-1px mb-20px sm-w-85 xs-w-100"
+          >
+            Vision & Mission
+          </h3>
+          <p>
+            Becoming a superior vocational study program in developing the field
+            of corporate management that is adaptive and environmentally
+            friendly and agro-industry at the international level
+          </p>
+          <div class="row row-cols-1 mt-40px">
+            <!-- start process step item -->
+            {
+              t.missions.map((v, i) => (
+                <div class="col-12 process-step-style-05 position-relative hover-box">
+                  <div class="process-step-item d-flex">
+                    <div class="process-step-icon-wrap position-relative">
+                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px bg-light-red-grey fs-14 fw-600 position-relative">
+                        <span class="number position-relative z-index-1 text-dark-gray">
+                          {i < 9
+                            ? "0" + (i + 1)
+                            : (i + 1).toString().padStart(2, "0")}
+                        </span>
+                        <div class="box-overlay bg-base-color rounded-circle" />
+                      </div>
+                      {i < t.missions.length - 1 && (
+                        <span class="progress-step-separator bg-extra-medium-gray" />
+                      )}
+                    </div>
+                    <div class="process-content ps-30px last-paragraph-no-margin mb-40px">
+                      <span class="d-block fw-600 text-dark-gray mb-5px fs-18 ls-minus-05px">
+                        {v.title}
+                      </span>
+                      <p class="w-85 lg-w-100">{v.body}</p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+            <!-- end process step item -->
+          </div>
+        </div>
+        <div
+          class="col-xl-6 col-lg-6 offset-xl-1 position-relative md-mb-50px position-sticky top-120px"
+          style="height: fit-content;"
+        >
+          <div
+            class="text-end w-80 md-w-75 ms-auto"
+            data-animation-delay="500"
+            data-shadow-animation="true"
+            data-bottom-top="transform: translateY(50px)"
+            data-top-bottom="transform: translateY(-50px)"
+          >
+            <img
+              src="https://psd3mp.feb.unej.ac.id/assets/theme/img/preview.webp"
+              alt=""
+              class="border-radius-5px"
+            />
+          </div>
+          <div
+            class="w-60 md-w-50 xs-w-55 overflow-hidden position-absolute left-15px bottom-minus-50px"
+            data-shadow-animation="true"
+            data-animation-delay="500"
+            data-bottom-top="transform: translateY(-50px)"
+            data-top-bottom="transform: translateY(50px)"
+          >
+            <img
+              src="https://psd3mp.feb.unej.ac.id/assets/theme/img/preview.webp"
+              alt=""
+              class="border-radius-5px box-shadow-quadruple-large"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-5">&nbsp;</div>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-center">
+        <div style="max-width: 998px;">
+          <h4
+            class="text-dark-gray fw-700 ls-minus-1px alt-font mb-40px lg-mb-30px d-block text-center"
+          >
+            {t.prodi_objective}
+          </h4>
+          <div
+            class="border border-color-extra-medium-gray border-radius-6px mb-40px xs-mb-30px overflow-hidden"
+          >
+            {
+              t.objectives.map((item, index) => (
+                <p class="ps-30px pe-30px pt-25px pb-25px border-bottom border-1 border-color-extra-medium-gray mb-0">
+                  {item}
+                </p>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <PageSection title={t.information}>
+    <PillDivider
+      icon="fa-regular fa-newspaper"
+      text={t.academicRequirements}
+      class="mb-3"
+    />
+    <ContentContainer class="my-3 py-5" />
+    <PillDivider
+      icon="fa-regular fa-newspaper"
+      text={t.graduateProfile}
+      class="mb-3"
+    />
+    <ContentContainer class="my-3 py-5" />
+    <PillDivider
+      icon="fa-regular fa-newspaper"
+      text={t.curriculum}
+      class="mb-3"
+    />
+    <ContentContainer class="my-3 py-5" />
+  </PageSection>
+  <PageSection
+    title={t.important_information_access}
+    class="overflow-hidden bg-very-light-gray position-relative"
+  >
+    <div
+      class="row align-items-center"
+      data-anime='{ "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
+    >
+      <div class="col-12">
+        <div class="outside-box-right-20 sm-outside-box-right-0">
+          <div
+            class="swiper magic-cursor drag-cursor slider-one-slide"
+            data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 }, "320": { "slidesPerView": 1 } }, "effect": "slide" }'
+          >
+            <div class="swiper-wrapper">
+              {
+                Array.from({ length: 8 }).map((_, i) => (
+                  <div class="swiper-slide">
+                    <div class="services-box-style-03 last-paragraph-no-margin border-radius-6px overflow-hidden">
+                      <div class="bg-white">
+                        <div class="ps-65px pe-65px pt-30px pb-30px text-center">
+                          <a
+                            href="#"
+                            class="d-inline-block fs-18 fw-600 text-dark-gray mb-5px"
+                          >
+                            Service title {i + 1}
+                          </a>
+                          <p>
+                            Lorem ipsum simply dummy text of amet consectetur.
+                          </p>
+                        </div>
+
+                        <div class="d-flex justify-content-center border-top border-color-extra-medium-gray pt-20px pb-20px ps-50px pe-50px position-relative text-center">
+                          <a
+                            href="#"
+                            class="btn btn-link btn-hover-animation-switch btn-medium fw-700 text-dark-gray text-uppercase"
+                          >
+                            <span>
+                              <span class="btn-text">Explore services</span>
+                              <span class="btn-icon">
+                                <i class="fa-solid fa-arrow-right" />
+                              </span>
+                              <span class="btn-icon">
+                                <i class="fa-solid fa-arrow-right" />
+                              </span>
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <p>Haloo</p> -->
+  </PageSection>
+  <PageSection title={t.news}>
+    <div class="row">
+      <div class="col-12 px-0">
+        <ul
+          class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
+          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+        >
+          <li class="grid-sizer"></li>
+          {
+            Array.from({ length: 4 }).map((_, i) => (
+              <li class="grid-item">
+                <NewsCard
+                  date={`2025-10-${i}`}
+                  desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
+                  newsType="Achievement News"
+                  title="Congrats!!"
+                  image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+                  slug={`congrats-${i}`}
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <a
+          href="#"
+          class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600"
+        >
+          {t.view_more}
+          <span class="bg-base-color text-white">
+            <i class="bi bi-arrow-right-short icon-extra-medium"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </PageSection>
+</Layout>

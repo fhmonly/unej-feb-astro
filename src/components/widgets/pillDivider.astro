@@ -1,43 +1,52 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+interface Props extends HTMLAttributes<"div"> {
   text?: string;
   icon?: string;
-  htmlAttributes?: HTMLAttributes<"section">;
 }
 
-const { text, icon, htmlAttributes } = Astro.props as Props;
+const { text, icon, ...attrs } = Astro.props;
 ---
 
-<section
-  class="py-0 sm-pt-50px"
-  data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-  {...htmlAttributes}
->
-  <div class="container overlap-section">
-    <div class="row justify-content-center g-0">
-      <div
-        class="col-auto text-center last-paragraph-no-margin icon-with-text-style-08 pt-20px pb-20px ps-8 pe-8 md-ps-30px md-pe-30px bg-white border border-color-extra-medium-gray box-shadow-medium-bottom border-radius-100px xs-border-radius-10px"
-      >
-        <div class="feature-box feature-box-left-icon-middle overflow-hidden">
-          {
-            icon && (
-              <div class="feature-box-icon me-10px">
-                <i class={`icon-extra-medium text-base-color ${icon}`} />
-              </div>
-            )
-          }
+<div class="row row-cols-1 justify-content-center">
+  <div class="col-lg-7 text-center divider-style-01">
+    <div class="d-flex justify-content-center">
+      <div class="divider-border d-flex align-items-center w-100">
+        <slot>
+          <div
+            class="col-auto text-center last-paragraph-no-margin icon-with-text-style-08 pt-20px pb-20px ps-8 pe-8 md-ps-30px md-pe-30px bg-white border border-color-extra-medium-gray box-shadow-medium-bottom border-radius-100px xs-border-radius-10px"
+          >
+            <div class="divider-shadow">
+              <div
+                class="feature-box feature-box-left-icon-middle overflow-hidden"
+              >
+                <slot name="icon">
+                  {
+                    icon && (
+                      <div class="feature-box-icon me-10px">
+                        <i
+                          class={`icon-extra-medium text-base-color ${icon}`}
+                        />
+                      </div>
+                    )
+                  }
+                </slot>
 
-          {
-            text && (
-              <div class="feature-box-content last-paragraph-no-margin text-dark-gray text-uppercase fs-15 fw-700 ls-05px">
-                {text}
+                <slot name="text">
+                  {
+                    text && (
+                      <div class="feature-box-content last-paragraph-no-margin text-dark-gray text-uppercase fs-15 fw-700 ls-05px">
+                        {text}
+                      </div>
+                    )
+                  }
+                </slot>
               </div>
-            )
-          }
-        </div>
+            </div>
+          </div>
+        </slot>
       </div>
     </div>
   </div>
-</section>
+</div>
