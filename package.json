@@ -14,6 +14,7 @@
     "astro": "^5.16.6",
     "axios": "^1.13.2",
     "dayjs": "^1.11.19",
+    "fast-average-color": "^9.5.0",
     "sweetalert2": "^11.26.17",
     "tabulator-tables": "^6.3.1"
   },

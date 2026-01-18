@@ -139,8 +139,10 @@ const tendik = tendikRes.data;
                   >
                     <img
                       class="rounded-circle w-150px h-150px mb-20px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQej6wb-NkZnWVFV1bsO6pl3Jw6KrZobckHXw&s"
+                      src="https://openclipart.org/image/2400px/svg_to_png/22309/pitr-Apple-icon.png"
                       alt=""
+                      is="auto-bg-color"
+                      style=" object-fit: contain;"
                     />
                   </a>
                 </div>
@@ -158,6 +160,7 @@ const tendik = tendikRes.data;
                       <detail-button
                         data-detail={JSON.stringify(data)}
                         data-template="#detail-template"
+                        role="button"
                       >
                         <div class="d-flex gap-1 justify-content-center align-items-center">
                           <i class="fa-solid fa-magnifying-glass" />
@@ -310,6 +313,7 @@ const tendik = tendikRes.data;
 </Layout>
 
 <script>
+  import "@components/customComponents/imgWrapper";
   import Swal from "sweetalert2";
   import type { StaffData } from "./index.astro";
 
