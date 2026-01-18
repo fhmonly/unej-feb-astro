@@ -86,110 +86,101 @@ const menuConfig = [
     label: t.main.academic_programs.title,
     icon: { fa: "fa-solid fa-graduation-cap" },
     children: [
+      // DIPLOMA (tetap urutan pertama)
       {
         label: t.main.academic_programs.diploma_programs.title,
         icon: { fa: "fa-solid fa-school" },
         children: [
           {
             label: t.main.academic_programs.diploma_programs.company_management,
-            to: "https://psd3mp.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/diploma/psd3mp",
             icon: { bi: "bi-briefcase" },
           },
           {
             label:
               t.main.academic_programs.diploma_programs
                 .financial_administration,
-            to: "https://psd3ak.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/diploma/psd3ak",
             icon: { fa: "fa-solid fa-coins" },
           },
           {
             label: t.main.academic_programs.diploma_programs.secretary,
-            to: "https://psd3set.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/diploma/psd3set",
             icon: { bi: "bi-person-vcard" },
           },
           {
             label: t.main.academic_programs.diploma_programs.accounting,
-            to: "https://psd3akt.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/diploma/psd3akt",
             icon: { fa: "fa-solid fa-calculator" },
           },
         ],
       },
 
+      // BACHELOR
       {
         label: t.main.academic_programs.bachelor_programs.title,
         icon: { fa: "fa-solid fa-user-graduate" },
         children: [
           {
             label: t.main.academic_programs.bachelor_programs.accounting,
-            to: "https://psakuntansi.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/bachelor/accounting",
             icon: { fa: "fa-solid fa-coins" },
           },
           {
             label: t.main.academic_programs.bachelor_programs.management,
-            to: "https://psmanajemen.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/bachelor/management",
             icon: { bi: "bi-graph-up" },
           },
           {
             label:
               t.main.academic_programs.bachelor_programs.development_economics,
-            to: "https://psep.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/bachelor/psep",
             icon: { fa: "fa-solid fa-chart-line" },
           },
           {
             label: t.main.academic_programs.bachelor_programs.sharia_economics,
-            to: "https://pses.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/bachelor/pses",
             icon: { fa: "fa-solid fa-mosque" },
           },
         ],
       },
 
+      // MASTER
       {
         label: t.main.academic_programs.master_programs.title,
         icon: { fa: "fa-solid fa-book-open" },
         children: [
           {
             label: t.main.academic_programs.master_programs.economics,
-            to: "https://psmie.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/master/psmie",
             icon: { bi: "bi-bar-chart" },
           },
           {
             label: t.main.academic_programs.master_programs.management,
-            to: "https://psmm.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/master/psmm",
             icon: { fa: "fa-solid fa-briefcase" },
           },
           {
             label: t.main.academic_programs.master_programs.accounting,
-            to: "https://psmak.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/master/psmak",
             icon: { fa: "fa-solid fa-calculator" },
           },
         ],
       },
 
+      // DOCTORAL (tetap terakhir)
       {
         label: t.main.academic_programs.doctoral_programs.title,
         icon: { fa: "fa-solid fa-user-ninja" },
         children: [
           {
             label: t.main.academic_programs.doctoral_programs.economics,
-            to: "https://pdie.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/doctoral/pdie",
             icon: { fa: "fa-solid fa-chart-area" },
           },
           {
             label: t.main.academic_programs.doctoral_programs.management,
-            to: "https://pdim.feb.unej.ac.id/",
-            target: "_blank",
+            to: "/academic-programs/doctoral/pdim",
             icon: { bi: "bi-people" },
           },
         ],

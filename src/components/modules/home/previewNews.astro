@@ -13,54 +13,55 @@ const t = wordsJson[getLocale(Astro)];
   style="margin-top: 90px"
   data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
 >
-  <WidgetsPillDivider text={t.news} />
+  <div class="container">
+    <WidgetsPillDivider text={t.news} />
+    <div class="mb-5"></div>
+    <div class="row">
+      <div class="col-12 px-0">
+        <ul
+          class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
+          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+        >
+          <li class="grid-sizer"></li>
+          <!-- start blog item -->
+          {
+            items.map((value) => (
+              <li class="grid-item">
+                <NewsCard
+                  date={`2025-10-${value}`}
+                  desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
+                  newsType="Achievement News"
+                  title="Congrats!!"
+                  image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+                  slug={`congrats-${value}`}
+                />
+              </li>
+            ))
+          }
+          <!-- end blog item -->
+        </ul>
+      </div>
+    </div>
+    <div
+      class="row mb-7 sm-mb-9"
+      data-anime='{ "el": "childs", "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+    >
+      <div class="col text-center">
+        <a
+          :href="$localePath('/news')"
+          class="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
+        >
+          <span>
+            <span class="btn-text">{t.read_more}</span>
+            <span class="btn-icon"
+              ><i class="feather icon-feather-arrow-right"></i></span
+            >
+            <span class="btn-icon"
+              ><i class="feather icon-feather-arrow-right"></i></span
+            >
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
-<div class="container">
-  <div class="row">
-    <div class="col-12 px-0">
-      <ul
-        class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
-        data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-      >
-        <li class="grid-sizer"></li>
-        <!-- start blog item -->
-        {
-          items.map((value) => (
-            <li class="grid-item">
-              <NewsCard
-                date={`2025-10-${value}`}
-                desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
-                newsType="Achievement News"
-                title="Congrats!!"
-                image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                slug={`congrats-${value}`}
-              />
-            </li>
-          ))
-        }
-        <!-- end blog item -->
-      </ul>
-    </div>
-  </div>
-  <div
-    class="row mb-7 sm-mb-9"
-    data-anime='{ "el": "childs", "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-  >
-    <div class="col text-center">
-      <a
-        :href="$localePath('/news')"
-        class="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
-      >
-        <span>
-          <span class="btn-text">{t.read_more}</span>
-          <span class="btn-icon"
-            ><i class="feather icon-feather-arrow-right"></i></span
-          >
-          <span class="btn-icon"
-            ><i class="feather icon-feather-arrow-right"></i></span
-          >
-        </span>
-      </a>
-    </div>
-  </div>
-</div>
