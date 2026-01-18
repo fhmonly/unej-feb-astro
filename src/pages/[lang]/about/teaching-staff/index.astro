@@ -139,10 +139,10 @@ const tendik = tendikRes.data;
                   >
                     <img
                       class="rounded-circle w-150px h-150px mb-20px"
-                      src="https://openclipart.org/image/2400px/svg_to_png/22309/pitr-Apple-icon.png"
+                      src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/12/15/3438211811.jpg"
                       alt=""
                       is="auto-bg-color"
-                      style=" object-fit: contain;"
+                      style=" object-fit: cover;"
                     />
                   </a>
                 </div>
@@ -160,7 +160,6 @@ const tendik = tendikRes.data;
                       <detail-button
                         data-detail={JSON.stringify(data)}
                         data-template="#detail-template"
-                        role="button"
                       >
                         <div class="d-flex gap-1 justify-content-center align-items-center">
                           <i class="fa-solid fa-magnifying-glass" />
@@ -313,60 +312,8 @@ const tendik = tendikRes.data;
 </Layout>
 
 <script>
-  import "@components/customComponents/imgWrapper";
-  import Swal from "sweetalert2";
-  import type { StaffData } from "./index.astro";
-
-  function fillStaffTemplate(templateHtml: string, data: StaffData): string {
-    let result = templateHtml;
-
-    // iterate hanya key yang ada pada StaffData
-    (Object.keys(data) as (keyof StaffData)[]).forEach((key) => {
-      const token = `[${key}]`;
-      const value = String(data[key] ?? "").trim();
-      if (value) {
-        result = result.replaceAll(token, value);
-      }
-    });
-
-    result = result.replace(/\[[^\]]+\]/g, "-");
-    return result;
-  }
-
-  class DetailButton extends HTMLElement {
-    constructor() {
-      super();
-      const detailDs = this.dataset.detail;
-      this.removeAttribute("data-detail");
-      const detailJson = detailDs ? JSON.parse(detailDs) : null;
-      const detail: StaffData | null = detailJson ? detailJson : null;
-
-      if (detail) {
-        const modalTemplateDs = this.dataset.template
-          ? this.dataset.template
-          : "modal-template";
-
-        const modalTemplate =
-          document.body.querySelector<HTMLTemplateElement>(modalTemplateDs);
-        const modalTemplateHtml = modalTemplate?.innerHTML;
-        const modalTemplateHtmlFinal = modalTemplateHtml
-          ? fillStaffTemplate(
-              modalTemplateHtml,
-              detail // bertipe StaffData
-            )
-          : null;
-
-        if (modalTemplateHtmlFinal) {
-          this.addEventListener("click", () => {
-            Swal.fire({
-              html: modalTemplateHtmlFinal,
-            });
-          });
-        }
-      }
-    }
-  }
-  customElements.define("detail-button", DetailButton);
+  import "@components/customComponents/imgAutoBGColor";
+  import "@components/customComponents/swalDetailButton";
 </script>
 
 <style is:global>
