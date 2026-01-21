@@ -30,9 +30,7 @@ const messages = {
 const t = useI18n(messages, locale);
 ---
 
-<div
-  class="header-top-bar top-bar-dark bg-gradient-flamingo-amethyst-green disable-fixed"
->
+<div class="header-top-bar top-bar-dark" style="background-color: #6708ef;">
   <div class="container-fluid">
     <div class="top-menu-wrapper">
       <ul class="top-menu">
@@ -60,3 +58,8 @@ const t = useI18n(messages, locale);
     </div>
   </div>
 </div>
+<style>
+  .top-menu li a {
+    color: #ffffff;
+  }
+</style>

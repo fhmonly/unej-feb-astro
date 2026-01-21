@@ -4,7 +4,7 @@ const { title, items } = Astro.props;
 ---
 
 <div class="mb-4">
-  <h5 class="fw-semibold mb-3">{title}</h5>
+  <h5 class="fw-semibold mb-3" style="color:#ffffff;">{title}</h5>
   <ul class="list-unstyled">
     {
       items.map((item: any) => (
@@ -13,7 +13,7 @@ const { title, items } = Astro.props;
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-muted text-decoration-none hover-link"
+            class="text-decoration-none hover-link"
           >
             {item.label}
           </a>

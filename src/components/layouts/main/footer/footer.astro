@@ -55,15 +55,17 @@ const otherLinks = [
 ];
 ---
 
-<div class="mt-5"></div>
 <footer class="position-relative pb-0">
-  <div class="bg-light border-top border-2 footer-break-wall-wrapper">
+  <div
+    class="border-top border-2 footer-break-wall-wrapper"
+    style="background-color: #242e45;"
+  >
     <div class="container position-relative footer-break-wall">
       <!-- CTA -->
       <div class="text-center mb-5">
         <img src="/_astro/images/unej-removebg.png" alt="UNEJ" width="100" />
-        <h2 class="fw-bold mt-3">FEB UNEJ</h2>
-        <div class="text-muted">
+        <h2 class="fw-bold mt-3" style="color: #7292dd;">FEB UNEJ</h2>
+        <div>
           <p class="mb-1">{t("pancasila_campus")} {t("for_the_world")}</p>
           <p>{t("unej_address")}</p>
           <address>
@@ -90,7 +92,7 @@ const otherLinks = [
 
       <hr />
 
-      <p class="text-center text-muted">
+      <p class="text-center m-0">
         © Copyright FEB UNEJ {new Date().getFullYear()}
       </p>
     </div>
