@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE, useI18n, type Locale } from "@/i18n/i18n";
 import Swal from "sweetalert2";
 
 export type StaffData = {
@@ -62,9 +63,22 @@ class DetailButton extends HTMLElement {
                 : null;
 
             if (modalTemplateHtmlFinal) {
+                const html = document.querySelector("html")
+                const locale = (html?.lang || DEFAULT_LOCALE) as Locale
+                const words = useI18n({
+                    en: {
+                        close: "Close",
+                    },
+                    id: {
+                        close: "Tutup",
+                    }
+                }, locale);
+                const closeBtnText = words.close
                 this.addEventListener("click", () => {
                     Swal.fire({
                         html: modalTemplateHtmlFinal,
+                        confirmButtonColor: "#C40C0C",
+                        confirmButtonText: closeBtnText,
                     });
                 });
             }
