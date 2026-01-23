@@ -60,13 +60,57 @@ const tLeadership = useI18n(
       },
     },
   },
-  getLocale(Astro)
+  getLocale(Astro),
 ).febLeadership;
+
+const dean = [
+  {
+    department: tLeadership.department.dean,
+    fullname: "Prof. Dr. Isti Fadah, M.Si., CRA., CMA. — Dean",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1728979456.png",
+  },
+  {
+    department: tLeadership.department.vice_dean.vd_1,
+    fullname: "Prof. Dr. Novi Puspitasari, S.E., M.M ",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1728634107.png",
+  },
+  {
+    department: tLeadership.department.vice_dean.vd_2,
+    fullname: "Dr. Nining Ika Wahyuni, S.E. M.Sc, Ak.",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1736228689.jpeg",
+  },
+  {
+    department: tLeadership.department.vice_dean.vd_3,
+    fullname: "Dr. Teguh Hadi Priyono, S.E., M.Si.",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1728628968.png",
+  },
+];
+const coordinator = [
+  {
+    department: tLeadership.department.coord,
+    fullname: "Coordinator of Administrative Office",
+    image: "https://feb.unej.ac.id/assets/uploads/",
+  },
+  {
+    department: tLeadership.department.vice_coord.academic,
+    fullname: "Sugianto, S.E., M.M.",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1728544738.png",
+  },
+  {
+    department: tLeadership.department.vice_coord.general,
+    fullname: "Vice Coordinator for General Affairs and State Property",
+    image: "https://feb.unej.ac.id/assets/uploads/",
+  },
+  {
+    department: tLeadership.department.vice_coord.finance,
+    fullname: "Nurina Fitrianingtyas, SKM.",
+    image: "https://feb.unej.ac.id/assets/uploads/foto_1728544761.png",
+  },
+];
 ---
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
-  <div class="mt-5"></div>
   <section
     class="bg-gradient-quartz-white border-radius-6px lg-border-radius-0px pb-0"
   >
@@ -84,51 +128,36 @@ const tLeadership = useI18n(
       <div class="row mb-5 sm-mb-7">
         <div class="col-12">
           <div
-            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2"
+            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center"
             data-anime='{ "el": "childs", "translateY": [0, 0], "perspective": [800,800], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
           >
             <!-- start team member item -->
             {
-              [
-                {
-                  department: tLeadership.department.dean,
-                  fullname: "Prof. Dr. Isti Fadah, M.Si., CRA., CMA. — Dean",
-                },
-                {
-                  department: tLeadership.department.vice_dean.vd_1,
-                  fullname: "Prof. Dr. Novi Puspitasari, S.E., M.M ",
-                },
-                {
-                  department: tLeadership.department.vice_dean.vd_2,
-                  fullname: "Dr. Nining Ika Wahyuni, S.E. M.Sc, Ak.",
-                },
-                {
-                  department: tLeadership.department.vice_dean.vd_3,
-                  fullname: "Dr. Teguh Hadi Priyono, S.E., M.Si.",
-                },
-                {
-                  department: tLeadership.department.coord,
-                  fullname: "Coordinator of Administrative Office",
-                },
-                {
-                  department: tLeadership.department.vice_coord.academic,
-                  fullname: "Sugianto, S.E., M.M.",
-                },
-                {
-                  department: tLeadership.department.vice_coord.general,
-                  fullname:
-                    "Vice Coordinator for General Affairs and State Property",
-                },
-                {
-                  department: tLeadership.department.vice_coord.finance,
-                  fullname: "Nurina Fitrianingtyas, SKM.",
-                },
-              ].map((value) => (
+              dean.map((value) => (
                 <div class="col">
                   <ModulesAboutLeaderCard
                     fullName={value.fullname}
                     department={value.department}
-                    image="https://gvanrossum.github.io/images/guido-headshot-2019.jpg"
+                    image={value.image}
+                  />
+                </div>
+              ))
+            }
+
+            <!-- end team member item -->
+          </div>
+          <div
+            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center"
+            data-anime='{ "el": "childs", "translateY": [0, 0], "perspective": [800,800], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
+          >
+            <!-- start team member item -->
+            {
+              coordinator.map((value) => (
+                <div class="col">
+                  <ModulesAboutLeaderCard
+                    fullName={value.fullname}
+                    department={value.department}
+                    image={value.image}
                   />
                 </div>
               ))
