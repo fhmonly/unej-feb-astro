@@ -2,10 +2,10 @@
 import dayjs from "dayjs";
 
 interface Props {
-  newsType: string;
+  newsType: string | null;
   title: string;
-  date: string;
-  image?: string;
+  date: string | null;
+  image?: string | null;
   desc?: string;
   slug?: string;
 }
@@ -18,7 +18,7 @@ const formattedDate = dayjs(date).format("DD MMMM YYYY");
 <div class="card bg-transparent border-0 h-100">
   <div class="blog-image position-relative overflow-hidden border-radius-4px">
     <a href={`/news/${slug}`}>
-      <img src={image} alt={title} loading="lazy" />
+      <img src={image} alt={title} loading="lazy" is="auto-bg-color" />
     </a>
   </div>
 
@@ -27,13 +27,15 @@ const formattedDate = dayjs(date).format("DD MMMM YYYY");
   >
     <span class="fs-14 text-uppercase">
       <!-- optional category -->
-      <!--
-      <a href="#" class="text-dark-gray fw-600 categories-text">
-        {newsType}
-      </a>
-      -->
+      {
+        newsType && (
+          <a href="#" class="text-dark-gray fw-600 categories-text">
+            {newsType}
+          </a>
+        )
+      }
       <a href="#" class="blog-date">
-        {formattedDate}
+        {!!date ? formattedDate : ""}
       </a>
     </span>
 
@@ -49,3 +51,7 @@ const formattedDate = dayjs(date).format("DD MMMM YYYY");
     {desc && <p class="w-95 sm-w-100">{desc}</p>}
   </div>
 </div>
+
+<script>
+  import "@components/customComponents/imgAutoBGColor";
+</script>

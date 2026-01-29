@@ -48,7 +48,8 @@ export const navJson = {
                     "doctoral_programs": {
                         "title": "Doctoral Programs",
                         "economics": "Economics",
-                        "management": "Management"
+                        "management": "Management",
+                        "accounting": "Accounting"
                     },
                     "admission": {
                         "title": "Admission",
@@ -160,7 +161,8 @@ export const navJson = {
                     "doctoral_programs": {
                         "title": "Program Doktor",
                         "economics": "Ilmu Ekonomi",
-                        "management": "Manajemen"
+                        "management": "Manajemen",
+                        "accounting": "Akuntansi"
                     },
                     "admission": {
                         "title": "Penerimaan",

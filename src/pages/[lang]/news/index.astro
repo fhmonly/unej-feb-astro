@@ -4,6 +4,7 @@ import ModulesNewsCard from "@components/modules/news/card.astro";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import WidgetsPagination from "@components/widgets/pagination.astro";
 import Layout from "@layouts/main.astro";
+import axios from "axios";
 
 export const prerender = false;
 
@@ -24,7 +25,27 @@ const t = useI18n(
       title: "Berita",
     },
   },
-  getLocale(Astro)
+  getLocale(Astro),
+);
+interface NewsItem {
+  id: number;
+  judul: string;
+  slug: string;
+  kutipan: string;
+  kategori: string | null;
+  prodi: string | null;
+  gambar_unggulan: string | null;
+  hightlight: boolean;
+  tanggal: string | null; // ISO date atau null
+}
+interface PaginatedResponse<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
+}
+const { data } = await axios.get<PaginatedResponse<NewsItem>>(
+  "https://be.feb.unej.ac.id/api/berita/",
 );
 ---
 
@@ -40,14 +61,13 @@ const t = useI18n(
             <li class="grid-sizer"></li>
 
             {
-              items.map((value) => (
+              data.results.map((value) => (
                 <li class="grid-item">
                   <ModulesNewsCard
-                    date={`2025-10-${value}`}
-                    title="Congrats!!"
-                    desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
-                    newsType="Achievement News"
-                    image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f"
+                    date={value.tanggal}
+                    title={value.judul}
+                    newsType={value.kategori}
+                    image={value.gambar_unggulan}
                   />
                 </li>
               ))
