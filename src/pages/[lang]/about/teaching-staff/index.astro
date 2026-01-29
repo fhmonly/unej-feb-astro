@@ -101,7 +101,6 @@ const getTendik = () => api.get<StaffData[]>("/tendik");
 const tendikRes = await getTendik();
 const tendik = tendikRes.data;
 ---
-
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
   <section class="bg-very-light-gray" id="agents">
@@ -139,7 +138,7 @@ const tendik = tendikRes.data;
                   >
                     <img
                       class="rounded-circle w-150px h-150px mb-20px"
-                      src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2021/12/15/3438211811.jpg"
+                      src="https://placehold.co/150x150"
                       alt=""
                       is="auto-bg-color"
                       width="150"

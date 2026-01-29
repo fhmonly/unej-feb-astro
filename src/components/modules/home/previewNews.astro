@@ -51,7 +51,7 @@ const { data } = await axios.get<PaginatedResponse<NewsItem>>(
                 <NewsCard
                   date={value.tanggal}
                   title={value.judul}
-                  newsType={value.kategori}
+                  newsType={value.kategori.nama}
                   image={value.gambar_unggulan}
                 />
               </li>
