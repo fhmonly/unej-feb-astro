@@ -4,26 +4,10 @@ import NewsCard from "@components/modules/news/card.astro";
 import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
 import { getLocale } from "@i18n/i18n";
 import axios from "axios";
+import type { NewsItem, PaginatedResponse } from "./previewNews.interface";
 
 const t = wordsJson[getLocale(Astro)];
 
-interface NewsItem {
-  id: number;
-  judul: string;
-  slug: string;
-  kutipan: string;
-  kategori: string | null;
-  prodi: string | null;
-  gambar_unggulan: string | null;
-  hightlight: boolean;
-  tanggal: string | null; // ISO date atau null
-}
-interface PaginatedResponse<T> {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T[];
-}
 const { data } = await axios.get<PaginatedResponse<NewsItem>>(
   "https://be.feb.unej.ac.id/api/berita/",
 );

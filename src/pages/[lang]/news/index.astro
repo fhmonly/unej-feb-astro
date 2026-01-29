@@ -1,4 +1,8 @@
 ---
+import type {
+  NewsItem,
+  PaginatedResponse,
+} from "@/components/modules/home/previewNews.interface";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import ModulesNewsCard from "@components/modules/news/card.astro";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
@@ -27,23 +31,7 @@ const t = useI18n(
   },
   getLocale(Astro),
 );
-interface NewsItem {
-  id: number;
-  judul: string;
-  slug: string;
-  kutipan: string;
-  kategori: string | null;
-  prodi: string | null;
-  gambar_unggulan: string | null;
-  hightlight: boolean;
-  tanggal: string | null; // ISO date atau null
-}
-interface PaginatedResponse<T> {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: T[];
-}
+
 const { data } = await axios.get<PaginatedResponse<NewsItem>>(
   "https://be.feb.unej.ac.id/api/berita/",
 );
@@ -66,7 +54,7 @@ const { data } = await axios.get<PaginatedResponse<NewsItem>>(
                   <ModulesNewsCard
                     date={value.tanggal}
                     title={value.judul}
-                    newsType={value.kategori}
+                    newsType={value.kategori.nama}
                     image={value.gambar_unggulan}
                   />
                 </li>
