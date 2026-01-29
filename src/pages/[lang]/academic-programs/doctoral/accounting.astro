@@ -1,4 +1,5 @@
 ---
+import ProdiLeadership from "@/components/modules/academicPrograms/prodiLeadership.astro";
 import ContentContainer from "@/components/widgets/contentContainer.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
@@ -106,21 +107,23 @@ const visionMissionJson = {
   },
 };
 
-const prodiObjective = {
+const aboutProdi = {
   en: {
-    prodi_objective: "Department Objective",
-    objectives: [
-      "Have expertise in the science of development planning and professional agro-industry-based regional development",
-      "Student are able to develop knowledge and solve problems in the field of development planning and regional development based on agro-industry, and able to produce innovative and tested works",
-      "Student are able to produce a variety of new ideas and quality scientific work in the field of agro-industry-based development planning and regional development and be able to disseminate them to gain recognition at the international level",
+    about_prodi_title: "About Study Program",
+    about_prodi: [
+      "The Doctoral Program in Accounting (Ph.D. in Accounting) was established based on the Decree of the Minister of Higher Education, Science, and Technology Number 1202/B/0/2025 concerning the Authorization to Open the Doctoral Program in Accounting, dated 24 December 2025.",
+      "The Doctoral Program in Accounting is administered by the Department of Accounting, Faculty of Economics and Business, Universitas Jember, and is organized through the Faculty. The program is conducted using a by-research approach over six semesters (three years) with a total academic load of 42 credits.",
+      "The distinctive strength of the Doctoral Program in Accounting lies in its focus on sustainability accounting, aimed at addressing, fulfilling, and adapting to the evolving needs, demands, and challenges of industrial and non-industrial sectors, government and non-government institutions, as well as social, environmental, and community contexts that continue to change dynamically.",
+      "The Doctoral Program in Accounting at Universitas Jember is designed to produce graduates who are capable of positioning themselves as agents of development in accounting science, in order to meet the needs and expectations of society, government, business, and industry. Furthermore, the program is structured to respond to stakeholder demands in academic, industrial, governmental, and societal sectors by contributing to the enhancement of scientific quality, the development of accounting technologies, improved financial governance, and community empowerment.",
     ],
   },
   id: {
-    prodi_objective: "Tujuan Prodi",
-    objectives: [
-      "Memiliki kepakaran dalam keilmuan perencanaan pembangunan dan pengembangan wilayah berbasis agroindustri yang profesional",
-      "Mampu mengembangkan pengetahuan dan memecahkan permasalahan di bidang perencanaan pembangunan dan pengembangan wilayah berbasis agroindustri, serta mampu menghasilkan karya yang inovatif dan teruji",
-      "Mampu menghasilkan berbagai gagasan baru dan karya ilmiah bermutu di bidang perencanaan pembangunan dan pengembangan wilayah berbasis agroindustri serta mampu mendiseminasikannya untuk mendapat rekognisi pada level Internasional",
+    about_prodi_title: "Tentang Prodi",
+    about_prodi: [
+      "Program studi doktor ilmu akuntansi atau S3 ilmu akuntansi didirikan berdasarkan Keputusan Menteri Pendidikan Tinggi, Sains, dan Teknologi Nomor 1202/B/0/2025 Izin Pembukaan Program Studi Ilmu Akuntansi Program Doktor tertanggal24 Desember 2025.",
+      "Program studi S3 ilmu akuntansi diselenggarakan oleh Jurusan Akuntansi Fakultas Ekonomi dan Bisnis dan Universitas Jember melalui Fakultas. Program studi doktor ilmu akuntansi diselenggarakan dengan  metode by research  selama 6 semester ( 3 tahun ) dengan jumlah SKS  sebanyak 42.",
+      "Kunikan atau keunggulan dari Program studi S3 ilmu Akuntansi pada akuntansi keberlanjutan untuk menjawab, memenuhi dan menyesuaikan  kebutuhan, tuntutan dan tantangan dunia industri dan non industri, pemerintah dan non pemerintah , masyarakat, lingkungan dan sosial yang selalu berubah dan bergerak.",
+      "Program Studi Doktor Ilmu Akuntansi Universitas Jember memiliki keunggulan untuk menghasilkan lulusan yang mampu memposisikan perannya sebagai agen pengembangan dalam ilmu akuntansi dalam rangka memenuhi kebutuhan dan keinginan masyarakat, pemerintah, dunia usaha, dan industri.Program Studi Doktor Ilmu Akuntansi di FEB UNEJ dirancang untuk menjawab kebutuhan stakeholders, baik di bidang akademik, industri, pemerintah, maupun masyarakat luas dengan berkontribusi pada peningkatan kualitas keilmuan, pengembangan teknologi akuntansi, tata kelola keuangan yang lebih baik, serta pemberdayaan masyarakat.",
     ],
   },
 };
@@ -129,12 +132,12 @@ const mergedJson = {
   en: {
     ...pageJson.en,
     ...visionMissionJson.en,
-    ...prodiObjective.en,
+    ...aboutProdi.en,
   },
   id: {
     ...pageJson.id,
     ...visionMissionJson.id,
-    ...prodiObjective.id,
+    ...aboutProdi.id,
   },
 };
 
@@ -241,6 +244,13 @@ const accreditationList = accreditation.map((item) => {
   <section class="bg-solitude-blue">
     <div class="container">
       <div class="row justify-content-center">
+        <div>
+          <PillDivider text={t.about_prodi_title} />
+          <div class="mt-3">&nbsp;</div>
+          {t.about_prodi.map((v, i) => <p class="">{v}</p>)}
+        </div>
+        <div class="mt-5">&nbsp;</div>
+
         <div
           class="col-xl-5 col-lg-6 md-mb-50px sm-mb-20px"
           data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
@@ -321,28 +331,6 @@ const accreditationList = accreditation.map((item) => {
       </div>
     </div>
     <div class="my-5">&nbsp;</div>
-    <div class="container mt-5">
-      <div class="d-flex justify-content-center">
-        <div style="max-width: 998px;">
-          <h4
-            class="text-dark-gray fw-700 ls-minus-1px alt-font mb-40px lg-mb-30px d-block text-center"
-          >
-            {t.prodi_objective}
-          </h4>
-          <div
-            class="border border-color-extra-medium-gray border-radius-6px mb-40px xs-mb-30px overflow-hidden"
-          >
-            {
-              t.objectives.map((item, index) => (
-                <p class="ps-30px pe-30px pt-25px pb-25px border-bottom border-1 border-color-extra-medium-gray mb-0">
-                  {item}
-                </p>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
   <PageSection title={t.information}>
     <PillDivider
@@ -364,6 +352,7 @@ const accreditationList = accreditation.map((item) => {
     />
     <ContentContainer class="my-3 py-5" />
   </PageSection>
+  <ProdiLeadership class="pt-0" />
   <PageSection
     title={t.important_information_access}
     class="overflow-hidden bg-very-light-gray position-relative"
