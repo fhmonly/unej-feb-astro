@@ -170,7 +170,7 @@ const accreditationList = accreditation.map((item) => {
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
-  <section class="bg-very-light-gray">
+  <!-- <section class="bg-very-light-gray">
     <div class="container position-relative z-index-1">
       <div class="row justify-content-center mb-30px">
         <div
@@ -239,7 +239,7 @@ const accreditationList = accreditation.map((item) => {
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="bg-solitude-blue">
     <div class="container">
@@ -321,11 +321,11 @@ const accreditationList = accreditation.map((item) => {
             data-bottom-top="transform: translateY(-50px)"
             data-top-bottom="transform: translateY(50px)"
           >
-            <img
-              src="https://psd3mp.feb.unej.ac.id/assets/theme/img/preview.webp"
+            <!-- <img
+              src="https://feb.unej.ac.id/id/mawa_unduhan"
               alt=""
               class="border-radius-5px box-shadow-quadruple-large"
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -352,68 +352,10 @@ const accreditationList = accreditation.map((item) => {
     />
     <ContentContainer class="my-3 py-5" />
   </PageSection>
-  <ProdiLeadership class="pt-0" />
-  <PageSection
-    title={t.important_information_access}
-    class="overflow-hidden bg-very-light-gray position-relative"
-  >
-    <div
-      class="row align-items-center"
-      data-anime='{ "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
-    >
-      <div class="col-12">
-        <div class="outside-box-right-20 sm-outside-box-right-0">
-          <div
-            class="swiper magic-cursor drag-cursor slider-one-slide"
-            data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1200": { "slidesPerView": 4 }, "992": { "slidesPerView": 3 }, "768": { "slidesPerView": 2 }, "320": { "slidesPerView": 1 } }, "effect": "slide" }'
-          >
-            <div class="swiper-wrapper">
-              {
-                Array.from({ length: 8 }).map((_, i) => (
-                  <div class="swiper-slide">
-                    <div class="services-box-style-03 last-paragraph-no-margin border-radius-6px overflow-hidden">
-                      <div class="bg-white">
-                        <div class="ps-65px pe-65px pt-30px pb-30px text-center">
-                          <a
-                            href="#"
-                            class="d-inline-block fs-18 fw-600 text-dark-gray mb-5px"
-                          >
-                            Service title {i + 1}
-                          </a>
-                          <p>
-                            Lorem ipsum simply dummy text of amet consectetur.
-                          </p>
-                        </div>
 
-                        <div class="d-flex justify-content-center border-top border-color-extra-medium-gray pt-20px pb-20px ps-50px pe-50px position-relative text-center">
-                          <a
-                            href="#"
-                            class="btn btn-link btn-hover-animation-switch btn-medium fw-700 text-dark-gray text-uppercase"
-                          >
-                            <span>
-                              <span class="btn-text">Explore services</span>
-                              <span class="btn-icon">
-                                <i class="fa-solid fa-arrow-right" />
-                              </span>
-                              <span class="btn-icon">
-                                <i class="fa-solid fa-arrow-right" />
-                              </span>
-                            </span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <p>Haloo</p> -->
-  </PageSection>
-  <PageSection title={t.news}>
+  <ProdiLeadership class="pt-0" />
+
+  <PageSection title={t.news} class="pt-0">
     <div class="row">
       <div class="col-12 px-0">
         <ul
