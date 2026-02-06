@@ -35,14 +35,14 @@ const dropdownClass = level === 0 ? "simple-dropdown" : "dropdown";
           {level > 0 && item.icon?.fa && (
             <i
               class={item.icon.fa}
-              style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;${level > 0 ? "color:white;" : ""}`}
+              style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;padding-top: 5px;${level > 0 ? "color:white;" : ""}`}
             />
           )}
 
           {level > 0 && item.icon?.bi && (
             <i
               class={`bi ${item.icon.bi}`}
-              style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;${level > 0 ? "color:white;" : ""}`}
+              style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;padding-top: 5px;${level > 0 ? "color:white;" : ""}`}
             />
           )}
 
@@ -69,20 +69,20 @@ const dropdownClass = level === 0 ? "simple-dropdown" : "dropdown";
     <a
       href={item.to ? getLocaleLink(getLocale(Astro), item.to) : "#"}
       target={item.target}
-      class="nav-link text-truncate d-flex align-items-center"
+      class="nav-link d-flex align-items-start"
       style="display:flex;"
     >
       {item.icon?.fa && (
         <i
           class={item.icon.fa}
-          style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;${level > 0 ? "color:white;" : ""}`}
+          style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;padding-top: 5px;${level > 0 ? "color:white;" : ""}`}
         />
       )}
 
       {item.icon?.bi && (
         <i
           class={`bi ${item.icon.bi}`}
-          style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;${level > 0 ? "color:white;" : ""}`}
+          style={`position:static;width:16px;margin-right:10px;display:inline-flex;justify-content:center;align-items:center;padding-top: 5px;${level > 0 ? "color:white;" : ""}`}
         />
       )}
 
