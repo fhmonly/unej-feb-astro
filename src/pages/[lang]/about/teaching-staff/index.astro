@@ -100,7 +100,9 @@ const getTendik = () => api.get<StaffData[]>("/tendik");
 
 const tendikRes = await getTendik();
 const tendik = tendikRes.data;
+console.log(tendik);
 ---
+
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
   <section class="bg-very-light-gray" id="agents">

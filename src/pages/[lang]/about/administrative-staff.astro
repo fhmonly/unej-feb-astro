@@ -100,6 +100,7 @@ const getDosen = () => api.get<StaffData[]>("/dosen");
 
 const dosenRes = await getDosen();
 const dosen = dosenRes.data;
+console.log(dosen);
 ---
 
 <Layout title={t.pageTitle}>
