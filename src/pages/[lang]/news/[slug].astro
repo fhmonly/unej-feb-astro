@@ -2,8 +2,6 @@
 import { getLocale, useI18n } from "@/i18n/i18n";
 import Layout from "@layouts/main.astro";
 
-export const prerender = false;
-
 const t = useI18n(
   {
     en: {
@@ -15,7 +13,7 @@ const t = useI18n(
       title: "Berita",
     },
   },
-  getLocale(Astro)
+  getLocale(Astro),
 );
 ---
 

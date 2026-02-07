@@ -1,17 +1,9 @@
 ---
-import {
-  generateMultiLocaleStaticPaths,
-  getLocale,
-  useI18n,
-} from "@/i18n/i18n";
+import { getLocale, useI18n } from "@/i18n/i18n";
 import ModulesEventCard from "@components/modules/event/card.astro";
 import WidgetsHeroSlider from "@components/widgets/pageTitleTypography.astro";
 import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
 import Layout from "@layouts/main.astro";
-
-export async function getStaticPaths() {
-  return generateMultiLocaleStaticPaths();
-}
 
 const messages = {
   en: {

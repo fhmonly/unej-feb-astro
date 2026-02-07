@@ -1,10 +1,10 @@
 ---
 import { use404Json } from "@i18n/404";
-import { getLocale, useI18n } from "@i18n/i18n";
+import { getLocale, switchLocalePath, useI18n } from "@i18n/i18n";
 import ErrorLayout from "@layouts/error.astro";
 
-export const prerender = false;
-const t = useI18n(use404Json, getLocale(Astro));
+const locale = getLocale(Astro);
+const t = useI18n(use404Json, locale);
 ---
 
 <ErrorLayout>
@@ -31,10 +31,11 @@ const t = useI18n(use404Json, getLocale(Astro));
             {t.description}
           </p>
           <a
-            href="/"
+            href={switchLocalePath("/", locale)}
             class="btn btn-large left-icon btn-rounded btn-dark-gray btn-box-shadow text-transform-none"
-            ><i class="fa-solid fa-arrow-left"></i>{t.back_to_home}</a
           >
+            <i class="fa-solid fa-arrow-left"></i>{t.back_to_home}
+          </a>
         </div>
       </div>
     </div>

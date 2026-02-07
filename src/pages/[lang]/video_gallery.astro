@@ -1,11 +1,7 @@
 ---
 import ModulesVideoGalleryCard from "@/components/modules/videoGallery/card.astro";
 import WidgetsHeroSlider from "@/components/widgets/pageTitleTypography.astro";
-import {
-  generateMultiLocaleStaticPaths,
-  getLocale,
-  useI18n,
-} from "@/i18n/i18n";
+import { getLocale, useI18n } from "@/i18n/i18n";
 import Layout from "@layouts/main.astro";
 
 const messages = {
@@ -20,10 +16,6 @@ const messages = {
 };
 
 const t = useI18n(messages, getLocale(Astro));
-
-export async function getStaticPaths() {
-  return generateMultiLocaleStaticPaths();
-}
 ---
 
 <Layout title={t.pageTitle}>

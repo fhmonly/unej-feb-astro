@@ -17,7 +17,6 @@ import ModulesHomePreviewVimi from "@components/modules/home/previewVimi.astro";
 import ModulesHomeSlider from "@components/modules/home/slider/corporation/container.astro";
 import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
 import Layout from "@layouts/main.astro";
-export { getStaticPaths } from "@i18n/i18n";
 
 const t = useI18n(wordsJson, getLocale(Astro));
 
@@ -30,7 +29,7 @@ const tPages = useI18n(
       title: "Home",
     },
   },
-  getLocale(Astro)
+  getLocale(Astro),
 );
 ---
 

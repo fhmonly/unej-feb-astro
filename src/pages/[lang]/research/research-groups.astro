@@ -2,7 +2,6 @@
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import Layout from "@layouts/main.astro";
-export { getStaticPaths } from "@i18n/i18n";
 
 const t = useI18n(
   {
@@ -15,7 +14,7 @@ const t = useI18n(
       title: "Grup Penelitian",
     },
   },
-  getLocale(Astro)
+  getLocale(Astro),
 );
 
 const items = Array.from({ length: 10 });
