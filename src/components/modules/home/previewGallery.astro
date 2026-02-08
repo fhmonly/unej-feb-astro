@@ -1,0 +1,81 @@
+---
+import ModulesGalleryCard from "@/components/modules/gallery/card.astro";
+import ContentFilterGrid from "@/components/widgets/contentFilter/contentFilterGrid.astro";
+import ContentFilterGridItem from "@/components/widgets/contentFilter/contentFilterGridItem.astro";
+import ContentFilterNavTabItem from "@/components/widgets/contentFilter/contentFilterNavTabItem.astro";
+import ContentFilterNavTabs from "@/components/widgets/contentFilter/contentFilterNavTabs.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
+
+type ContentTabItem = {
+  filter: "*" | `.${string}`;
+  isActive: boolean;
+  label: string;
+};
+const contentTabs: ContentTabItem[] = [
+  {
+    filter: "*",
+    isActive: true,
+    label: "All",
+  },
+  {
+    filter: ".category-1",
+    isActive: false,
+    label: "Category 1",
+  },
+  {
+    filter: ".category-2",
+    isActive: false,
+    label: "Category 2",
+  },
+  {
+    filter: ".category-3",
+    isActive: false,
+    label: "Category 3",
+  },
+];
+---
+
+<PageSection class="pt-0">
+  <div class="row align-items-center justify-content-center" slot="header">
+    <div
+      class="col-12 col-xl-6 col-lg-8 text-center position-relative page-title-double-large"
+    >
+      <div
+        class="d-flex flex-column justify-content-center extra-very-small-screen"
+      >
+        <h1 class="text-dark-gray alt-font ls-minus-1px fw-700 mb-20px">
+          Gallery
+        </h1>
+        <h2 class="d-inline-block fw-400 ls-0px w-80 xs-w-100 mx-auto">
+          Kumpulan dokumentasi kegiatan unggulan FEB
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div>
+    <ContentFilterNavTabs>
+      {
+        contentTabs.map((item) => (
+          <ContentFilterNavTabItem
+            isActive={item.isActive}
+            filter={item.filter}
+          >
+            {item.label}
+          </ContentFilterNavTabItem>
+        ))
+      }
+    </ContentFilterNavTabs>
+    <ContentFilterGrid>
+      {
+        Array.from({ length: 4 }).map((_, i) => (
+          <ContentFilterGridItem keywords={[`category-${(i + 1) % 3 || 3}`]}>
+            <ModulesGalleryCard
+              image="https://www2.feb.unej.ac.id/assets/images/galery_1729678367.jpeg"
+              title="Pelantikan Dekan Periode 2024 - 2028"
+            />
+          </ContentFilterGridItem>
+        ))
+      }
+    </ContentFilterGrid>
+  </div>
+</PageSection>

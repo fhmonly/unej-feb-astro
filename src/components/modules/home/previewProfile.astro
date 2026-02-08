@@ -1,5 +1,5 @@
 ---
-import { getLocale } from "@i18n/i18n"; // sesuaikan helper i18n kamu
+import { getLocale, getLocaleLink } from "@i18n/i18n"; // sesuaikan helper i18n kamu
 
 const messages = {
   en: {
@@ -32,12 +32,13 @@ const messages = {
   },
 };
 
-const t = messages[getLocale(Astro)];
+const locale = getLocale(Astro);
+const t = messages[locale];
 ---
 
 <section>
   <div class="container">
-    <div class="row justify-content-center align-items-center mb-6 sm-pb-9">
+    <div class="row justify-content-center align-items-center sm-pb-9">
       <div
         class="col-lg-6 col-md-9 position-relative md-mb-15 text-center text-lg-start"
         data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 15, "easing": "easeOutQuad" }'
@@ -94,7 +95,7 @@ const t = messages[getLocale(Astro)];
         </p>
 
         <a
-          href="/about/profile"
+          href={getLocaleLink(locale, "/about/profile")}
           class="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
         >
           <span>
@@ -109,6 +110,7 @@ const t = messages[getLocale(Astro)];
         </a>
       </div>
 
+      <div class="mt-3"></div>
       <div
         class="row row-cols-1 row-cols-md-4 row-cols-sm-2 justify-content-center counter-style-07 ps-3 pe-3"
         data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'

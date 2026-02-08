@@ -2,11 +2,12 @@
 import { wordsJson } from "@/i18n/words";
 import NewsCard from "@components/modules/news/card.astro";
 import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
-import { getLocale } from "@i18n/i18n";
+import { getLocale, getLocaleLink } from "@i18n/i18n";
 import axios from "axios";
 import type { NewsItem, PaginatedResponse } from "./previewNews.interface";
 
-const t = wordsJson[getLocale(Astro)];
+const locale = getLocale(Astro);
+const t = wordsJson[locale];
 
 const { data } = await axios.get<PaginatedResponse<NewsItem>>(
   "https://be.feb.unej.ac.id/api/berita/",
@@ -51,7 +52,7 @@ const { data } = await axios.get<PaginatedResponse<NewsItem>>(
     >
       <div class="col text-center">
         <a
-          :href="$localePath('/news')"
+          href={getLocaleLink(locale, "/news")}
           class="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
         >
           <span>

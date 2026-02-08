@@ -12,7 +12,7 @@ const { title, image } = Astro.props as Props;
 <div class="portfolio-box border-radius-4px">
   <WidgetsPopupImage image={image}>
     <div class="portfolio-image border-radius-4px">
-      <img src={image} alt="" />
+      <img src={image} alt="" is="auto-bg-color" />
 
       <div class="portfolio-hover d-flex justify-content-center flex-column">
         <div
@@ -40,3 +40,6 @@ const { title, image } = Astro.props as Props;
     </div>
   </WidgetsPopupImage>
 </div>
+<script>
+  import "@components/customComponents/imgAutoBGColor";
+</script>

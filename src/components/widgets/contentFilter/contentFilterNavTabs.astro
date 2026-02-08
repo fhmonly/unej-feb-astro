@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {}
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["container", className]} {...attrs}>
+  <div class="row">
+    <div class="col-12 text-center">
+      <!-- filter navigation -->
+      <ul
+        class="portfolio-filter nav nav-tabs justify-content-center border-0 fw-500 alt-font pb-5"
+      >
+        <slot />
+      </ul>
+      <!-- end filter navigation -->
+    </div>
+  </div>
+</div>

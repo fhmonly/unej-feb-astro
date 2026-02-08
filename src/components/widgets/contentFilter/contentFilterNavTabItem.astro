@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"li"> {
+  isActive?: boolean;
+  filter: "*" | `.${string}`;
+}
+const { isActive = false, filter, class: className, ...attrs } = Astro.props;
+---
+
+<li class:list={["nav", isActive ? "active" : "", className]} {...attrs}>
+  <a data-filter={filter} href="#">
+    <slot />
+  </a>
+</li>

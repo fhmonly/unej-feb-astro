@@ -1,10 +1,11 @@
 ---
 import { aboutProfilePageJson } from "@/i18n/pages/aboutProfile";
 import { wordsJson } from "@/i18n/words";
-import { getLocale } from "@i18n/i18n";
+import { getLocale, getLocaleLink } from "@i18n/i18n";
 
-const tAbout = aboutProfilePageJson[getLocale(Astro)].aboutPage;
-const tWords = wordsJson[getLocale(Astro)];
+const locale = getLocale(Astro);
+const tAbout = aboutProfilePageJson[locale].aboutPage;
+const tWords = wordsJson[locale];
 
 const steps = [1, 2, 3];
 ---
@@ -78,7 +79,7 @@ const steps = [1, 2, 3];
         <div class="fs-18 fw-500 text-dark-gray d-inline-block align-middle">
           {tWords.about_us},
           <a
-            href="/about"
+            href={getLocaleLink(locale, "/about/profile")}
             class="text-dark-gray text-decoration-line-bottom fw-700"
           >
             {tWords.read_more}

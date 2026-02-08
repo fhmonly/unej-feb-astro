@@ -21,7 +21,7 @@ const i18n = {
 const t = i18n[getLocale(Astro)];
 ---
 
-<section id="registration" class="registration">
+<section id="registration" class="registration pt-0">
   <div class="container">
     <div class="row content align-items-center">
       <div class="col-md-5" data-aos="fade-right">
@@ -30,6 +30,9 @@ const t = i18n[getLocale(Astro)];
           class="img-fluid"
           loading="lazy"
           alt="Registration Image"
+          is="auto-bg-color"
+          width="500"
+          height="500"
         />
       </div>
 
@@ -51,12 +54,25 @@ const t = i18n[getLocale(Astro)];
             href="https://unej.ac.id/penerimaan-mahasiswa-baru/"
             target="_blank"
             rel="noopener"
-            class="btn btn-primary btn-lg"
+            class="btn btn-large btn-base-color btn-hover-animation-switch btn-icon-left d-table d-lg-inline-block lg-mb-15px md-mx-auto"
           >
-            {t.button}
+            <span>
+              <span class="btn-text">
+                {t.button}
+              </span>
+              <span class="btn-icon"
+                ><i class="fa-solid fa-arrow-right"></i></span
+              >
+              <span class="btn-icon"
+                ><i class="fa-solid fa-arrow-right"></i></span
+              >
+            </span>
           </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+<script>
+  import "@components/customComponents/imgAutoBGColor";
+</script>

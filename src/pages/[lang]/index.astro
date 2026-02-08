@@ -15,6 +15,7 @@ import ModulesHomePreviewProfile from "@components/modules/home/previewProfile.a
 import ModulesHomePreviewRegistration from "@components/modules/home/previewRegistration.astro";
 import ModulesHomePreviewVimi from "@components/modules/home/previewVimi.astro";
 import ModulesHomeSlider from "@components/modules/home/slider/corporation/container.astro";
+import ModulesHomePreviewGallery from "@components/modules/home/previewGallery.astro";
 import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
 import Layout from "@layouts/main.astro";
 
@@ -35,7 +36,7 @@ const tPages = useI18n(
 
 <Layout title={tPages.title}>
   <ModulesHomeSlider />
-  <section class="p-0">
+  <section class="py-3">
     <div class="container">
       <div
         class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center"
@@ -140,7 +141,7 @@ const tPages = useI18n(
                   class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large"
                 >
                   <WidgetsPopupYoutube
-                    url="'https://www.youtube.com/watch?v=aRXagk1rrnU'"
+                    url="https://www.youtube.com/watch?v=Rf0MqhqsTGo"
                   >
                     <span>
                       <span class="video-icon">
@@ -164,6 +165,7 @@ const tPages = useI18n(
   <ModulesHomePreviewAccreditation />
   <ModulesHomePreviewProdi />
   <ModulesHomePreviewVimi />
+  <ModulesHomePreviewGallery />
   <ModulesHomePreviewRegistration />
   <ModulesHomePreviewLeadership />
   <ModulesHomePreviewContact />
