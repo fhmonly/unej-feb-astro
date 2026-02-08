@@ -1,0 +1,252 @@
+---
+const title = "IUP in Management | Universitas Jember";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* HERO */
+    .hero {
+      background:
+        linear-gradient(135deg, rgba(13,110,253,.9), rgba(8,66,152,.9)),
+        url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+    }
+
+    /* CARDS */
+    .card-soft {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,.06);
+    }
+
+    /* LOGO GRID */
+    .logo-grid img {
+      max-height: 60px;
+      filter: grayscale(100%);
+      opacity: .7;
+      transition: all .3s ease;
+    }
+
+    .logo-grid img:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* BADGE */
+    .badge-soft {
+      background: rgba(13,110,253,.1);
+      color: #0d6efd;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero text-center">
+  <div class="container">
+    <span class="badge badge-soft mb-3">International Undergraduate Program</span>
+    <h1 class="fw-bold display-5 mt-3">
+      IUP in Management
+    </h1>
+    <h5 class="fw-light mb-4">
+      Faculty of Economics and Business – Universitas Jember
+    </h5>
+
+    <p class="lead mx-auto" style="max-width: 900px;">
+      A four-year English-taught Bachelor of Management program combining a
+      nationally and FIBAA-accredited curriculum with a flagship concentration
+      in International Business, preparing graduates for sustainable and
+      globally connected business environments.
+    </p>
+
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <a href="#about" class="btn btn-light btn-lg px-4">Explore Program</a>
+      <a href="https://pmb.unej.ac.id" target="_blank"
+         class="btn btn-outline-light btn-lg px-4">
+        Apply via PMB
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-4">About the Program</h2>
+        <p>
+          The International Undergraduate Program (IUP) in Management offers a
+          Bachelor of Management (Sarjana Manajemen – S.M.) fully delivered in
+          English. The curriculum consists of 145 credits over 8 semesters,
+          emphasizing sustainability, agro-industry context, and international
+          business practices.
+        </p>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card card-soft p-4">
+          <ul class="list-unstyled mb-0">
+            <li><strong>Degree</strong>: Sarjana Manajemen (S.M.)</li>
+            <li><strong>Duration</strong>: 4 Years (8 Semesters)</li>
+            <li><strong>Language</strong>: English</li>
+            <li><strong>Flagship</strong>: International Business</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IUP -->
+<section class="bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">Why Choose IUP in Management?</h2>
+
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-soft h-100 p-4">
+          English-medium instruction from the first semester with an
+          internationally aligned curriculum.
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-soft h-100 p-4">
+          Flagship concentration in International Business with global case
+          studies.
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card card-soft h-100 p-4">
+          Small interactive classes with case-based and project-based learning.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER UNIVERSITIES -->
+<section>
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">
+      International Partner Universities
+    </h2>
+
+    <div class="row text-center logo-grid g-4 align-items-center">
+      <!-- Australia -->
+      <div class="col-6 col-md-3">
+        <img src="https://d1vcqlflm6aitx.cloudfront.net/images/original/1708661170-uwalogo.jpg" alt="UWA">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Curtin_University_Crest.jpg" alt="Curtin University">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/ce/Murdoch_University_Crest.png" alt="Murdoch University">
+      </div>
+
+      <!-- Asia -->
+      <div class="col-6 col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Taiwan_Tech_logo.png" alt="NTUST Taiwan">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/id/5/56/UM_logo.gif" alt="Universiti Malaya">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://www.unimas.my/images/logo/Identiti-Visual-UNIMAS.png" alt="UNIMAS">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://upload.wikimedia.org/wikipedia/en/a/af/Universiti_Brunei_Darussalam_logo.svg" alt="UBD">
+      </div>
+      <div class="col-6 col-md-3">
+        <img src="https://www.eng.rmutt.ac.th/wp-content/uploads/2017/10/Logo-RMUTT-eng.gif" alt="RMUT">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-light">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">Frequently Asked Questions</h2>
+
+    <div class="accordion accordion-flush mx-auto" style="max-width: 900px;" id="faq">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
+            What makes IUP different from the regular program?
+          </button>
+        </h2>
+        <div id="q1" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            IUP is taught in English, offers smaller interactive classes, and
+            provides structured international exposure opportunities.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+            Do I need perfect English?
+          </button>
+        </h2>
+        <div id="q2" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            No. Applicants must meet the minimum English requirement but are not
+            required to have perfect English.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Contact</h2>
+    <p class="mb-1"><strong>IUP in Management Office</strong></p>
+    <p>
+      Faculty of Economics and Business – Universitas Jember<br />
+      Jalan Kalimantan 37, Jember 68121, Indonesia
+    </p>
+    <p>
+      Email:
+      <a href="mailto:iup.management@unej.ac.id">
+        iup.management@unej.ac.id
+      </a>
+    </p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
