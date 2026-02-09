@@ -1,0 +1,41 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  mediaPosition?: "left" | "right";
+}
+
+const { mediaPosition = "left", class: className, ...attrs } = Astro.props;
+
+const isRight = mediaPosition === "right";
+---
+
+<div class:list={["container", className]} {...attrs}>
+  <div class="row align-items-center justify-content-center">
+    <!-- MEDIA -->
+    <div
+      class:list={[
+        "col-lg-6 md-mb-50px position-relative",
+        // mobile: always first
+        "order-1",
+        // ≥ lg: conditional
+        isRight ? "order-lg-2" : "order-lg-1",
+      ]}
+    >
+      <slot name="media" />
+    </div>
+
+    <!-- CONTENT -->
+    <div
+      class:list={[
+        "col-xl-5 offset-xl-1 col-lg-6",
+        // mobile: always second
+        "order-2",
+        // ≥ lg: conditional
+        isRight ? "order-lg-1" : "order-lg-2",
+      ]}
+    >
+      <slot />
+    </div>
+  </div>
+</div>

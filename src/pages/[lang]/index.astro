@@ -18,6 +18,8 @@ import ModulesHomeSlider from "@components/modules/home/slider/corporation/conta
 import ModulesHomePreviewGallery from "@components/modules/home/previewGallery.astro";
 import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
 import Layout from "@layouts/main.astro";
+import PreviewCollab from "@/components/modules/home/previewCollab.astro";
+import PreviewAppService from "@/components/modules/home/previewAppService.astro";
 
 const t = useI18n(wordsJson, getLocale(Astro));
 
@@ -160,14 +162,16 @@ const tPages = useI18n(
       </div>
     </div>
   </section>
-  <ModulesHomePreviewNews />
   <ModulesHomePreviewProfile />
-  <ModulesHomePreviewAccreditation />
-  <ModulesHomePreviewProdi />
   <ModulesHomePreviewVimi />
+  <ModulesHomePreviewProdi />
+  <ModulesHomePreviewLeadership />
+  <ModulesHomePreviewAccreditation />
+  <PreviewCollab />
+  <PreviewAppService />
+  <ModulesHomePreviewNews />
   <ModulesHomePreviewGallery />
   <ModulesHomePreviewRegistration />
-  <ModulesHomePreviewLeadership />
   <ModulesHomePreviewContact />
 
   <Fragment slot="script-plugin">

@@ -1,0 +1,68 @@
+---
+import PageSection from "@/components/widgets/pageSection.astro";
+
+const items = [
+  {
+    id: "simfeb",
+    title: "SIMFEB",
+    url: "https://www2.feb.unej.ac.id/login/login_form",
+    image: "https://www2.feb.unej.ac.id/assets/temabiru/img/simfebico.webp",
+    description:
+      "Faculty of Economics and Business internal integrated information service system",
+  },
+  {
+    id: "sister",
+    title: "SISTER",
+    url: "https://siakad.unej.ac.id",
+    image: "https://www2.feb.unej.ac.id/assets/temabiru/img/sisterlogoico.webp",
+    description: "University of Jember integrated information service system",
+  },
+  {
+    id: "uc3",
+    title: "UC3",
+    url: "https://uc3.unej.ac.id/",
+    image: "https://www2.feb.unej.ac.id/assets/temabiru/img/uc3logoico.webp",
+    description:
+      "Complaint service system for academic community complaints at the University of Jember",
+  },
+  {
+    id: "e-library",
+    title: "E-Library",
+    url: "https://oailib.unej.ac.id/",
+    image:
+      "https://www2.feb.unej.ac.id/assets/temabiru/img/logoheaderoailib.webp",
+    description: "University of Jember electronic library service system",
+  },
+];
+---
+
+<PageSection title="Application Services">
+  <div class="container position-relative z-index-1">
+    <div
+      class="row row-cols-1 row-cols-lg-3 row-cols-md-2 justify-content-center mb-3"
+      data-anime='{ "el": "childs", "translateX": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+    >
+      {
+        items.map((item, i) => (
+          <div class="col icon-with-text-style-04 transition-inner-all mb-30px">
+            <div
+              class="feature-box text-start justify-content-start h-100 border-radius-6px p-16 lg-p-10"
+              style="background-color: #F2FBF9;"
+            >
+              <div class="feature-box-icon mb-25px">
+                <img src={item.image} alt={item.title} />
+              </div>
+
+              <div class="feature-box-content last-paragraph-no-margin">
+                <span class="d-inline-block text-dark-gray fw-600 fs-20 alt-font mb-5px">
+                  {item.title}
+                </span>
+                <p>{item.description}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div></PageSection
+>
