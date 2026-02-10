@@ -1,20 +1,17 @@
 ---
-import type {
-  NewsItem,
-  PaginatedResponse,
-} from "@/components/modules/home/previewNews.interface";
 import { getLocale, useI18n } from "@/i18n/i18n";
+import { newsService } from "@/services/news.service";
 import ModulesNewsCard from "@components/modules/news/card.astro";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import WidgetsPagination from "@components/widgets/pagination.astro";
 import Layout from "@layouts/main.astro";
-import axios from "axios";
+import ContentContainer from "@components/widgets/contentContainer.astro";
 
-const items = Array.from({ length: 10 }).map((_, i) => i + 1);
+// const items = Array.from({ length: 10 }).map((_, i) => i + 1);
 
 const page = Number(Astro.url.searchParams.get("page") ?? 1);
-const limit = 10;
-const totalItem = 100;
+// const limit = 10;
+// const totalItem = 100;
 
 const t = useI18n(
   {
@@ -30,15 +27,17 @@ const t = useI18n(
   getLocale(Astro),
 );
 
-const { data } = await axios.get<PaginatedResponse<NewsItem>>(
-  "https://be.feb.unej.ac.id/api/berita/",
-);
+const nsGetNews = await newsService.getNews({ page });
+
+const data = nsGetNews?.data;
 ---
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
   <section id="down-section">
     <div class="container">
+      {
+        data &&
       <div class="row">
         <div class="col-12 px-0">
           <ul
@@ -47,13 +46,13 @@ const { data } = await axios.get<PaginatedResponse<NewsItem>>(
             <li class="grid-sizer"></li>
 
             {
-              data.results.map((value) => (
+              data.results.map((news) => (
                 <li class="grid-item">
                   <ModulesNewsCard
-                    date={value.tanggal}
-                    title={value.judul}
-                    newsType={value.kategori.nama}
-                    image={value.gambar_unggulan}
+                    date={news.tanggal}
+                    title={news.judul}
+                    newsType={news.kategori.nama}
+                    image={news.gambar_unggulan}
                   />
                 </li>
               ))
@@ -66,12 +65,22 @@ const { data } = await axios.get<PaginatedResponse<NewsItem>>(
         <div class="col-12 mt-2 d-flex justify-content-center">
           <WidgetsPagination
             currentPage={page}
-            perPage={limit}
-            total={totalItem}
+            perPage={data.results.length}
+            total={data.count}
             basePath={`/${getLocale(Astro)}/news`}
           />
         </div>
       </div>
+      }
+      {
+        !data && (
+          <div class="row">
+            <div class="col-12">
+              <ContentContainer/>
+            </div>
+          </div>
+        )
+      }
     </div>
   </section>
 </Layout>

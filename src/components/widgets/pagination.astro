@@ -51,7 +51,10 @@ const link = (p: number) => `${basePath}?page=${p}`;
   {
     pages.map((p) => (
       <li class={`page-item ${p === currentPage ? "active" : ""}`}>
-        <a class="page-link" href={link(p)}>
+        <a
+          class="page-link"
+          href={p === currentPage ? "javascript:void(0)" : link(p)}
+        >
           {p}
         </a>
       </li>
