@@ -5,13 +5,9 @@ import ModulesNewsCard from "@components/modules/news/card.astro";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import WidgetsPagination from "@components/widgets/pagination.astro";
 import Layout from "@layouts/main.astro";
-import ContentContainer from "@components/widgets/contentContainer.astro";
 
-// const items = Array.from({ length: 10 }).map((_, i) => i + 1);
-
+const locale = getLocale(Astro);
 const page = Number(Astro.url.searchParams.get("page") ?? 1);
-// const limit = 10;
-// const totalItem = 100;
 
 const t = useI18n(
   {
@@ -24,20 +20,20 @@ const t = useI18n(
       title: "Berita",
     },
   },
-  getLocale(Astro),
+  locale,
 );
 
 const nsGetNews = await newsService.getNews({ page });
-
 const data = nsGetNews?.data;
+if (!data) {
+  return Astro.rewrite("/404");
+}
 ---
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
   <section id="down-section">
     <div class="container">
-      {
-        data &&
       <div class="row">
         <div class="col-12 px-0">
           <ul
@@ -72,16 +68,6 @@ const data = nsGetNews?.data;
           />
         </div>
       </div>
-      }
-      {
-        !data && (
-          <div class="row">
-            <div class="col-12">
-              <ContentContainer/>
-            </div>
-          </div>
-        )
-      }
     </div>
   </section>
 </Layout>

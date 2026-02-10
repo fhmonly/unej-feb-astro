@@ -26,7 +26,7 @@ const t = useI18n(
 const newsId = Astro.params.id;
 const newsDetail = await newsService.getNewsDetail(newsId);
 if (!newsDetail) {
-  return Astro.redirect(`/${locale}/404`);
+  return Astro.rewrite("/404");
 }
 const defaultImgBanner =
   "https://thumbs.dreamstime.com/z/newspaper-template-print-design-layout-cover-headline-finance-articles-place-text-vector-article-press-information-145461272.jpg";
