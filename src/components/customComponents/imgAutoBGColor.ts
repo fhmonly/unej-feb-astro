@@ -32,10 +32,9 @@ class AutoBGColor extends HTMLImageElement {
         this.addEventListener("load", this.onLoad);
         this.addEventListener("error", this.onError);
 
-        if (this.complete && this.naturalWidth > 0) {
-            this.applyBg();
-        } else {
-            this.src = this.fallbackImg
+        if (this.complete) {
+            if (this.naturalWidth > 0) this.applyBg();
+            else this.src = this.fallbackImg
         }
     }
 

@@ -1,11 +1,12 @@
 ---
+import { teachingStaffService } from "@/services/teachingStaff.service";
 import { getLocale, useI18n } from "@i18n/i18n";
 import Layout from "@layouts/main.astro";
 
 const teachingStaffJson = {
   en: {
     pageTitle: "Teaching Staff Detail",
-    ein: "Employee Identification Number",
+    nip: "NIP",
     name: "Name",
     email: "Email",
     academic_level: "Academic Level",
@@ -17,7 +18,7 @@ const teachingStaffJson = {
   },
   id: {
     pageTitle: "Detail Staf Pengajar",
-    ein: "Nomor Identifikasi Karyawan",
+    nip: "NIP",
     name: "Nama",
     email: "Email",
     academic_level: "Jenjang Akademik",
@@ -29,6 +30,11 @@ const teachingStaffJson = {
   },
 };
 const t = useI18n(teachingStaffJson, getLocale(Astro));
+
+const staffId = Astro.params.id;
+const tssGetDetailStaff = await teachingStaffService.getStaffDetail(staffId);
+const staffDetail = tssGetDetailStaff?.data;
+if (!staffDetail) return Astro.rewrite("/404");
 ---
 
 <Layout title={null}>
@@ -43,7 +49,7 @@ const t = useI18n(teachingStaffJson, getLocale(Astro));
         <div class="row">
           <div class="col-sm-3">
             <img
-              src="https://wallpapercat.com/w/full/e/b/2/2257711-1365x2048-samsung-hd-niki-singer-background-image.jpg"
+              src={staffDetail.foto}
               class="img-thumbnail"
               alt="Responsive image"
             />
@@ -52,19 +58,31 @@ const t = useI18n(teachingStaffJson, getLocale(Astro));
             <table>
               <tbody>
                 <tr>
-                  <td>{t.ein}</td>
+                  <td>{t.nip}</td>
                   <td>&nbsp; : &nbsp;</td>
-                  <td>196107291986032001</td>
+                  <td>{staffDetail.nip}</td>
                 </tr>
                 <tr>
                   <td>{t.name}</td>
                   <td>&nbsp; : &nbsp;</td>
-                  <td>Prof. Dr. Diah Yulisetiarini, Dra. M.Si.</td>
+                  <td>
+                    {
+                      staffDetail.gelar_depan && (
+                        <span>{staffDetail.gelar_depan}</span>
+                      )
+                    }
+                    {staffDetail.nama}
+                    {
+                      staffDetail.gelar_belakang && (
+                        <span>{staffDetail.gelar_belakang}</span>
+                      )
+                    }
+                  </td>
                 </tr>
                 <tr>
                   <td>{t.email}</td>
                   <td>&nbsp; : &nbsp;</td>
-                  <td>diahyuli@unej.ac.id</td>
+                  <td>{staffDetail.email}</td>
                 </tr>
                 <tr>
                   <td>{t.academic_level}</td>
