@@ -3,6 +3,7 @@ import ContentContainer from "@/components/widgets/contentContainer.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
+import { studyProgramService } from "@/services/studyProgram.service";
 import NewsCard from "@components/modules/news/card.astro";
 import PillDivider from "@components/widgets/pillDivider.astro";
 import Layout from "@layouts/prodi.astro";
@@ -55,6 +56,9 @@ const pageJson = {
     curriculum: "Kurikulum",
   },
 };
+
+const spsProgramById = await studyProgramService.getStudyProgramById(4);
+const studyProgram = spsProgramById?.data;
 
 const visionMissionJson = {
   en: {
@@ -145,32 +149,11 @@ import "dayjs/locale/id";
 dayjs.locale(locale);
 const accreditation = [
   {
-    accredited: "Unggul",
+    accredited: studyProgram?.akreditasi,
     accreditationBoard: "BAN-PT",
     start: "2024-04-16",
     end: "2025-11-17",
     file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20240418145740.png",
-  },
-  {
-    accredited: "A",
-    accreditationBoard: "BAN-PT",
-    start: "2020-11-17",
-    end: "2025-11-17",
-    file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20240320130435.png",
-  },
-  {
-    accredited: "B",
-    accreditationBoard: "BAN-PT",
-    start: "2015-05-30",
-    end: "2020-05-30",
-    file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20240320130342.pdf",
-  },
-  {
-    accredited: "TERAKREDITASI",
-    accreditationBoard: "DIRJEN PENDIDIKAN",
-    start: "1990-11-01",
-    end: "1995-11-01",
-    file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20250318082015.pdf",
   },
 ];
 
@@ -461,7 +444,6 @@ const accreditationList = accreditation.map((item) => {
                   newsType="Achievement News"
                   title="Congrats!!"
                   image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                  id={`congrats-${i}`}
                 />
               </li>
             ))

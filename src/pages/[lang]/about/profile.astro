@@ -2,6 +2,7 @@
 import PageSection from "@/components/widgets/pageSection.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
+import { febProfileService } from "@/services/febProfile.service";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
 
@@ -208,6 +209,9 @@ const t = useI18n(
   },
   getLocale(Astro),
 ).aboutPage;
+
+const fpsGetProfile = await febProfileService.getProfile();
+const febProfile = fpsGetProfile?.data;
 ---
 
 <Layout title={t.title}>
