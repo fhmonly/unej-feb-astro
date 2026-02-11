@@ -1,0 +1,148 @@
+---
+import { lecturesService } from "@/services/lectures.service";
+import { getLocale, useI18n } from "@i18n/i18n";
+import Layout from "@layouts/main.astro";
+
+const teachingStaffJson = {
+  en: {
+    pageTitle: "Teaching Staff Detail",
+    nip: "NIP",
+    name: "Name",
+    email: "Email",
+    academic_level: "Academic Level",
+    research_interests: "Research Interests",
+    id_sinta: "Sinta ID",
+    id_scopus: "Scopus ID",
+    cv: "Curriculum Vitae",
+    wos: "Web of Science",
+  },
+  id: {
+    pageTitle: "Detail Staf Pengajar",
+    nip: "NIP",
+    name: "Nama",
+    email: "Email",
+    academic_level: "Jenjang Akademik",
+    research_interests: "Bidang Penelitian",
+    id_sinta: "ID Sinta",
+    id_scopus: "ID Scopus",
+    cv: "Curriculum Vitae",
+    wos: "Web of Science",
+  },
+};
+const t = useI18n(teachingStaffJson, getLocale(Astro));
+
+const staffId = Astro.params.id;
+const lsGetDetailLecture = await lecturesService.getLectureDetail(staffId);
+const lectureDetail = lsGetDetailLecture?.data;
+if (!lectureDetail) return Astro.rewrite("/404");
+---
+
+<Layout title={null}>
+  <section id="Content">
+    <div class="container title-content">
+      <div data-aos="zoom-out">
+        <h1 class="mt-3 text-center">
+          <span>{t.pageTitle}</span>
+        </h1>
+        <br /><br />
+
+        <div class="row">
+          <div class="col-sm-3">
+            <img
+              src={lectureDetail.foto}
+              class="img-thumbnail"
+              alt="Responsive image"
+            />
+          </div>
+          <div class="col-sm-9">
+            <table>
+              <tbody>
+                <tr>
+                  <td>{t.nip}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>{lectureDetail.nip}</td>
+                </tr>
+                <tr>
+                  <td>{t.name}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>
+                    {
+                      lectureDetail.gelar_depan && (
+                        <span>{lectureDetail.gelar_depan}</span>
+                      )
+                    }
+                    {lectureDetail.nama}
+                    {
+                      lectureDetail.gelar_belakang && (
+                        <span>{lectureDetail.gelar_belakang}</span>
+                      )
+                    }
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t.email}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>{lectureDetail.email}</td>
+                </tr>
+                <tr>
+                  <td>{t.academic_level}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>Professor</td>
+                </tr>
+                <tr>
+                  <td class="text-nowrap">{t.research_interests}</td>
+                  <td class="text-nowrap">&nbsp; : &nbsp;</td>
+                  <td class="text-nowrap">
+                    Creative Industry Business Management Study
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t.id_sinta}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>
+                    <a
+                      href="https://sinta.kemdikbud.go.id/authors/profile/ 6009161"
+                      target="_blank"
+                    >
+                      6009161</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>{t.id_scopus}</td>
+                  <td>&nbsp; : &nbsp;</td>
+                  <td>
+                    <a
+                      href="https://orcid.org/0000-0002-8395-0620"
+                      target="_blank">0000-0002-8395-0620</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>&nbsp; &nbsp;</td>
+                  <td>
+                    <a
+                      href="https://drive.google.com/file/d/1IiwnpUFvm0UxH8c10Zx7zXA6-v7efit0/view?usp=sharing"
+                      target="_blank">{t.cv}</a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>&nbsp; &nbsp;</td>
+                  <td>
+                    <a
+                      href="https://www.webofscience.com/wos/author/record/HKV-4324-2023"
+                      target="_blank">{t.wos}</a
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

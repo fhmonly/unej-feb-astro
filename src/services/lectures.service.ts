@@ -28,4 +28,12 @@ export const lecturesService = {
             return null;
         }
     },
+    async getLectureDetail(id?: string) {
+        try {
+            if (!id) return null
+            return await http.get<IDosen>(`/dosen/${id}`);
+        } catch (error) {
+            return null
+        }
+    }
 };

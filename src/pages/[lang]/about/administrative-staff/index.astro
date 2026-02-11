@@ -6,6 +6,7 @@ import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
 import axios from "axios";
 
+const locale = getLocale(Astro);
 const messages = {
   en: {
     pageTitle: "Administrative Staff",
@@ -146,7 +147,7 @@ if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
                   </a>
                 </div>
                 <a
-                  href="demo-real-estate-agent-details.html"
+                  href={`/${locale}/about/administrative-staff/${data.id}`}
                   class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
                 >
                   {data.gelar_depan && <span>{data.gelar_depan}</span>}
