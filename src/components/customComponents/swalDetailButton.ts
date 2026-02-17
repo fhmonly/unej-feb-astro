@@ -24,17 +24,23 @@ export type StaffData = {
 
 function fillStaffTemplate(templateHtml: string, data: StaffData): string {
     let result = templateHtml;
+    const keysInTemplate = [...result.matchAll(/\[\[(.*?)\]\]/g)].map(m => m[1])
+    // cari value dari data sumber
+    keysInTemplate.forEach((v) => {
+        let key = v
+        const keyHasDefaultValue = key.includes("=")
+        let keyDefaultValue = "-"
 
-    // iterate hanya key yang ada pada StaffData
-    (Object.keys(data) as (keyof StaffData)[]).forEach((key) => {
-        const token = `[${key}]`;
-        const value = String(data[key] ?? "").trim();
-        if (value) {
-            result = result.replaceAll(token, value);
+        if (keyHasDefaultValue) {
+            [key, keyDefaultValue] = key.split("=")
         }
-    });
 
-    result = result.replace(/\[[^\]]+\]/g, "-");
+        const hasValueFromData = Object.keys(data).includes(key)
+        const value = hasValueFromData ? data[key as keyof StaffData] || keyDefaultValue : keyDefaultValue
+
+        result = result.replaceAll(`[[${v}]]`, value)
+    })
+
     return result;
 }
 

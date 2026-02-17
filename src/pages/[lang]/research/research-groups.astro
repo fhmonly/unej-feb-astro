@@ -1,6 +1,8 @@
 ---
+import ContentContainer from "@/components/widgets/contentContainer.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
+import { researchGroupService } from "@/services/researchGroup.service";
 import Layout from "@layouts/main.astro";
 
 const t = useI18n(
@@ -17,7 +19,8 @@ const t = useI18n(
   getLocale(Astro),
 );
 
-const items = Array.from({ length: 10 });
+const rgsGetResearchGroups = await researchGroupService.getResearchGroups();
+const items = rgsGetResearchGroups?.data;
 ---
 
 <Layout title={t.pageTitle}>
@@ -33,32 +36,29 @@ const items = Array.from({ length: 10 });
           </h3>
         </div>
       </div>
+      {
+        !!items?.length && (
+          <div class="row row-cols-1 row-cols-lg-4 row-cols-md-4 row-cols-sm-2 gap-3">
+            {items.map((v) => (
+              <div class="bg-white box-shadow-quadruple-large border-radius-4px overflow-hidden">
+                <div class="p-40px lg-p-30px">
+                  <span class="fs-24 alt-font text-dark-gray fw-700 d-block mb-2">
+                    {v.nama}
+                  </span>
+                  <p>{v.deskripsi}</p>
+                </div>
 
-      <div
-        class="row row-cols-1 row-cols-lg-4 row-cols-md-4 row-cols-sm-2 gap-3"
-      >
-        {
-          items.map(() => (
-            <div class="bg-white box-shadow-quadruple-large border-radius-4px overflow-hidden">
-              <div class="p-40px lg-p-30px">
-                <span class="fs-24 alt-font text-dark-gray fw-700 d-block mb-2">
-                  Group name
-                </span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-                  eiusmod tempor incididunt.
-                </p>
+                <div class="bg-dark-gray p-15px text-center">
+                  <a href="#" class="text-white fw-500">
+                    {v.links}
+                  </a>
+                </div>
               </div>
-
-              <div class="bg-dark-gray p-15px text-center">
-                <a href="#" class="text-white fw-500">
-                  Roadmap
-                </a>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+            ))}
+          </div>
+        )
+      }
+      {!items?.length && <ContentContainer />}
     </div>
   </section>
 </Layout>

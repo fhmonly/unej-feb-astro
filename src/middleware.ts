@@ -12,18 +12,32 @@ function hasLocale(pathname: string) {
     return LOCALE_REGEX.test(pathname);
 }
 
+// export const onRequest = defineMiddleware(({ url, request }, next) => {
+//     const { pathname } = url;
+
+//     if (isAsset(pathname)) return next();
+
+//     if (hasLocale(pathname)) return next();
+
+//     const newUrl = new URL(`/${DEFAULT_LOCALE}${pathname}`, request.url);
+
+//     return next(new Request(newUrl, {
+//         headers: {
+//             "x-redirect-to": pathname,
+//         },
+//     }))
+// });
+
 export const onRequest = defineMiddleware(({ url, request }, next) => {
     const { pathname } = url;
 
     if (isAsset(pathname)) return next();
-
     if (hasLocale(pathname)) return next();
 
-    const newUrl = new URL(`/${DEFAULT_LOCALE}${pathname}`, request.url);
+    const newUrl = new URL(request.url);
+    newUrl.pathname = `/${DEFAULT_LOCALE}${pathname}`;
 
     return next(new Request(newUrl, {
-        headers: {
-            "x-redirect-to": pathname,
-        },
-    }))
+        headers: request.headers,
+    }));
 });

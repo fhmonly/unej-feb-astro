@@ -1,0 +1,26 @@
+---
+import MediaSplitContent from "@/components/widgets/mediaSplitContent.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
+---
+
+<PageSection title="Collaboration">
+  {
+    Array.from({ length: 4 }).map((_, i) => (
+      <MediaSplitContent
+        mediaPosition={i % 2 === 0 ? "left" : "right"}
+        class="pb-5"
+      >
+        <div slot="media">
+          <img
+            src="https://placehold.co/400x400?text=Collaboration%20Image"
+            alt=""
+            class="border-radius-6px w-100"
+          />
+        </div>
+        <div>
+          <h4 class="alt-font fw-600 lh-35px mb-15px">Collaboration</h4>
+        </div>
+      </MediaSplitContent>
+    ))
+  }
+</PageSection>

@@ -1,0 +1,102 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import { newsService } from "@/services/news.service";
+import Layout from "@layouts/main.astro";
+import dayjs from "dayjs";
+import "dayjs/locale/en";
+import "dayjs/locale/id";
+
+const locale = getLocale(Astro);
+dayjs.locale(locale);
+
+const t = useI18n(
+  {
+    en: {
+      pageTitle: "News",
+      title: "News",
+    },
+    id: {
+      pageTitle: "Berita",
+      title: "Berita",
+    },
+  },
+  locale,
+);
+
+const newsId = Astro.params.id;
+const newsDetail = await newsService.getNewsDetail(newsId);
+if (!newsDetail) {
+  return Astro.rewrite("/404");
+}
+const defaultImgBanner =
+  "https://thumbs.dreamstime.com/z/newspaper-template-print-design-layout-cover-headline-finance-articles-place-text-vector-article-press-information-145461272.jpg";
+---
+
+<Layout title={t.pageTitle}>
+  <section
+    class="one-fourth-screen bg-dark-gray ipad-top-space-margin sm-mb-50px"
+    data-parallax-background-ratio="0.5"
+    style={`background-image:url(${newsDetail?.data.gambar_unggulan || defaultImgBanner}); max-height: 80vh !important;`}
+  >
+  </section>
+
+  <section class="p-0">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 overlap-section text-center">
+          <div class="p-10 box-shadow-extra-large border-radius-4px bg-white">
+            <a
+              href="#"
+              class="bg-solitude-blue text-uppercase fs-13 ps-25px pe-25px alt-font fw-500 text-base-color lh-40 border-radius-100px d-inline-block mb-3"
+            >
+              {newsDetail?.data.kategori.nama}
+            </a>
+
+            <h3 class="alt-font text-dark-gray fw-600 mb-15px">
+              {newsDetail?.data.judul}
+            </h3>
+
+            <div>
+              <a href="#" class="text-dark-gray"
+                >{
+                  dayjs(newsDetail?.data.tanggal)
+                    .locale(locale)
+                    .format("DD MMMM YYYY")
+                }</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" set:html={newsDetail?.data.konten} />
+  </section>
+  <!-- <section class="bg-solitude-blue position-relative sm-pb-20px">
+    <div class="container">
+      <div class="row justify-content-center mb-1">
+        <div class="col-lg-7 text-center">
+          <span
+            class="bg-white text-uppercase fs-13 fw-600 px-4 py-2 rounded-pill"
+          >
+          </span>
+
+          <h3 class="alt-font text-dark-gray fw-600 mt-3">Related posts</h3>
+        </div>
+      </div>
+
+      <ul class="grid grid-4col gutter-double-extra-large">
+        <li class="grid-item">
+          <a href="/news/slug">
+            <img src="https://placehold.co/800x570" alt="" />
+          </a>
+          <a href="/news/slug" class="fw-500 text-dark-gray d-block mt-3">
+            The best way to predict the future is to create it
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section> -->
+</Layout>

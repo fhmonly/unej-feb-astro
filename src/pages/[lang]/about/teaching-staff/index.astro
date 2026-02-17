@@ -1,9 +1,12 @@
 ---
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
+import { teachingStaffService } from "@/services/teachingStaff.service";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
 import axios from "axios";
+
+const locale = getLocale(Astro);
 
 const messages = {
   en: {
@@ -66,40 +69,10 @@ const messages = {
 const t = useI18n(messages, getLocale(Astro));
 const tWords = useI18n(wordsJson, getLocale(Astro));
 
-const api = axios.create({
-  baseURL: "https://simfeb.feb.unej.ac.id/api/public",
-  headers: {
-    "x-api-key": "!!b@pH0m3t*00",
-  },
-  timeout: 15000,
-});
-
-export type StaffData = {
-  id: string;
-  nama: string;
-  nama_gelar: string;
-  nomor_pegawai: string;
-  nidn: string;
-  nuptk: string;
-  email: string;
-  bidang_ilmu: string;
-  jenis_kelamin: string;
-  homebase_fakultas: string;
-  homebase_prodi: string;
-  status_pegawai: string;
-  jabatan_fungsional: string;
-  status_kerja: string;
-  penugasan_fakultas: string;
-  penugasan_prodi: string;
-  pangkat_golongan: string;
-  pendidikan: string;
-};
-
-const getTendik = () => api.get<StaffData[]>("/tendik");
-
-const tendikRes = await getTendik();
-const tendik = tendikRes.data;
-console.log(tendik);
+const tssGetStaff = await teachingStaffService.getStaff();
+const teachingStaffs = tssGetStaff?.data;
+if (!teachingStaffs || teachingStaffs.length === 0)
+  return Astro.rewrite("/404");
 ---
 
 <Layout title={t.pageTitle}>
@@ -129,34 +102,39 @@ console.log(tendik);
         data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
       >
         {
-          tendik.map((data, index) => (
+          teachingStaffs.map((data, index) => (
             <div class="col team-style-06 mb-30px">
               <div class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative">
                 <div class="position-relative">
                   <a
-                    href="demo-real-estate-agent-details.html"
+                    href={data.foto}
+                    target="_blank"
                     class="d-inline-block position-relative"
                   >
                     <img
-                      class="rounded-circle w-150px h-150px mb-20px"
-                      src="https://placehold.co/150x150"
+                      class="mb-20px"
+                      src={data.foto}
                       alt=""
                       is="auto-bg-color"
                       width="150"
-                      height="150"
+                      height="199"
                       loading="lazy"
+                      data-bgcolor="#F2F1EF"
+                      data-bgmode="fixed"
                       style=" object-fit: cover;"
                     />
                   </a>
                 </div>
 
                 <a
-                  href="demo-real-estate-agent-details.html"
+                  href={`/${locale}/about/teaching-staff/${data.id}`}
                   class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
                 >
+                  {data.gelar_depan && <span>{data.gelar_depan}</span>}
                   {data.nama}
+                  {data.gelar_belakang && <span>{data.gelar_belakang}</span>}
                 </a>
-                <p class="w-90 mx-auto lh-28">{data.nomor_pegawai}</p>
+                <p class="w-90 mx-auto lh-28">{data.nip}</p>
                 <div class="text-center elements-social social-icon-style-02 border-top border-color-light-medium-gray w-100 pt-15px">
                   <ul class="small-icon dark">
                     <li>
@@ -188,13 +166,14 @@ console.log(tendik);
           <div class="card shadow-sm mb-4">
             <div class="card-header bg-primary text-white">
               <h4 class="mb-0">
-                <i class="bi bi-person-circle me-2"></i>[nama_gelar]
+                <i class="bi bi-person-circle me-2"></i>
+                [[gelar_depan=]] [[nama]] [[gelar_belakang=]]
               </h4>
             </div>
             <div class="card-body">
               <p class="mb-0">
                 <i class="bi bi-envelope me-2"></i>
-                <a href="mailto:[email]">[email]</a>
+                <a href="mailto:[[email]]">[[email]]</a>
               </p>
             </div>
           </div>
@@ -208,28 +187,30 @@ console.log(tendik);
               <div class="row g-3">
                 <div class="col-12">
                   <div class="info-label">{t.name}</div>
-                  <div class="info-value">[nama]</div>
+                  <div class="info-value">
+                    [[gelar_depan=]] [[nama]] [[gelar_belakang=]]
+                  </div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.employee_number}</div>
-                  <div class="info-value">[nomor_pegawai]</div>
+                  <div class="info-value">[[nip]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.nidn}</div>
-                  <div class="info-value">[nidn]</div>
+                  <div class="info-value">[[nidn]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.nuptk}</div>
-                  <div class="info-value">[nuptk]</div>
+                  <div class="info-value">[[nuptk]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.gender}</div>
-                  <div class="info-value">[jenis_kelamin]</div>
+                  <div class="info-value">[[jenis_kelamin]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.email}</div>
                   <div class="info-value">
-                    <a href="mailto:[email]">[email]</a>
+                    <a href="mailto:[[email]]">[[email]]</a>
                   </div>
                 </div>
               </div>
@@ -245,19 +226,19 @@ console.log(tendik);
               <div class="row g-3">
                 <div class="col-12">
                   <div class="info-label">{t.field_of_study}</div>
-                  <div class="info-value">[bidang_ilmu]</div>
+                  <div class="info-value">[[bidang_ilmu]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.education}</div>
-                  <div class="info-value">[pendidikan]</div>
+                  <div class="info-value">[[pendidikan]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.homebase_faculty}</div>
-                  <div class="info-value">[homebase_fakultas]</div>
+                  <div class="info-value">[[homebase_fakultas]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.homebase_study_program}</div>
-                  <div class="info-value">[homebase_prodi]</div>
+                  <div class="info-value">[[homebase_prodi]]</div>
                 </div>
               </div>
             </div>
@@ -272,19 +253,19 @@ console.log(tendik);
               <div class="row g-3">
                 <div class="col-12">
                   <div class="info-label">{t.employment_status}</div>
-                  <div class="info-value">[status_pegawai]</div>
+                  <div class="info-value">[[status_pegawai]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.functional_position}</div>
-                  <div class="info-value">[jabatan_fungsional]</div>
+                  <div class="info-value">[[jabatan_fungsional]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.work_status}</div>
-                  <div class="info-value">[status_kerja]</div>
+                  <div class="info-value">[[status_kerja]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.rank_grade}</div>
-                  <div class="info-value">[pangkat_golongan]</div>
+                  <div class="info-value">[[pangkat_golongan]]</div>
                 </div>
               </div>
             </div>
@@ -299,11 +280,11 @@ console.log(tendik);
               <div class="row g-3">
                 <div class="col-12">
                   <div class="info-label">{t.assignment_faculty}</div>
-                  <div class="info-value">[penugasan_fakultas]</div>
+                  <div class="info-value">[[penugasan_fakultas]]</div>
                 </div>
                 <div class="col-12">
                   <div class="info-label">{t.assignment_study_program}</div>
-                  <div class="info-value">[penugasan_prodi]</div>
+                  <div class="info-value">[[penugasan_prodi]]</div>
                 </div>
               </div>
             </div>

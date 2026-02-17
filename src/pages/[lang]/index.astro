@@ -18,6 +18,10 @@ import ModulesHomeSlider from "@components/modules/home/slider/corporation/conta
 import ModulesHomePreviewGallery from "@components/modules/home/previewGallery.astro";
 import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
 import Layout from "@layouts/main.astro";
+import PreviewCollab from "@/components/modules/home/previewCollab.astro";
+import PreviewAppService from "@/components/modules/home/previewAppService.astro";
+import HomePreviewIntro from "@/components/modules/home/homePreviewIntro.astro";
+import HomePreviewProfileVideo from "@/components/modules/home/homePreviewProfileVideo.astro";
 
 const t = useI18n(wordsJson, getLocale(Astro));
 
@@ -36,138 +40,18 @@ const tPages = useI18n(
 
 <Layout title={tPages.title}>
   <ModulesHomeSlider />
-  <section class="py-3">
-    <div class="container">
-      <div
-        class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center"
-        data-anime='{ "el": "childs", "translateX": [50, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 500, "easing": "easeOutQuad" }'
-      >
-        <!-- start content box item -->
-        <div
-          class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
-        >
-          <div
-            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
-          >
-            <div class="flex-shrink-0 me-15px md-me-0">
-              <h2 class="mb-0 fw-800">
-                {t.since}<sup class="fs-24">1962</sup>
-              </h2>
-            </div>
-            <div>
-              <!-- <span class="lh-24 fw-600 d-block">Track and analyze <br />business reports.</span> -->
-            </div>
-          </div>
-        </div>
-        <!-- end content box item -->
-        <!-- start content box item -->
-        <div
-          class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
-        >
-          <div
-            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
-          >
-            <div class="flex-shrink-0 me-15px md-me-0">
-              <h2 class="mb-0 fw-800 ls-minus-3px">13</h2>
-            </div>
-            <div>
-              <div
-                class="review-star-icon fs-20 d-inline-block text-gradient-orange-sky-blue"
-              >
-                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                  class="bi bi-star-fill"></i>
-              </div>
-              <span class="lh-24 fw-600 d-block">
-                {t.academic_programs}
-                <br />
-              </span>
-            </div>
-          </div>
-        </div>
-        <!-- end content box item -->
-        <!-- start content box item -->
-        <div class="col pt-35px pb-35px text-dark-gray">
-          <div
-            class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
-          >
-            <div class="flex-shrink-0 me-15px md-me-0">
-              <h2 class="mb-0 fw-800">
-                {t.excellent}<sup class="fs-24"></sup>
-              </h2>
-            </div>
-            <div>
-              <span class="lh-24 fw-600 d-block">
-                {t.accredited}
-                <br />
-                {t.international}
-              </span>
-            </div>
-          </div>
-        </div>
-        <!-- end content box item -->
-      </div>
-    </div>
-  </section>
-  <section class="p-0">
-    <div class="container">
-      <div
-        class="row justify-content-center"
-        data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-      >
-        <div class="col-12">
-          <div
-            class="border-radius-6px h-450px md-h-350px sm-h-400px d-flex flex-wrap align-items-center justify-content-center overflow-hidden cover-background box-shadow-quadruple-large pt-15"
-            style="background-image: url('/_astro/images/image.png')"
-          >
-            <div class="opacity-full-dark bg-gradient-regal-blue-transparent">
-            </div>
-            <div class="row justify-content-center m-0">
-              <div
-                class="col-lg-7 col-md-8 z-index-1 text-center text-md-start sm-mb-20px"
-              >
-                <h3 class="text-white mb-0 fw-400 fancy-text-style-4">
-                  The Campus of
-                  <span
-                    class="fw-600"
-                    data-fancy-text='{ "effect": "rotate", "string": ["business!", "economic!", "pancasila!"] }'
-                  ></span>
-                </h3>
-              </div>
-              <div
-                class="col-md-2 position-relative z-index-1 text-center sm-mb-20px"
-              >
-                <div
-                  class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large"
-                >
-                  <WidgetsPopupYoutube
-                    url="https://www.youtube.com/watch?v=Rf0MqhqsTGo"
-                  >
-                    <span>
-                      <span class="video-icon">
-                        <i class="fa-solid fa-play fs-20 text-white"></i>
-                      </span>
-                    </span>
-                  </WidgetsPopupYoutube>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
-                                    <div class="fs-14 text-uppercase text-white fw-600 ls-05px">Learn More <a href="demo-corporate-contact.html" class="text-decoration-line-bottom text-white">Got a project in mind?</a></div>
-                                </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <ModulesHomePreviewNews />
+  <HomePreviewIntro />
+  <HomePreviewProfileVideo />
   <ModulesHomePreviewProfile />
-  <ModulesHomePreviewAccreditation />
-  <ModulesHomePreviewProdi />
   <ModulesHomePreviewVimi />
+  <ModulesHomePreviewProdi />
+  <ModulesHomePreviewLeadership />
+  <ModulesHomePreviewAccreditation />
+  <PreviewCollab />
+  <PreviewAppService />
+  <ModulesHomePreviewNews />
   <ModulesHomePreviewGallery />
   <ModulesHomePreviewRegistration />
-  <ModulesHomePreviewLeadership />
   <ModulesHomePreviewContact />
 
   <Fragment slot="script-plugin">

@@ -2,11 +2,13 @@
 import { getLocale, useI18n } from "@/i18n/i18n";
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"div"> {}
+interface Props extends HTMLAttributes<"div"> {
+  placeholder?: string;
+}
 
-const { ...attrs } = Astro.props;
+const { placeholder, ...attrs } = Astro.props;
 
-const placeholder = {
+const dict = {
   id: {
     contentNotAvailableYet: "Konten belum tersedia saat ini",
   },
@@ -16,7 +18,7 @@ const placeholder = {
 };
 
 const locale = getLocale(Astro);
-const t = useI18n(placeholder, locale);
+const t = useI18n(dict, locale);
 ---
 
 <div class:list={`${attrs.class}`} {...attrs}>
@@ -26,7 +28,7 @@ const t = useI18n(placeholder, locale);
       style="background-color: #f0f4fd;"
     >
       <p class="text-center mb-0 text-secondary">
-        {t.contentNotAvailableYet}
+        {placeholder || t.contentNotAvailableYet}
       </p>
     </div>
   </slot>
