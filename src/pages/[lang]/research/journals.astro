@@ -1,5 +1,7 @@
 ---
+import ContentContainer from "@/components/widgets/contentContainer.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
+import { journalService } from "@/services/journal.service";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
 
@@ -18,12 +20,8 @@ const messages = {
 
 const t = useI18n(messages, getLocale(Astro));
 
-// dummy data (replace dengan API / content collection)
-const journals = Array.from({ length: 11 }).map((_, i) => ({
-  name: `Journal name ${i + 1}`,
-  description: "Some Description",
-  icon: "https://placehold.co/60x60",
-}));
+const jsGetJournals = await journalService.getJournals();
+const journals = jsGetJournals?.data;
 ---
 
 <!-- start page title -->
@@ -53,32 +51,37 @@ const journals = Array.from({ length: 11 }).map((_, i) => ({
 
       <div class="mb-5"></div>
 
-      <div
-        class="row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 justify-content-center"
-        data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-      >
-        {
-          journals.map((journal) => (
-            <div class="col custom-icon-with-text-style-02">
-              <div class="feature-box p-6 last-paragraph-no-margin overflow-hidden md-mb-20px">
-                <div class="feature-box-icon">
-                  <img
-                    class="custom-image-icon mb-20px"
-                    src={journal.icon}
-                    alt={journal.name}
-                  />
-                </div>
-                <div class="feature-box-content">
-                  <span class="d-block fs-19 fw-700 text-dark-gray mb-5px">
-                    {journal.name}
-                  </span>
-                  <p>{journal.description}</p>
+      {
+        !!journals?.length && (
+          <div
+            class="row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 justify-content-center"
+            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+          >
+            {journals.map((journal) => (
+              <div class="col custom-icon-with-text-style-02 p-1">
+                <div class="feature-box p-6 last-paragraph-no-margin overflow-hidden md-mb-20px">
+                  <div class="feature-box-icon">
+                    <img
+                      class="custom-image-icon mb-20px"
+                      src={
+                        "https://www.saskoer.ca/app/uploads/sites/542/2021/04/magazine-icon-1536x1536.png"
+                      }
+                      alt={journal.nama}
+                    />
+                  </div>
+                  <div class="feature-box-content">
+                    <span class="d-block fs-19 fw-700 text-dark-gray mb-5px">
+                      {journal.nama}
+                    </span>
+                    <p>{journal.deskripsi}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        }
-      </div>
+            ))}
+          </div>
+        )
+      }
+      {!journals?.length && <ContentContainer />}
     </div>
   </section>
   <!-- end section -->

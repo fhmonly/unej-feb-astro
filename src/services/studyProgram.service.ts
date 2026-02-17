@@ -19,6 +19,13 @@ type StudyProgram = {
 }
 
 export const studyProgramService = {
+    async getAllStudyProgram() {
+        try {
+            return await http.get<StudyProgram[]>("/prodi")
+        } catch (error) {
+            return null;
+        }
+    },
     async getStudyProgramById(id: number) {
         try {
             return await http.get<StudyProgram>(`/prodi/${id}`)

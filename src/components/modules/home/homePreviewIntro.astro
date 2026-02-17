@@ -1,0 +1,100 @@
+---
+import { getLocale } from "@/i18n/i18n";
+
+const locale = getLocale(Astro);
+const t = {
+  id: {
+    since: "Sejak",
+    academic_programs: "Program Studi",
+    excellent: "Unggul",
+    accredited: "Terakreditasi",
+    international: "Internasional",
+  },
+  en: {
+    since: "Since",
+    academic_programs: "Academic Programs",
+    excellent: "Excellent",
+    accredited: "Accredited",
+    international: "International",
+  },
+}[locale];
+
+const data = {
+  studyProgramsCount: 4,
+  since: 1962,
+};
+---
+
+<section class="py-3">
+  <div class="container">
+    <div
+      class="row row-cols-1 row-cols-md-3 row-cols-sm-2 justify-content-center"
+      data-anime='{ "el": "childs", "translateX": [50, 0], "opacity": [0,1], "duration": 800, "delay": 0, "staggervalue": 500, "easing": "easeOutQuad" }'
+    >
+      <!-- start content box item -->
+      <div
+        class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
+      >
+        <div
+          class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+        >
+          <div class="flex-shrink-0 me-15px md-me-0">
+            <h2 class="mb-0 fw-800">
+              {t.since}<sup class="fs-24">{data.since}</sup>
+            </h2>
+          </div>
+          <div>
+            <!-- <span class="lh-24 fw-600 d-block">Track and analyze <br />business reports.</span> -->
+          </div>
+        </div>
+      </div>
+      <!-- end content box item -->
+      <!-- start content box item -->
+      <div
+        class="col pt-35px pb-35px md-pb-0 text-dark-gray border-end border-color-extra-medium-gray sm-border-end-0"
+      >
+        <div
+          class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+        >
+          <div class="flex-shrink-0 me-15px md-me-0">
+            <h2 class="mb-0 fw-800 ls-minus-3px">{data.studyProgramsCount}</h2>
+          </div>
+          <div>
+            <div
+              class="review-star-icon fs-20 d-inline-block text-gradient-orange-sky-blue"
+            >
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i>
+            </div>
+            <span class="lh-24 fw-600 d-block">
+              {t.academic_programs}
+              <br />
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- end content box item -->
+      <!-- start content box item -->
+      <div class="col pt-35px pb-35px text-dark-gray">
+        <div
+          class="d-flex flex-column flex-lg-row align-items-center justify-content-center text-center text-lg-start"
+        >
+          <div class="flex-shrink-0 me-15px md-me-0">
+            <h2 class="mb-0 fw-800">
+              {t.excellent}<sup class="fs-24"></sup>
+            </h2>
+          </div>
+          <div>
+            <span class="lh-24 fw-600 d-block">
+              {t.accredited}
+              <br />
+              {t.international}
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- end content box item -->
+    </div>
+  </div>
+</section>

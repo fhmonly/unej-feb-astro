@@ -1,0 +1,79 @@
+---
+import { getLocale } from "@/i18n/i18n";
+import WidgetsPopupYoutube from "@components/widgets/popupYT.astro";
+
+const locale = getLocale(Astro);
+const t = {
+  en: {
+    the_campus_of: "The Campus of",
+    pancasila: "Pancasila",
+    bussiness: "Bussiness",
+    economic: "Economic",
+  },
+  id: {
+    the_campus_of: "Kampus",
+    pancasila: "Pancasila",
+    bussiness: "Bisnis",
+    economic: "Ekonomi",
+  },
+}[locale];
+
+const data = {
+  youtubeThumbnail: "/_astro/images/image.png",
+  youtubeUrl: "https://www.youtube.com/watch?v=Rf0MqhqsTGo",
+};
+---
+
+<section class="p-0">
+  <div class="container">
+    <div
+      class="row justify-content-center"
+      data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+    >
+      <div class="col-12">
+        <div
+          class="border-radius-6px h-450px md-h-350px sm-h-400px d-flex flex-wrap align-items-center justify-content-center overflow-hidden cover-background box-shadow-quadruple-large pt-15"
+          style={`background-image: url(${data.youtubeThumbnail})`}
+        >
+          <div class="opacity-full-dark bg-gradient-regal-blue-transparent">
+          </div>
+          <div class="row justify-content-center m-0">
+            <div
+              class="col-lg-7 col-md-8 z-index-1 text-center text-md-start sm-mb-20px"
+            >
+              <h3 class="text-white mb-0 fw-400 fancy-text-style-4">
+                {t.the_campus_of}
+                <span
+                  class="fw-600"
+                  data-fancy-text={JSON.stringify({
+                    effect: "rotate",
+                    string: [t.pancasila, t.bussiness, t.economic].map(
+                      (v) => v + "!",
+                    ),
+                  })}></span>
+              </h3>
+            </div>
+            <div
+              class="col-md-2 position-relative z-index-1 text-center sm-mb-20px"
+            >
+              <div
+                class="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large"
+              >
+                <WidgetsPopupYoutube url={data.youtubeUrl}>
+                  <span>
+                    <span class="video-icon">
+                      <i class="fa-solid fa-play fs-20 text-white"></i>
+                    </span>
+                  </span>
+                </WidgetsPopupYoutube>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
+                                    <div class="fs-14 text-uppercase text-white fw-600 ls-05px">Learn More <a href="demo-corporate-contact.html" class="text-decoration-line-bottom text-white">Got a project in mind?</a></div>
+                                </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
