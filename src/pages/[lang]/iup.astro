@@ -62,6 +62,20 @@ const title = "IUP in Management | Universitas Jember";
       color: #0d6efd;
       font-weight: 500;
     }
+
+    /* BANNER CAROUSEL */
+    .banner-section {
+      padding: 0;
+    }
+    .banner-section .carousel-item img {
+      width: 100%;
+      height: auto;
+    }
+    .banner-section .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
   </style>
 </head>
 
@@ -150,6 +164,38 @@ const title = "IUP in Management | Universitas Jember";
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- BANNER GALLERY -->
+<section class="banner-section py-0">
+  <div id="iupBannerCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#iupBannerCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#iupBannerCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#iupBannerCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#iupBannerCarousel" data-bs-slide-to="3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/_astro/images/iup/1.jpeg" class="d-block w-100" alt="IUP Banner 1" />
+      </div>
+      <div class="carousel-item">
+        <img src="/_astro/images/iup/2.jpeg" class="d-block w-100" alt="IUP Banner 2" />
+      </div>
+      <div class="carousel-item">
+        <img src="/_astro/images/iup/3.jpeg" class="d-block w-100" alt="IUP Banner 3" />
+      </div>
+      <div class="carousel-item">
+        <img src="/_astro/images/iup/4.jpeg" class="d-block w-100" alt="IUP Banner 4" />
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#iupBannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#iupBannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
   </div>
 </section>
 
