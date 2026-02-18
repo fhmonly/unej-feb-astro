@@ -20,7 +20,7 @@ export const navJson = {
                     "partnership": "Partnership",
                     "leaders": "Leaders",
                     "teaching_staff": "Teaching Staff",
-                    "administrative_staff": "Administrative Staff",
+                    "lectures": "Lectures",
                     "mars_of_faculty": "Mars of Faculty"
                 },
                 "academic_programs": {
@@ -133,7 +133,7 @@ export const navJson = {
                     "partnership": "Kemitraan",
                     "leaders": "Pimpinan",
                     "teaching_staff": "Staf Pengajar",
-                    "administrative_staff": "Staf Administrasi",
+                    "lectures": "Dosen",
                     "mars_of_faculty": "Mars Fakultas"
                 },
                 "academic_programs": {

@@ -1,15 +1,15 @@
 ---
+import ContentContainer from "@/components/widgets/contentContainer.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
 import { lecturesService } from "@/services/lectures.service";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
-import axios from "axios";
 
 const locale = getLocale(Astro);
 const messages = {
   en: {
-    pageTitle: "Administrative Staff",
+    pageTitle: "Lecture",
 
     personal_identity: "Personal Identity",
     academic_information: "Academic Information",
@@ -37,7 +37,7 @@ const messages = {
     assignment_study_program: "Assignment Study Program",
   },
   id: {
-    pageTitle: "Staf Administrasi",
+    pageTitle: "Dosen",
 
     personal_identity: "Identitas Diri",
     academic_information: "Informasi Akademik",
@@ -91,7 +91,6 @@ export type StaffData = {
 
 const serviceGetLectures = await lecturesService.getLectures();
 const lectures = serviceGetLectures?.data;
-if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
 ---
 
 <Layout title={t.pageTitle}>
@@ -117,7 +116,9 @@ if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
           </h3>
         </div>
       </div>
-      <div
+      {
+        !!lectures?.length && (
+          <div
         class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
         data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
       >
@@ -147,7 +148,7 @@ if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
                   </a>
                 </div>
                 <a
-                  href={`/${locale}/about/administrative-staff/${data.id}`}
+                  href={`/${locale}/about/lectures/${data.id}`}
                   class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
                 >
                   {data.gelar_depan && <span>{data.gelar_depan}</span>}
@@ -176,6 +177,13 @@ if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
         }
         <!-- end team member item -->
       </div>
+        )
+      }
+      {
+        !lectures?.length && (
+          <ContentContainer/>
+        )
+      }
     </div>
   </section>
   <template id="detail-template">
@@ -317,7 +325,7 @@ if (!lectures || lectures.length === 0) return Astro.rewrite("/404");
 
 <script>
   import "@components/customComponents/imgAutoBGColor";
-  import "@components/customComponents/swalDetailButton";
+import "@components/customComponents/swalDetailButton";
 </script>
 <style is:global>
   /* ====== CARD ====== */
