@@ -31,7 +31,9 @@ const t = useI18n(use404Json, locale);
             {t.description}
           </p>
           <a
-            href={switchLocalePath("/", locale)}
+            data-fallback-href={switchLocalePath("/", locale)}
+            href="javascript:void(0)"
+            id="btn-back"
             class="btn btn-large left-icon btn-rounded btn-dark-gray btn-box-shadow text-transform-none"
           >
             <i class="fa-solid fa-arrow-left"></i>{t.back_to_home}
@@ -41,3 +43,15 @@ const t = useI18n(use404Json, locale);
     </div>
   </section>
 </ErrorLayout>
+<script>
+  const btn = document.getElementById("btn-back");
+
+  btn?.addEventListener("click", () => {
+    const fallbackHref = btn.getAttribute("data-fallback-href") || "/";
+    if (window.history.length > 3) {
+      window.history.back();
+    } else {
+      window.location.href = fallbackHref;
+    }
+  });
+</script>
