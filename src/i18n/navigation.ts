@@ -19,7 +19,7 @@ export const navJson = {
                     "accreditation": "Accreditation",
                     "partnership": "Partnership",
                     "leaders": "Leaders",
-                    "teaching_staff": "Teaching Staff",
+                    "teaching_staff": "Staff",
                     "lectures": "Lectures",
                     "mars_of_faculty": "Mars of Faculty"
                 },
@@ -132,7 +132,7 @@ export const navJson = {
                     "accreditation": "Akreditasi",
                     "partnership": "Kemitraan",
                     "leaders": "Pimpinan",
-                    "teaching_staff": "Staf Pengajar",
+                    "teaching_staff": "Staff",
                     "lectures": "Dosen",
                     "mars_of_faculty": "Mars Fakultas"
                 },
