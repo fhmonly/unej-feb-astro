@@ -27,9 +27,11 @@ const t = useI18n(dict, locale);
       class="py-4 d-flex justify-content-center align-items-center"
       style="background-color: #f0f4fd;"
     >
-      <p class="text-center mb-0 text-secondary">
-        {placeholder || t.contentNotAvailableYet}
-      </p>
+      <slot name="fallback-text">
+        <p class="text-center mb-0 text-secondary">
+          {placeholder || t.contentNotAvailableYet}
+        </p>
+      </slot>
     </div>
   </slot>
 </div>
