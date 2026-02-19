@@ -1,13 +1,11 @@
 ---
-import ProdiLeadership from "@/components/modules/academicPrograms/prodiLeadership.astro";
 import ContentContainer from "@/components/widgets/contentContainer.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
-import NewsCard from "@components/modules/news/card.astro";
+import ModulesAboutLeaderCard from "@components/modules/about/leaderCard.astro";
 import PillDivider from "@components/widgets/pillDivider.astro";
 import Layout from "@layouts/prodi.astro";
-import ModulesAboutLeaderCard from "@components/modules/about/leaderCard.astro";
 const locale = getLocale(Astro);
 
 const pageJson = {
@@ -153,7 +151,7 @@ const accreditation = [
     accreditationBoard: "BAN-PT",
     start: "2024-04-16",
     end: "2025-11-17",
-    file: "https://feb.unej.ac.id/assets/akreditasi/akreditasi_20240418145740.png",
+    file: "https://www2.feb.unej.ac.id/assets/akreditasi/akreditasi_20240418145740.png",
   },
 ];
 
@@ -322,7 +320,7 @@ const accreditationList = accreditation.map((item) => {
             data-top-bottom="transform: translateY(50px)"
           >
             <!-- <img
-              src="https://feb.unej.ac.id/id/mawa_unduhan"
+              src="https://www2.feb.unej.ac.id/id/mawa_unduhan"
               alt=""
               class="border-radius-5px box-shadow-quadruple-large"
             /> -->
@@ -333,24 +331,21 @@ const accreditationList = accreditation.map((item) => {
     <div class="my-5">&nbsp;</div>
   </section>
 
-
   <PageSection title={t.information}>
-    
-    
-      <div class="row mb-5 sm-mb-7">
-        <div class="col-12">
-          <div
-            class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center"
-            data-anime='{ "el": "childs", "translateY": [0, 0], "perspective": [800,800], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
-          >
-      <div class="col">
-          <ModulesAboutLeaderCard
-            fullName='Prof. Dr. Ahmad Roziq, S.E,M.M., Ak'
-            department='Head of Doctoral Program in Accounting'
-            image='https://unej.ac.id/wp-content/uploads/2024/11/2-26-682x1024.webp'
-          />
+    <div class="row mb-5 sm-mb-7">
+      <div class="col-12">
+        <div
+          class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center"
+          data-anime='{ "el": "childs", "translateY": [0, 0], "perspective": [800,800], "scale": [1.1, 1], "rotateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          <div class="col">
+            <ModulesAboutLeaderCard
+              fullName="Prof. Dr. Ahmad Roziq, S.E,M.M., Ak"
+              department="Head of Doctoral Program in Accounting"
+              image="https://unej.ac.id/wp-content/uploads/2024/11/2-26-682x1024.webp"
+            />
+          </div>
         </div>
-      </div>
       </div>
     </div>
     <PillDivider
@@ -372,9 +367,6 @@ const accreditationList = accreditation.map((item) => {
     />
     <ContentContainer class="my-3 py-5" />
   </PageSection>
-
-
-    
 
   <!-- <ProdiLeadership class="pt-0" /> -->
 
