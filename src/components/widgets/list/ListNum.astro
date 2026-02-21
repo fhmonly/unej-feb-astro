@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  number: number;
+  title?: string;
+  content?: string;
+}
+
+const { number, title, content, class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["col-12 process-step-style-05", className]} {...attrs}>
+  <div class="d-flex">
+    <div class="me-4 fw-700" style="flex-shrink: 0;">
+      <slot name="number">
+        {number.toString().padStart(2, "0")}
+      </slot>
+    </div>
+    <div>
+      <div class="fw-700 fs-18">
+        <slot name="title">
+          {title}
+        </slot>
+      </div>
+      <div>
+        <slot name="content">
+          <p>
+            {content}
+          </p>
+        </slot>
+      </div>
+    </div>
+  </div>
+</div>

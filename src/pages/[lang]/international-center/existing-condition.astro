@@ -1,7 +1,9 @@
 ---
+import ListNum from "@/components/widgets/list/ListNum.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
+import type { ColumnDefinition } from "tabulator-tables";
 
 export const messages = {
   en: {
@@ -18,7 +20,7 @@ export const messages = {
         {
           title: "Bilingual Class",
           content:
-            "Further information regarding the Bilingual Class can be accessed on this Admissions page: Bilingual Class.",
+            "Further information regarding the Bilingual Class can be accessed on this Admissions page <a class='text-primary alt-font mb-5px' href='/en/admissions/recruitment'>Bilingual Class</a>.",
         },
         {
           title: "Strengthening International Cooperation",
@@ -62,7 +64,7 @@ export const messages = {
         {
           title: "Kelas Bilingual",
           content:
-            "Informasi lebih lanjut mengenai Kelas Bilingual dapat diakses pada halaman ini Admisi Kelas Bilingual.",
+            "Informasi lebih lanjut mengenai Kelas Bilingual dapat diakses pada halaman ini Admisi <a class='text-primary alt-font mb-5px' href='/id/admissions/recruitment'>Kelas Bilingual</a>.",
         },
         {
           title: "Peningkatan Kerjasama Luar Negeri",
@@ -94,8 +96,216 @@ export const messages = {
   },
 };
 
+const locale = getLocale(Astro);
+
+const tableDict = {
+  en: {
+    number: "#",
+    study_program: "STUDY PROGRAM",
+    accredited: "ACCREDITED",
+    start: "START",
+    until: "UNTIL",
+    by: "By",
+
+    year_of_cooperation: "Year of Cooperation",
+    total_per_2022: "Total (per September 2022)",
+    new: "New",
+    accumulated: "Accumulated",
+    end: "End",
+    active: "Active",
+    yes: "Yes",
+    no: "No",
+  },
+  id: {
+    number: "NO",
+    study_program: "PROGRAM STUDI",
+    accredited: "TERAKREDITASI",
+    start: "MULAI",
+    until: "SAMPAI",
+    by: "Oleh",
+
+    year_of_cooperation: "Tahun Kerjasama",
+    total_per_2022: "Jumlah (per September 2022)",
+    new: "Baru",
+    accumulated: "Akumulasi",
+    end: "Berakhir",
+    active: "Aktif",
+    yes: "Ya",
+    no: "Tidak",
+  },
+}[locale];
+
 const t = useI18n(messages, getLocale(Astro));
-const items = Array.from({ length: 7 }, (_, i) => i + 1);
+
+interface Table {
+  columns: ColumnDefinition[];
+  rows: Record<string, unknown>[];
+}
+
+const tableInternationalAccreditation: Table = {
+  columns: [
+    {
+      title: "",
+      formatter: "responsiveCollapse",
+      headerSort: false,
+    },
+    {
+      title: tableDict.number,
+      formatter: "rownum",
+      headerSort: false,
+      frozen: true,
+      hozAlign: "center",
+    },
+    {
+      title: tableDict.study_program,
+      field: "study_program",
+      formatter: function (cell, formatterParams) {
+        const div = document.createElement("div");
+        div.style.whiteSpace = "normal";
+        const value = cell.getValue();
+        div.textContent = value;
+        return div;
+      },
+      variableHeight: true,
+      // minWidth: 100,
+      maxWidth: 400,
+    },
+    {
+      title: tableDict.accredited,
+      field: "accredited",
+      formatter: function (cell, formatterParams) {
+        const div = document.createElement("div");
+        div.style.whiteSpace = "normal";
+        const value = cell.getValue();
+        div.textContent = value;
+        return div;
+      },
+      variableHeight: true,
+      // minWidth: 100,
+      maxWidth: 400,
+      widthGrow: 1,
+    },
+    {
+      title: tableDict.start,
+      field: "start",
+    },
+    {
+      title: tableDict.until,
+      field: "until",
+    },
+    {
+      title: tableDict.by,
+      field: "by",
+    },
+  ],
+  rows: [
+    {
+      study_program: "Doctor of Management",
+      accredited: "Very Good",
+      start: "05 January 2024",
+      until: "21 November 2028",
+      by: "LAMEMBA",
+    },
+    {
+      study_program: "Bachelor of Management",
+      accredited: "Excellence",
+      start: "20 September 2023",
+      until: "20 September 2028",
+      by: "FIBAA",
+    },
+    {
+      study_program: "Bachelor of Development Economics",
+      accredited: "Excellence",
+      start: "20 September 2023",
+      until: "19 September 2028",
+      by: "FIBAA",
+    },
+  ],
+};
+
+const tableStrengtheningInternationalCooperation: Table = {
+  columns: [
+    {
+      title: "",
+      formatter: "responsiveCollapse",
+      headerSort: false,
+    },
+    {
+      title: tableDict.number,
+      formatter: "rownum",
+      headerSort: false,
+      frozen: true,
+      hozAlign: "center",
+    },
+    {
+      title: tableDict.year_of_cooperation,
+      field: "year_of_cooperation",
+    },
+    {
+      title: tableDict.total_per_2022,
+      field: "total_per_2022",
+      widthGrow: 1,
+      columns: [
+        {
+          title: tableDict.new,
+          field: "new",
+        },
+        {
+          title: tableDict.accumulated,
+          field: "accumulated",
+        },
+        {
+          title: tableDict.end,
+          field: "end",
+        },
+        {
+          title: tableDict.active,
+          field: "active",
+        },
+      ],
+    },
+  ],
+  rows: [
+    {
+      year_of_cooperation: 2018,
+      new: 4,
+      accumulated: 9,
+      end: 0,
+      active: 4,
+    },
+    {
+      year_of_cooperation: 2019,
+      new: 2,
+      accumulated: 11,
+      end: 1,
+      active: 5,
+    },
+    {
+      year_of_cooperation: 2020,
+      new: 2,
+      accumulated: 13,
+      end: 0,
+      active: 7,
+    },
+    {
+      year_of_cooperation: 2021,
+      new: 6,
+      accumulated: 19,
+      end: 0,
+      active: 13,
+    },
+    {
+      year_of_cooperation: 2022,
+      new: 8,
+      accumulated: 27,
+      end: 0,
+      active: 21,
+    },
+  ].map((v) => ({
+    ...v,
+    end: v.end == 0 ? tableDict.no : tableDict.yes,
+  })),
+};
 ---
 
 <Layout title={t.existing_condition.title}>
@@ -114,24 +324,124 @@ const items = Array.from({ length: 7 }, (_, i) => i + 1);
       </p>
 
       <div class="row">
-        {
-          items.map((_, i) => (
-            <div class="col-12 process-step-style-05">
-              <div class="d-flex">
-                <div class="me-4 fw-700" style="flex-shrink: 0;">
-                  0{_}
-                </div>
-                <div>
-                  <div class="fw-700 fs-18">
-                    {t.existing_condition.items[i].title}
-                  </div>
-                  <p>{t.existing_condition.items[i].content}</p>
-                </div>
-              </div>
+        <ListNum number={1} title={t.existing_condition.items[0].title}>
+          <div slot="content" class="container ps-0">
+            <p>{t.existing_condition.items[0].content}</p>
+            <div
+              class="pe-4"
+              id="table-1"
+              data-columns={JSON.stringify(
+                tableInternationalAccreditation.columns,
+              )}
+              data-rows={JSON.stringify(tableInternationalAccreditation.rows)}
+            >
             </div>
-          ))
-        }
+          </div>
+        </ListNum>
+        <ListNum
+          number={2}
+          title={t.existing_condition.items[1].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[1].content} />
+            <div>
+              <img src="" style="width: 100%;" is="auto-bg-color" alt="" />
+            </div>
+          </div>
+        </ListNum>
+        <ListNum
+          number={3}
+          title={t.existing_condition.items[2].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[2].content} />
+            <div
+              class="pe-4"
+              id="table-2"
+              data-columns={JSON.stringify(
+                tableStrengtheningInternationalCooperation.columns,
+              )}
+              data-rows={JSON.stringify(
+                tableStrengtheningInternationalCooperation.rows,
+              )}
+            >
+            </div>
+            <div class="pt-2">
+              <img src="" style="width: 100%;" is="auto-bg-color" alt="" />
+            </div>
+          </div>
+        </ListNum>
+        <ListNum
+          number={4}
+          title={t.existing_condition.items[3].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[3].content} />
+          </div>
+        </ListNum>
+        <ListNum
+          number={5}
+          title={t.existing_condition.items[4].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[4].content} />
+          </div>
+        </ListNum>
+        <ListNum
+          number={6}
+          title={t.existing_condition.items[5].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[5].content} />
+          </div>
+        </ListNum>
+        <ListNum
+          number={7}
+          title={t.existing_condition.items[6].title}
+          class="pt-2"
+        >
+          <div slot="content" class="container ps-0">
+            <p set:html={t.existing_condition.items[6].content} />
+          </div>
+        </ListNum>
       </div>
     </div>
   </section>
+
+  <script>
+    import "@components/customComponents/imgAutoBGColor";
+    import { TabulatorFull as Tabulator } from "tabulator-tables";
+    import "tabulator-tables/dist/css/tabulator_materialize.min.css";
+    function initTable(id: string) {
+      const tableEl: HTMLElement | null = document.getElementById(id);
+
+      const tableElDt = tableEl?.dataset;
+      if (tableElDt) {
+        const dtColumns = tableElDt.columns;
+        const dtRows = tableElDt.rows;
+        if (dtColumns && dtRows) {
+          const columns = JSON.parse(dtColumns);
+          const rows = JSON.parse(dtRows);
+          if (tableEl) {
+            new Tabulator(tableEl, {
+              data: rows, //link data to table
+              reactiveData: true, //enable data reactivity
+              columns, //define table columns
+              layout: "fitDataFill",
+              maxHeight: window.innerHeight - 200,
+              responsiveLayout: "collapse",
+              responsiveLayoutCollapseStartOpen: false,
+            });
+          }
+        }
+      }
+    }
+    initTable("table-1");
+    initTable("table-2");
+  </script>
 </Layout>
