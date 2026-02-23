@@ -1,5 +1,7 @@
 ---
 const { url } = Astro.props;
+const splitUrl: string[] = url.split("/");
+const fileName = splitUrl[splitUrl.length - 1].replace(".pdf", "");
 ---
 
 <div class="min-vh-100 bg-light py-4 py-md-5">
@@ -13,13 +15,18 @@ const { url } = Astro.props;
       <div
         class="bg-dark px-4 py-3 d-flex align-items-center justify-content-between"
       >
-        <div class="d-flex align-items-center gap-2">
-          <div class="window-control bg-danger"></div>
-          <div class="window-control bg-warning"></div>
-          <div class="window-control bg-success"></div>
-          <span class="ms-3 text-white fw-medium small">
-            Placeholder-PDF.pdf
-          </span>
+        <div class="d-flex align-items-center gap-2" style="width: 87%;">
+          <div class="d-flex align-items-center justify-content-center gap-1">
+            <div class="window-control bg-danger"></div>
+            <div class="window-control bg-warning"></div>
+            <div class="window-control bg-success"></div>
+          </div>
+          <div class="text-truncate ps-2 d-flex">
+            <p class="text-white fw-medium small text-truncate m-0">
+              {fileName}
+            </p>
+            <span class="text-white small">.pdf</span>
+          </div>
         </div>
 
         <div class="d-flex align-items-center gap-2">
@@ -130,10 +137,12 @@ const { url } = Astro.props;
     wrapper.classList.toggle("start-0", isFullscreen);
     wrapper.classList.toggle("end-0", isFullscreen);
     wrapper.classList.toggle("bottom-0", isFullscreen);
-    wrapper.classList.toggle("m-3", isFullscreen);
+    wrapper.classList.toggle("rounded-4", !isFullscreen);
 
     wrapper.style.zIndex = isFullscreen ? "1050" : "";
     container.style.height = isFullscreen ? "calc(100% - 60px)" : "800px";
+    document.body.classList.toggle("pdf-fullscreen", isFullscreen);
+    document.body.classList.toggle("overflow-hidden", isFullscreen);
 
     fsEnter.classList.toggle("d-none", isFullscreen);
     fsExit.classList.toggle("d-none", !isFullscreen);
@@ -175,9 +184,5 @@ const { url } = Astro.props;
     .position-fixed.m-3 {
       margin: 0.5rem !important;
     }
-  }
-
-  .rounded-4 {
-    border-radius: 1rem;
   }
 </style>
