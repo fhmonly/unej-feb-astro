@@ -1,4 +1,7 @@
 ---
+import BlogCard from "@/components/widgets/card/blogCard.astro";
+import CardContainer from "@/components/widgets/card/cardContainer.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@i18n/i18n";
 import Layout from "@layouts/main.astro";
@@ -11,6 +14,12 @@ const messages = {
       "Facility sport and leisure refers to the range of facilities and activities that universities offer to promote physical activity, health, and wellness among their students, faculty, and staff. These facilities and activities may include sports facilities, food court, and outdoor recreational spaces.",
     intro2:
       "Sports facilities: Universities may provide students with access to sports facilities, such as basketball courts, soccer fields, tennis courts, rock climbing, and indoor sports halls. These facilities may be available for both recreational use and organized team sports.",
+    intro3:
+      "Outdoor recreation space: Universities may offer outdoor recreation spaces, such as parks, jogging trails, and bicycle paths, for students, faculty, and staff to enjoy.",
+    intro4:
+      "Sports and recreation programs: Universities may also offer organized sports and recreation programs, such as intramural sports leagues, group fitness classes, and wellness programs. These programs are designed to encourage physical activity and promote health and well-being within the university community.",
+    intro5:
+      "A food court is a common area within a university where multiple food vendors are located in one centralized location. It is designed to provide students, faculty, and staff with convenient and diverse dining options.",
   },
   id: {
     pageTitle: "Fasilitas Olahraga dan Rekreasi",
@@ -19,6 +28,12 @@ const messages = {
       "Fasilitas olahraga dan rekreasi mengacu pada berbagai fasilitas dan aktivitas yang ditawarkan universitas untuk mempromosikan aktivitas fisik, kesehatan, dan kesejahteraan di antara mahasiswa, fakultas, dan staf mereka. Fasilitas dan aktivitas ini dapat mencakup fasilitas olahraga, food court, dan ruang rekreasi luar ruangan.",
     intro2:
       "Fasilitas olahraga: Universitas dapat menyediakan akses kepada mahasiswa ke fasilitas olahraga, seperti lapangan basket, lapangan sepak bola, lapangan tenis, panjat tebing, dan aula olahraga dalam ruangan. Fasilitas ini dapat digunakan untuk rekreasi maupun olahraga tim yang terorganisir.",
+    intro3:
+      "Ruang rekreasi luar ruangan: Universitas dapat menyediakan ruang rekreasi luar ruangan, seperti taman, jalur jogging, dan jalan sepeda, untuk mahasiswa, fakultas, dan staf untuk menikmati.",
+    intro4:
+      "Program olahraga dan rekreasi: Universitas juga dapat menawarkan program olahraga dan rekreasi yang terorganisir, seperti liga olahraga intramural, kelas kebugaran kelompok, dan program kesehatan. Program-program ini dirancang untuk mendorong aktivitas fisik serta meningkatkan kesehatan dan kesejahteraan di lingkungan universitas.",
+    intro5:
+      "Food court adalah area umum di dalam universitas tempat berbagai penjual makanan berada dalam satu lokasi terpusat. Area ini dirancang untuk menyediakan pilihan makanan yang praktis dan beragam bagi mahasiswa, dosen, dan staf.",
   },
 };
 const t = useI18n(messages, getLocale(Astro));
@@ -26,70 +41,68 @@ const t = useI18n(messages, getLocale(Astro));
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
-  <section class="pb-0">
-    <div class="container position-relative">
-      <div class="row align-items-center">
-        <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
-          <span
-            class="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block"
-          >
-            {t.title}
-          </span>
-          <p class="text-dark-gray fw-700 mb-40px">
-            {t.intro}
-          </p>
-          <p class="text-dark-gray fw-700 mb-40px">
-            {t.intro2}
-          </p>
-        </div>
-      </div>
+  <PageSection title={t.title} class="pt-0">
+    <div>
+      <p class="text-dark-gray fw-700 mb-40px">
+        {t.intro}
+      </p>
+      <p class="text-dark-gray fw-700 mb-40px">
+        {t.intro2}
+      </p>
     </div>
-    <!-- start section -->
-  </section>
-  <section class="bg-gradient-quartz-white border-radius-6px">
-    <div class="container">
-      <div class="row justify-content-center mb-3">
-        <div
-          class="col-xl-5 col-md-7 col-lg-6 col-sm-8 text-center"
-          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay":0, "staggervalue": 300, "easing": "easeOutQuad" }'
-        >
-          <h3 class="text-dark-gray fw-700 ls-minus-1px">
-            {t.title}
-          </h3>
-        </div>
-      </div>
-      <div class="row row-cols-3 blog-standard md-mb-50px sm-mb-40px">
-        <!-- start blog item -->
-        <div class="mb-40px" v-for="value in 11">
-          <div class="card border-0 no-border-radius box-shadow-extra-large">
-            <div class="blog-image">
-              <a href="demo-elearning-blog-single-simple.html"
-                ><img
-                  src="https://thumbs.dreamstime.com/b/wildflowers-blooming-sunset-nature-scenery-wildflowers-blooming-sunset-nature-scenery-388164189.jpg"
-                  alt=""
-                /></a
-              >
-            </div>
-            <div class="card-body p-9 bg-white">
-              <a
-                href="demo-elearning-blog-single-simple.html"
-                class="text-dark-gray card-title mb-20px fw-600 fs-24 d-block"
-              >
-                dissabilities facility name
-              </a>
-              <p class="text-medium-gray mb-20px">
-                dissabilities facility description Lorem ipsum is simply dummy
-                text of the printing and typesetting industry ipsum has been the
-                industry standard dummy text ever since the unknown printer took
-                a galley of typesetting industry standard...
-              </p>
-              <!-- <a href="demo-elearning-blog-single-simple.html"
-                                class="btn btn-link btn-large text-base-color fw-600">Continue reading<span
-                                    class="bg-base-color"></span></a> -->
-            </div>
-          </div>
-        </div>
-      </div>
+
+    <CardContainer type="blog-standard">
+      {
+        Array.from({ length: 3 }).map((_, i) => (
+          <BlogCard
+            image=""
+            title="Lorem ipsum dolor sit amet."
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis maxime magni praesentium dolores, debitis incidunt quibusdam impedit perferendis sapiente quo reprehenderit accusantium repellendus quasi sequi ab nemo? Reprehenderit, repudiandae quas!"
+            href="javascript:void(0)"
+          />
+        ))
+      }
+    </CardContainer>
+
+    <div>
+      <p class="text-dark-gray fw-700 mb-40px">
+        {t.intro3}
+      </p>
     </div>
-  </section>
+
+    <CardContainer type="blog-standard">
+      {
+        Array.from({ length: 3 }).map((_, i) => (
+          <BlogCard
+            image=""
+            title="Lorem ipsum dolor sit amet."
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis maxime magni praesentium dolores, debitis incidunt quibusdam impedit perferendis sapiente quo reprehenderit accusantium repellendus quasi sequi ab nemo? Reprehenderit, repudiandae quas!"
+            href="javascript:void(0)"
+          />
+        ))
+      }
+    </CardContainer>
+
+    <div class="md-mb-15 sm-mb-20 text-center text-lg-start">
+      <p class="text-dark-gray fw-700 mb-40px">
+        {t.intro4}
+      </p>
+      <p class="text-dark-gray fw-700 mb-40px">
+        {t.intro5}
+      </p>
+    </div>
+
+    <CardContainer type="blog-standard">
+      {
+        Array.from({ length: 3 }).map((_, i) => (
+          <BlogCard
+            image=""
+            title="Lorem ipsum dolor sit amet."
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis maxime magni praesentium dolores, debitis incidunt quibusdam impedit perferendis sapiente quo reprehenderit accusantium repellendus quasi sequi ab nemo? Reprehenderit, repudiandae quas!"
+            href="javascript:void(0)"
+          />
+        ))
+      }
+    </CardContainer>
+  </PageSection>
 </Layout>

@@ -1,0 +1,167 @@
+---
+import PageSection from "@/components/widgets/pageSection.astro";
+import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
+import { getLocale } from "@/i18n/i18n";
+import Layout from "@layouts/main.astro";
+import { placements } from "astro/runtime/client/dev-toolbar/ui-library/window.js";
+import type { ColumnDefinition } from "tabulator-tables";
+
+const locale = getLocale(Astro);
+const pageDict = {
+  en: {
+    title: "Sharing Data",
+    label_filter_category: "Data Category",
+    placeholder_filter_category: "-- SK / Document / Image --",
+    placeholder_input_search: "File Name",
+    button_input_search: "GO",
+    button_refresh: "Refresh",
+  },
+  id: {
+    title: "Penyajian Data",
+    label_filter_category: "Kategori Data",
+    placeholder_filter_category: "-- SK / Dokumen / Gambar --",
+    placeholder_input_search: "Nama File",
+    button_input_search: "GO",
+    button_refresh: "Refresh",
+  },
+}[locale];
+
+const tableDict = {
+  en: {
+    number: "#",
+    information: "Information",
+    category: "Category",
+    action: "Action",
+  },
+  id: {
+    number: "No",
+    information: "Informasi",
+    category: "Kategori",
+    action: "Aksi",
+  },
+}[locale];
+
+const columns: ColumnDefinition[] = [
+  {
+    title: "",
+    formatter: "responsiveCollapse",
+    headerSort: false,
+  },
+  {
+    title: tableDict.number,
+    formatter: "rownum",
+    headerSort: false,
+    frozen: true,
+    hozAlign: "center",
+  },
+  {
+    title: tableDict.information,
+    field: "information",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+  },
+  {
+    title: tableDict.category,
+    field: "category",
+    formatter: function (cell, formatterParams) {
+      const div = document.createElement("div");
+      div.style.whiteSpace = "normal";
+      const value = cell.getValue();
+      div.textContent = value;
+      return div;
+    },
+    variableHeight: true,
+    // minWidth: 100,
+    maxWidth: 400,
+    widthGrow: 1,
+  },
+  {
+    title: tableDict.action,
+    field: "action",
+  },
+];
+---
+
+<Layout title={pageDict.title}>
+  <PageTitleTypography
+    title={pageDict.title}
+    image="/_astro/images/bg-feb.webp"
+  />
+  <PageSection title={pageDict.title} class="pt-0">
+    <!-- Filter -->
+    <form class="row g-3 mb-3 row-cols-md-2">
+      <div class="">
+        <label for="inputState" class="form-label"
+          >{pageDict.label_filter_category}</label
+        >
+        <select id="inputState" class="form-select">
+          <option selected disabled
+            >{pageDict.placeholder_filter_category}</option
+          >
+          <option>...</option>
+        </select>
+      </div>
+      <div>
+        <label for="inputState" class="form-label"
+          >{pageDict.placeholder_input_search}</label
+        >
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder={pageDict.placeholder_input_search}
+            aria-label="Search"
+          />
+          <button class="text-danger btn btn-sm" type="button">
+            <i class="fs-24 bi bi-x"></i>
+          </button>
+          <button class="btn btn-sm text-primary" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- Table -->
+    <div
+      id="table"
+      data-columns={JSON.stringify(columns)}
+      data-rows={JSON.stringify([])}
+    >
+    </div>
+  </PageSection>
+</Layout>
+
+<script>
+  import { TabulatorFull as Tabulator } from "tabulator-tables";
+  import "tabulator-tables/dist/css/tabulator_materialize.min.css";
+  const tableEl: HTMLElement | null = document.getElementById("table");
+
+  const tableElDt = tableEl?.dataset;
+  if (tableElDt) {
+    const dtColumns = tableElDt.columns;
+    const dtRows = tableElDt.rows;
+    if (dtColumns && dtRows) {
+      const columns = JSON.parse(dtColumns);
+      const rows = JSON.parse(dtRows);
+      if (tableEl) {
+        new Tabulator(tableEl, {
+          data: rows, //link data to table
+          reactiveData: true, //enable data reactivity
+          columns, //define table columns
+          layout: "fitDataFill",
+          maxHeight: window.innerHeight - 200,
+          responsiveLayout: "collapse",
+          responsiveLayoutCollapseStartOpen: false,
+        });
+      }
+    }
+  }
+</script>

@@ -10,10 +10,8 @@ import { wordsJson } from "@/i18n/words";
 const messages = {
   en: {
     pageTitle: "Accreditation",
-    download_previous: "Previous accreditation files can be downloaded",
-    download_previous2: 'use the "Accreditation Decree" search filter.',
-    download_letter_intro:
-      "To download the letter stating the status of the Study Programs S1 Accounting, S1 Development Economics, and S1 Management, Faculty of Economics and Business, University of Jember: these programs are ACCREDITED with Rank A — can be downloaded.",
+    download_previous: `Previous accreditation files can be downloaded <a href="/en/sharing-data" target="_blank" class="text-primary">here</a>, use the "Accreditation Decree" search filter.`,
+    download_letter_intro: `To download the letter stating the status of the Study Programs S1 Accounting, S1 Development Economics, and S1 Management, Faculty of Economics and Business, University of Jember: these programs are ACCREDITED with Rank A — can be downloaded <a href="https://www2.feb.unej.ac.id/assets/file/file_20230605034913.pdf" target="_blank" class="text-primary">here</a>. `,
     inter_cert: "International Certification",
     national_cert: "National Certification",
     table: {
@@ -27,10 +25,8 @@ const messages = {
   },
   id: {
     pageTitle: "Akreditasi",
-    download_previous: "File akreditasi sebelumnya dapat diunduh",
-    download_previous2: 'gunakan filter Pencarian "Keputusan Akreditasi".',
-    download_letter_intro:
-      "Untuk mengunduh surat yang menyatakan status Program Studi S1 Akuntansi, S1 Ilmu Pembangunan, dan S1 Manajemen, Fakultas Ekonomi dan Bisnis, Universitas Jember: program studi tersebut TERAKREDITASI dengan Peringkat A — dapat diunduh.",
+    download_previous: `File akreditasi sebelumnya dapat diunduh <a href="https://www2.feb.unej.ac.id/id/sharing-data" target="_blank" class="text-primary">disini</a>, gunakan filter Pencarian "Keputusan Akreditasi".`,
+    download_letter_intro: `Untuk mengunduh surat yang menyatakan status Program Studi S1 Akuntansi, S1 Ilmu Pembangunan, dan S1 Manajemen, Fakultas Ekonomi dan Bisnis, Universitas Jember: program studi tersebut TERAKREDITASI dengan Peringkat A — dapat diunduh <a href="https://www2.feb.unej.ac.id/assets/file/file_20230605034913.pdf" target="_blank" class="text-primary">disini</a>.`,
     inter_cert: "Sertifikasi Internasional",
     national_cert: "Sertifikasi Nasional",
     table: {
@@ -150,27 +146,10 @@ const rows = [
         <div
           class="col-xl-6 col-lg-6 col-md-10 offset-xl-1 text-center text-lg-start last-paragraph-no-margin"
         >
-          <p
-            class="w-90 xl-w-100"
-            data-anime='{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
-          >
-            {t.download_letter_intro}
-            <a href="" class="text-primary link-underline-primary">
-              {tWords.here.toLowerCase()}
-            </a>
-          </p>
+          <p class="w-90 xl-w-100" set:html={t.download_letter_intro} />
         </div>
       </div>
-      <p
-        class="w-90 xl-w-100 text-center"
-        data-anime='{ "el": "lines", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
-      >
-        {t.download_previous}
-        <a href="" class="text-primary link-underline-primary">
-          {tWords.here.toLowerCase()}
-        </a>,
-        {t.download_previous2}
-      </p>
+      <div set:html={t.download_previous} class="w-90 xl-w-100 text-center" />
     </div>
   </section>
   <!-- end section -->

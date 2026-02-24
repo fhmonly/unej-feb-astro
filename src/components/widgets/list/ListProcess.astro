@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  number: number;
+  title?: string;
+  content?: string;
+  isLast?: boolean;
+}
+
+const {
+  number,
+  title,
+  content,
+  isLast,
+  class: className,
+  ...attrs
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "col-12 process-step-style-05 position-relative hover-box",
+    className,
+  ]}
+  {...attrs}
+>
+  <div class="process-step-item d-flex">
+    <div class="process-step-icon-wrap position-relative">
+      <div
+        class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700 position-relative"
+      >
+        <span class="number position-relative z-index-1 text-dark-gray">
+          <slot name="number">
+            {String(number).padStart(2, "0")}
+          </slot>
+        </span>
+        <div class="box-overlay bg-base-color rounded-circle"></div>
+      </div>
+      {
+        !isLast && (
+          <span class="progress-step-separator bg-dark-gray opacity-1" />
+        )
+      }
+    </div>
+
+    <div class="process-content ps-30px last-paragraph-no-margin mb-30px">
+      <div class="d-block mb-5px mt-1">
+        <slot name="title">
+          <span class="fw-700 text-dark-gray fs-18">{title}</span>
+        </slot>
+      </div>
+      <div class="w-90 lg-w-100 lh-32">
+        <slot name="content">
+          <p>{content}</p>
+        </slot>
+      </div>
+    </div>
+  </div>
+</div>

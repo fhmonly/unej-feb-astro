@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  image: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+const {
+  image,
+  title,
+  description,
+  href,
+  class: className,
+  ...attrs
+} = Astro.props;
+---
+
+<div class:list={["mb-40px", className]} {...attrs}>
+  <div class="card border-0 no-border-radius box-shadow-extra-large">
+    <div class="blog-image">
+      <a href={href}
+        ><img
+          src={image}
+          alt=``
+          is="auto-bg-color"
+          style="width: 100%; aspect-ratio: 3/2; object-fit: cover;"
+        /></a
+      >
+    </div>
+    <div class="card-body p-9 bg-white">
+      <slot name="title">
+        <a
+          href={href}
+          class="text-dark-gray card-title mb-20px fw-600 fs-24 d-block"
+        >
+          {title}
+        </a>
+      </slot>
+      <slot name="description">
+        <p class="text-medium-gray mb-20px">
+          {description.substring(0, 100)}...
+        </p>
+      </slot>
+      <!-- <a href="demo-elearning-blog-single-simple.html"
+                                class="btn btn-link btn-large text-base-color fw-600">Continue reading<span
+                                    class="bg-base-color"></span></a> -->
+    </div>
+  </div>
+</div>
+<script>
+  import "@components/customComponents/imgAutoBGColor";
+</script>

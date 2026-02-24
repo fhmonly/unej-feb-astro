@@ -34,3 +34,9 @@
   position: relative;
   left: -10px;
 }
+
+@media (max-width: 1199px) {
+  .navbar.mini-header .navbar-nav .nav-link {
+    padding: 10px 20px !important;
+  }
+}

@@ -1,3 +1,21 @@
 ---
+import PageSection from "@/components/widgets/pageSection.astro";
+import { getLocale } from "@/i18n/i18n";
+import Main from "@/layouts/main.astro";
 
+const locale = getLocale(Astro);
+const pageDict = {
+  en: {
+    pageTitle: "Conference",
+  },
+  id: {
+    pageTitle: "Konferensi",
+  },
+}[locale];
 ---
+
+<Main title={pageDict.pageTitle}>
+  <PageSection>
+    <!--  -->
+  </PageSection>
+</Main>

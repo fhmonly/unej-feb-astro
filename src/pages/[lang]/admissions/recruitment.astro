@@ -1,4 +1,6 @@
 ---
+import ListContainer from "@/components/widgets/list/ListContainer.astro";
+import ListProcess from "@/components/widgets/list/ListProcess.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
 import Layout from "@layouts/main.astro";
@@ -14,13 +16,15 @@ const messages = {
     admission_title: "Admission and Requirements",
     requirements: [
       {
-        text: "Applicants must be FEB UNEJ 2nd semester undergraduate students.",
+        text: `
+        Applicants must be FEB UNEJ <span class="fw-700 text-dark-gray fs-18">2nd semester undergraduate students.</span>
+        `,
       },
       {
-        text: "Applicants must have a minimum GPA of 3.00, evidenced by the 2nd semester study result sheet.",
+        text: "Applicants must have a  <span class='fw-700 text-dark-gray fs-18'>minimum GPA of 3.00</span>, evidenced by the 2nd semester study result sheet.",
       },
       {
-        text: "Applicants must demonstrate good English proficiency, evidenced by one of the following test results:",
+        text: "Applicants should demonstrate a good command of English, as evidenced by one of these following <span class='fw-700 text-dark-gray fs-18'>English proficiency test results:</span>",
         english_tests: [
           "IELTS ≥ 4.5",
           "iBT TOEFL ≥ 33",
@@ -31,10 +35,10 @@ const messages = {
         ],
       },
       {
-        text: "Applicants must upload a Motivation Letter (free format, handwritten or typed).",
+        text: "Applicants must upload a <span class='fw-700 text-dark-gray fs-18'>Motivation Letter</span> (free format, handwritten or typed).",
       },
       {
-        text: "Applicants must attend the interview on the announced schedule.",
+        text: "Applicants must <span class='fw-700 text-dark-gray fs-18'>attend the interview</span> on the announced schedule.",
       },
     ],
     more_info:
@@ -51,13 +55,13 @@ const messages = {
     admission_title: "Pendaftaran dan Persyaratan",
     requirements: [
       {
-        text: "Pendaftar harus merupakan mahasiswa S1 FEB UNEJ semester 2.",
+        text: "Pendaftar harus merupakan <span class='fw-700 text-dark-gray fs-18'>mahasiswa S1 FEB UNEJ semester 2.</span>",
       },
       {
-        text: "Pendaftar harus memiliki IPK minimal 3.00, dibuktikan dengan lembar hasil studi semester 2.",
+        text: "Pendaftar harus memiliki <span class='fw-700 text-dark-gray fs-18'>IPK minimal 3.00</span>, dibuktikan dengan lembar hasil studi semester 2.",
       },
       {
-        text: "Pendaftar harus menunjukkan kemampuan bahasa Inggris yang baik, dibuktikan dengan salah satu hasil tes berikut:",
+        text: "Pendaftar harus menunjukkan <span class='fw-700 text-dark-gray fs-18'>kemampuan bahasa Inggris yang baik</span>, dibuktikan dengan salah satu hasil tes berikut:",
         english_tests: [
           "IELTS ≥ 4.5",
           "iBT TOEFL ≥ 33",
@@ -68,10 +72,10 @@ const messages = {
         ],
       },
       {
-        text: "Pendaftar harus mengunggah Motivation Letter (format bebas, ditulis tangan atau diketik).",
+        text: "Pendaftar harus mengunggah <span class='fw-700 text-dark-gray fs-18'>Motivation Letter</span> (format bebas, ditulis tangan atau diketik).",
       },
       {
-        text: "Pendaftar harus mengikuti wawancara sesuai jadwal yang diumumkan.",
+        text: "Pendaftar harus <span class='fw-700 text-dark-gray fs-18'>mengikuti wawancara</span> sesuai jadwal yang diumumkan.",
       },
     ],
     more_info:
@@ -111,44 +115,61 @@ const t = useI18n(messages, getLocale(Astro));
           </p>
 
           <!-- REQUIREMENTS -->
-          <div class="row row-cols-1">
-            {
-              t.requirements.map((req, index) => (
-                <div class="col-12 process-step-style-05 position-relative hover-box">
-                  <div class="process-step-item d-flex">
-                    <div class="process-step-icon-wrap position-relative">
-                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px fs-14 bg-light-red fw-700">
-                        <span class="number text-dark-gray">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
-                      {index < t.requirements.length - 1 && (
-                        <span class="progress-step-separator bg-dark-gray opacity-1" />
-                      )}
-                    </div>
-
-                    <div class="process-content ps-30px mb-20px">
-                      <p>{req.text}</p>
-
-                      {/* English tests (nested list) */}
-                      {req.english_tests && (
-                        <ul class="ms-4 mt-10px">
-                          {req.english_tests.map((test) => (
-                            <li class="mb-5px">{test}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
+          <ListContainer class="row-cols-1">
+            <ListProcess number={1}>
+              <div
+                slot="title"
+                set:html={t.requirements[0].text}
+                class="fw-500 text-secondary fs-18"
+              />
+            </ListProcess>
+            <ListProcess number={2}>
+              <div
+                slot="title"
+                set:html={t.requirements[1].text}
+                class="fw-500 text-secondary fs-18"
+              />
+            </ListProcess>
+            <ListProcess number={3}>
+              <div
+                slot="title"
+                set:html={t.requirements[2].text}
+                class="fw-500 text-secondary fs-18"
+              />
+              <ul
+                class="mt-10px"
+                slot="content"
+                style="list-style-type: circle !important;"
+              >
+                {
+                  t.requirements[2].english_tests?.map((test) => (
+                    <li class="mb-5px  text-dark-gray">
+                      <span class=" text-secondary">{test}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </ListProcess>
+            <ListProcess number={4}>
+              <div
+                slot="title"
+                set:html={t.requirements[3].text}
+                class="fw-500 text-secondary fs-18"
+              />
+            </ListProcess>
+            <ListProcess number={5} isLast>
+              <div
+                slot="title"
+                set:html={t.requirements[4].text}
+                class="fw-500 text-secondary fs-18"
+              />
+            </ListProcess>
+          </ListContainer>
 
           <!-- MORE INFO -->
-          <p class="text-dark-gray fw-700 mt-40px">
+          <p class="text-dark-gray fw-700 mt-40px ms-5">
             {t.more_info}
-            <a href="#" class="ms-1">here</a>
+            <a href="#" class="text-primary">here</a>
           </p>
         </div>
       </div>

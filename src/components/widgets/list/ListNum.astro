@@ -25,9 +25,7 @@ const { number, title, content, class: className, ...attrs } = Astro.props;
       </div>
       <div>
         <slot name="content">
-          <p>
-            {content}
-          </p>
+          <p>{content}</p>
         </slot>
       </div>
     </div>

@@ -1,4 +1,5 @@
 ---
+import ListContainer from "@/components/widgets/list/ListContainer.astro";
 import ListNum from "@/components/widgets/list/ListNum.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
@@ -323,7 +324,7 @@ const tableStrengtheningInternationalCooperation: Table = {
         {t.existing_condition.introduction}
       </p>
 
-      <div class="row">
+      <ListContainer>
         <ListNum number={1} title={t.existing_condition.items[0].title}>
           <div slot="content" class="container ps-0">
             <p>{t.existing_condition.items[0].content}</p>
@@ -409,7 +410,7 @@ const tableStrengtheningInternationalCooperation: Table = {
             <p set:html={t.existing_condition.items[6].content} />
           </div>
         </ListNum>
-      </div>
+      </ListContainer>
     </div>
   </section>
 

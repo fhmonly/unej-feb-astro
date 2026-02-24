@@ -1,124 +1,204 @@
 ---
+import { getLocale } from "@/i18n/i18n";
 import Layout from "@layouts/main.astro";
+
+const locale = getLocale(Astro);
+const pageDict = {
+  en: {
+    title: "TUK - LSP TA",
+    opening_title: "Competency Test Center",
+    opening_desc: "Accounting Technicians Professional Licensing Board",
+    opening_btn: "Main Website",
+    opening_btn2: "FEB UNEJ",
+  },
+  id: {
+    title: "TUK - LSP TA",
+    opening_title: "Tempat Uji Kompetensi",
+    opening_desc: "Lembaga Sertifikasi Profesi Teknisi Akuntansi",
+    opening_btn: "Web Utama",
+    opening_btn2: "FEB UNEJ",
+  },
+}[locale];
+const opening_image = "/_astro/images/vimi.png";
 ---
 
-<Layout title="TUK - LSP TA">
-  <!-- ================= HERO ================= -->
-  <section id="hero" class="hero d-flex align-items-center">
+<Layout title={pageDict.title}>
+  <section class="hero-section d-flex align-items-center">
     <div class="container">
-      <div class="row">
-        <!-- Left -->
-        <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">
-            TUK - LSP TA<br />Tempat Uji Kompetensi
+      <div class="row align-items-center">
+        <!-- Left Content -->
+        <div class="col-lg-6">
+          <h1 class="hero-title">
+            TUK - LSP TA <br />
+            Tempat Uji Kompetensi
           </h1>
 
-          <h2 data-aos="fade-up" data-aos-delay="400">
+          <p class="hero-subtitle">
             Lembaga Sertifikasi Profesi Teknisi Akuntansi
-          </h2>
+          </p>
 
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="text-center text-lg-start">
-              <a
-                href="https://www2.feb.unej.ac.id/id"
-                class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center"
-              >
-                <i class="bi bi-house"></i>&nbsp;&nbsp; Web Utama FEB UNEJ
-              </a>
-            </div>
+          <div class="d-flex">
+            <a
+              href="https://www2.feb.unej.ac.id/id"
+              class="btn btn-primary hero-btn d-flex"
+            >
+              <i class="bi bi-house me-2"></i>
+              <p style="flex-shrink: 0; white-space: nowrap; " class="pe-1 m-0">
+                Web Utama FEB UNEJ
+              </p>
+            </a>
           </div>
         </div>
 
-        <!-- Right -->
-        <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
+        <!-- Right Image -->
+        <div class="col-lg-6 text-center mt-5 mt-lg-0">
           <img
             src="https://www2.feb.unej.ac.id/assets/tema-flexstart/assets/img/hero-img.png"
-            class="img-fluid"
-            alt=""
+            class="img-fluid hero-image"
+            alt="Hero Image"
           />
         </div>
       </div>
     </div>
   </section>
+  <section class="about-section">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <!-- Left Content -->
+        <div class="col-lg-6 about-left">
+          <div class="about-wrapper">
+            <span class="about-label">WHO WE ARE</span>
 
-  <!-- ================= MAIN ================= -->
-  <main id="main">
-    <!-- ============= ABOUT ============= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-        <div class="row gx-0">
-          <!-- Text -->
-          <div
-            class="col-lg-6 d-flex flex-column justify-content-center"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <div class="content">
-              <h3>Who We Are</h3>
+            <h2 class="about-title">
+              Expedita voluptas omnis cupiditate totam eveniet nobis sint iste.
+              Dolores est repellat corrupti reprehenderit.
+            </h2>
 
-              <h2>
-                Expedita voluptas omnis cupiditate totam eveniet nobis sint
-                iste. Dolores est repellat corrupti reprehenderit.
-              </h2>
+            <p class="about-text">
+              Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et.
+              Inventore et et dolor consequatur itaque ut voluptate sed et.
+              Magnam nam ipsum tenetur suscipit voluptatum nam et est corrupti.
+            </p>
 
-              <p>
-                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt
-                et. Inventore et et dolor consequatur itaque ut voluptate sed
-                et. Magnam nam ipsum tenetur suscipit voluptatum nam et est
-                corrupti.
-              </p>
-
-              <div class="text-center text-lg-start">
-                <a
-                  href="#"
-                  class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center"
-                >
-                  <span>Read More</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-              </div>
+            <div class="d-flex">
+              <a href="#" class="btn about-btn">
+                <div class="">
+                  <p
+                    class="m-0 d-flex gap-1 align-items-center justify-content-center"
+                  >
+                    <span style="flex-shrink: 0;">Read More</span>
+                    <i class="bi bi-arrow-right ms-2"></i>
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
-
-          <!-- Image -->
-          <div
-            class="col-lg-6 d-flex align-items-center"
-            data-aos="zoom-out"
-            data-aos-delay="200"
-          >
-            <img
-              src="https://www2.feb.unej.ac.id/assets/tema-flexstart/assets/img/about.jpg"
-              class="img-fluid"
-              alt=""
-            />
-          </div>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer id="footer" class="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-info">
-            <a href="/" class="logo d-flex align-items-center">
-              <img
-                src="https://www2.feb.unej.ac.id/assets/temabiru/img/logounej.webp"
-                alt=""
-              />
-              <span>&nbsp;TUK - LSP TA</span>
-            </a>
-
-            <p style="text-align: justify">
-              Menjadi lembaga sertifikasi profesi teknik akuntansi yang diakui
-              secara regional, nasional dan internasional serta berperan aktif
-              dalam peningkatan kualitas sumberdaya manusia Indonesia.
-            </p>
-          </div>
+        <!-- Right Image -->
+        <div class="col-lg-6 p-0">
+          <img
+            src="https://www2.feb.unej.ac.id/assets/tema-flexstart/assets/img/about.jpg"
+            class="img-fluid about-image"
+            alt="About Image"
+          />
         </div>
       </div>
     </div>
-  </footer>
+  </section>
 </Layout>
+<style>
+  .hero-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fb 0%, #eef2f8 50%, #e9edf5 100%);
+    padding: 80px 0;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0d2b6b;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: #6c757d;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .hero-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #3f51f5;
+    border: none;
+  }
+
+  .hero-btn:hover {
+    background-color: #2f3dd9;
+  }
+
+  .hero-image {
+    max-width: 95%;
+  }
+  .about-section {
+    min-height: 100vh;
+  }
+
+  .about-left {
+    background-color: #f3f5fa;
+    display: flex;
+    align-items: center;
+  }
+
+  .about-wrapper {
+    max-width: 600px;
+    padding: 80px 60px;
+  }
+
+  .about-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #4f6df5;
+    text-transform: uppercase;
+  }
+
+  .about-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d2b6b;
+    margin-top: 20px;
+    line-height: 1.4;
+  }
+
+  .about-text {
+    font-size: 18px;
+    color: #6c757d;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .about-btn {
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    color: #fff;
+    background: linear-gradient(90deg, #4f6df5, #5a7bff);
+    border: none;
+  }
+
+  .about-btn:hover {
+    opacity: 0.9;
+  }
+
+  .about-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+</style>
