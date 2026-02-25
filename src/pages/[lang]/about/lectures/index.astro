@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import ContentContainer from "@/components/widgets/contentContainer.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
@@ -133,16 +134,15 @@ const lectures = serviceGetLectures?.data;
                     target="_blank"
                     class="d-inline-block position-relative"
                   >
-                    <img
+                    <ImageAutoBGColor
                       class="mb-20px"
                       src={data.foto}
                       alt=""
-                      is="auto-bg-color"
                       width="150"
                       height="199"
                       loading="lazy"
-                      data-bgcolor="#F2F1EF"
-                      data-bgmode="fixed"
+                      bgColor="#F2F1EF"
+                      bgMode="fixed"
                       style=" object-fit: cover;"
                     />
                   </a>
@@ -324,7 +324,7 @@ const lectures = serviceGetLectures?.data;
 </Layout>
 
 <script>
-  import "@components/customComponents/imgAutoBGColor";
+ 
 import "@components/customComponents/swalDetailButton";
 </script>
 <style is:global>

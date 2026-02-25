@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
@@ -22,10 +23,9 @@ const {
   <div class="card border-0 no-border-radius box-shadow-extra-large">
     <div class="blog-image">
       <a href={href}
-        ><img
+        ><ImageAutoBGColor
           src={image}
           alt=``
-          is="auto-bg-color"
           style="width: 100%; aspect-ratio: 3/2; object-fit: cover;"
         /></a
       >
@@ -50,6 +50,4 @@ const {
     </div>
   </div>
 </div>
-<script>
-  import "@components/customComponents/imgAutoBGColor";
-</script>
+<script></script>

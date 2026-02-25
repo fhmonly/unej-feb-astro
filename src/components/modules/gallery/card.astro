@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import WidgetsPopupImage from "@/components/widgets/popupImage.astro";
 
 interface Props {
@@ -12,7 +13,7 @@ const { title, image } = Astro.props as Props;
 <div class="portfolio-box border-radius-4px">
   <WidgetsPopupImage image={image}>
     <div class="portfolio-image border-radius-4px">
-      <img src={image} alt="" is="auto-bg-color" />
+      <ImageAutoBGColor src={image} alt="" />
 
       <div class="portfolio-hover d-flex justify-content-center flex-column">
         <div
@@ -40,6 +41,4 @@ const { title, image } = Astro.props as Props;
     </div>
   </WidgetsPopupImage>
 </div>
-<script>
-  import "@components/customComponents/imgAutoBGColor";
-</script>
+<script></script>

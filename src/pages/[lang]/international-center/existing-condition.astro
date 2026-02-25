@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import ListContainer from "@/components/widgets/list/ListContainer.astro";
 import ListNum from "@/components/widgets/list/ListNum.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
@@ -347,7 +348,7 @@ const tableStrengtheningInternationalCooperation: Table = {
           <div slot="content" class="container ps-0">
             <p set:html={t.existing_condition.items[1].content} />
             <div>
-              <img src="" style="width: 100%;" is="auto-bg-color" alt="" />
+              <ImageAutoBGColor src="" style="width: 100%;" alt="" />
             </div>
           </div>
         </ListNum>
@@ -370,7 +371,7 @@ const tableStrengtheningInternationalCooperation: Table = {
             >
             </div>
             <div class="pt-2">
-              <img src="" style="width: 100%;" is="auto-bg-color" alt="" />
+              <ImageAutoBGColor src="" style="width: 100%;" alt="" />
             </div>
           </div>
         </ListNum>
@@ -415,7 +416,6 @@ const tableStrengtheningInternationalCooperation: Table = {
   </section>
 
   <script>
-    import "@components/customComponents/imgAutoBGColor";
     import { TabulatorFull as Tabulator } from "tabulator-tables";
     import "tabulator-tables/dist/css/tabulator_materialize.min.css";
     function initTable(id: string) {

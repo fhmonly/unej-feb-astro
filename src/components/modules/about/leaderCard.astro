@@ -1,4 +1,6 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
+
 interface Props {
   fullName: string;
   image: string;
@@ -13,14 +15,13 @@ const { fullName, image, department, alt = fullName } = Astro.props;
   <div
     class="position-relative mb-30px last-paragraph-no-margin border-radius-4px overflow-hidden"
   >
-    <img
+    <ImageAutoBGColor
       src={image}
       alt={alt}
       width="255"
       height="340"
       style="object-fit:cover;aspect-ratio: 3/4;"
       loading="lazy"
-      is="auto-bg-color"
     />
 
     <div
@@ -70,6 +71,4 @@ const { fullName, image, department, alt = fullName } = Astro.props;
     {department}
   </span>
 </div>
-<script>
-  import "@components/customComponents/imgAutoBGColor";
-</script>
+<script></script>

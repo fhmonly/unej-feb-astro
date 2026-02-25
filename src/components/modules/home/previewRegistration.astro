@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import { getLocale } from "@i18n/i18n";
 
 const i18n = {
@@ -25,12 +26,11 @@ const t = i18n[getLocale(Astro)];
   <div class="container">
     <div class="row content align-items-center">
       <div class="col-md-5" data-aos="fade-right">
-        <img
+        <ImageAutoBGColor
           src="https://www2.feb.unej.ac.id/assets/temabiru/img/register.webp"
           class="img-fluid"
           loading="lazy"
           alt="Registration Image"
-          is="auto-bg-color"
           width="500"
           height="500"
         />
@@ -73,6 +73,4 @@ const t = i18n[getLocale(Astro)];
     </div>
   </div>
 </section>
-<script>
-  import "@components/customComponents/imgAutoBGColor";
-</script>
+<script></script>
