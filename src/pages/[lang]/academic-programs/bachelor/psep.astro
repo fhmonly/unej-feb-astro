@@ -1,5 +1,6 @@
 ---
 import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ListProcess from "@/components/widgets/list/ListProcess.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
@@ -260,29 +261,12 @@ const accreditationList = accreditation.map((item) => {
             <!-- start process step item -->
             {
               t.missions.map((v, i) => (
-                <div class="col-12 process-step-style-05 position-relative hover-box">
-                  <div class="process-step-item d-flex">
-                    <div class="process-step-icon-wrap position-relative">
-                      <div class="process-step-icon d-flex justify-content-center align-items-center mx-auto rounded-circle h-60px w-60px bg-light-red-grey fs-14 fw-600 position-relative">
-                        <span class="number position-relative z-index-1 text-dark-gray">
-                          {i < 9
-                            ? "0" + (i + 1)
-                            : (i + 1).toString().padStart(2, "0")}
-                        </span>
-                        <div class="box-overlay bg-base-color rounded-circle" />
-                      </div>
-                      {i < t.missions.length - 1 && (
-                        <span class="progress-step-separator bg-extra-medium-gray" />
-                      )}
-                    </div>
-                    <div class="process-content ps-30px last-paragraph-no-margin mb-40px">
-                      <span class="d-block fw-600 text-dark-gray mb-5px fs-18 ls-minus-05px">
-                        {v.title}
-                      </span>
-                      <p class="w-85 lg-w-100">{v.body}</p>
-                    </div>
-                  </div>
-                </div>
+                <ListProcess
+                  number={i + 1}
+                  isLast={i === t.missions.length - 1}
+                  title={v.title}
+                  content={v.body}
+                />
               ))
             }
             <!-- end process step item -->
