@@ -25,7 +25,7 @@ export interface Prodi {
 }
 
 
-export interface Artikel {
+export interface News {
     id: number;
     judul: string;
     slug: string;
@@ -38,7 +38,7 @@ export interface Artikel {
     tanggal: string; // ISO string
 }
 
-export interface ArtikelDetail {
+export interface NewsDetail {
     id: number;
     judul: string;
     slug: string;
@@ -51,7 +51,7 @@ export interface ArtikelDetail {
     tanggal: string; // ISO string
 }
 
-export type NewsListResponse = PaginatedResponse<Artikel>;
+export type NewsListResponse = PaginatedResponse<News>;
 
 export const newsService = {
     getNews: async ({
@@ -71,7 +71,18 @@ export const newsService = {
     getNewsDetail: async (id?: string) => {
         try {
             if (!id) return null
-            return await http.get<ArtikelDetail>(`/berita/${id}`);
+            return await http.get<NewsDetail>(`/berita/${id}`);
+        } catch (error) {
+            return null
+        }
+    },
+    getNewsByProdi: async (prodi: string) => {
+        try {
+            return await http.get<News[]>('/berita', {
+                params: {
+                    prodi: prodi
+                }
+            });
         } catch (error) {
             return null
         }

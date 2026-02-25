@@ -1,10 +1,10 @@
 ---
+import ProdiNewsPreview from "@/components/modules/academicPrograms/ProdiNewsPreview.astro";
 import ContentContainer from "@/components/widgets/contentContainer.astro";
 import ListProcess from "@/components/widgets/list/ListProcess.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
-import NewsCard from "@components/modules/news/card.astro";
 import PillDivider from "@components/widgets/pillDivider.astro";
 import Layout from "@layouts/prodi.astro";
 
@@ -408,41 +408,5 @@ const accreditationList = accreditation.map((item) => {
     </div>
     <!-- <p>Haloo</p> -->
   </PageSection>
-  <PageSection title={t.news}>
-    <div class="row">
-      <div class="col-12 px-0">
-        <ul
-          class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
-          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-        >
-          <li class="grid-sizer"></li>
-          {
-            Array.from({ length: 4 }).map((_, i) => (
-              <li class="grid-item">
-                <NewsCard
-                  date={`2025-10-${i}`}
-                  desc="Desc: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui, quod!"
-                  newsType="Achievement News"
-                  title="Congrats!!"
-                  image="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-                  id={`congrats-${i}`}
-                />
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="d-flex justify-content-center mt-3">
-        <a
-          href="#"
-          class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600"
-        >
-          {t.view_more}
-          <span class="bg-base-color text-white">
-            <i class="bi bi-arrow-right-short icon-extra-medium"></i>
-          </span>
-        </a>
-      </div>
-    </div>
-  </PageSection>
+  <ProdiNewsPreview prodi="accounting" />
 </Layout>

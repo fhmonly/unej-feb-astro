@@ -1,0 +1,70 @@
+---
+import ContentContainer from "@/components/widgets/contentContainer.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
+import { getLocale } from "@/i18n/i18n";
+import { newsService } from "@/services/news.service";
+import NewsCard from "@components/modules/news/card.astro";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  prodi: "accounting";
+}
+
+const { prodi, class: className, ...attrs } = Astro.props;
+
+const locale = getLocale(Astro);
+const newsDict = {
+  en: {
+    news: "News",
+    view_more: "View More",
+  },
+  id: {
+    news: "Berita",
+    view_more: "Lihat Selengkapnya",
+  },
+}[locale];
+
+const nsGetNewsByProdi = await newsService.getNewsByProdi(prodi);
+const news = nsGetNewsByProdi?.data;
+---
+
+<PageSection title={newsDict.news}>
+  <div class="row">
+    {
+      !!news?.length && (
+        <div class="col-12 px-0">
+          <ul
+            class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
+            data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+          >
+            <li class="grid-sizer" />
+            {news.map((n, i) => (
+              <li class="grid-item">
+                <NewsCard
+                  date={n.tanggal}
+                  desc={n.kutipan}
+                  newsType={n.kategori.nama}
+                  title={n.judul}
+                  image={n.gambar_unggulan}
+                  id={`news-${n.id}`}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+    {!news?.length && <ContentContainer />}
+    <div class="d-flex justify-content-center mt-3">
+      <a
+        href="#"
+        class="btn btn-large btn-rounded with-rounded btn-white btn-box-shadow fw-600"
+      >
+        {newsDict.view_more}
+        <span class="bg-base-color text-white">
+          <i class="bi bi-arrow-right-short icon-extra-medium"></i>
+        </span>
+      </a>
+    </div>
+  </div>
+</PageSection>
