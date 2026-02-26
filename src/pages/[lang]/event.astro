@@ -1,8 +1,8 @@
 ---
 import { getLocale, useI18n } from "@/i18n/i18n";
 import ModulesEventCard from "@components/modules/event/card.astro";
-import WidgetsHeroSlider from "@components/widgets/pageTitleTypography.astro";
-import WidgetsPillDivider from "@components/widgets/pillDivider.astro";
+import WidgetsPillDivider from "@components/widgets/heading/pillHeading.astro";
+import WidgetsHeroSlider from "@components/widgets/heading/typographyHeading.astro";
 import Layout from "@layouts/main.astro";
 
 const messages = {
@@ -49,12 +49,7 @@ const events = Array.from({ length: 11 }).map((_, i) => ({
     style="margin-top: 90px"
     data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
   >
-    <WidgetsPillDivider
-      text="2025"
-      htmlAttributes={{
-        style: "margin-top: 76px;",
-      }}
-    />
+    <WidgetsPillDivider text="2025" style="margin-top:76px;" />
   </section>
 
   <section class="pt-0 ps-10 pe-10 xl-ps-2 xl-pe-2 sm-mx-0">
