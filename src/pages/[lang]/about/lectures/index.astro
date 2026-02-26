@@ -1,6 +1,7 @@
 ---
 import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
+
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
 import { lecturesService } from "@/services/lectures.service";
@@ -117,73 +118,64 @@ const lectures = serviceGetLectures?.data;
           </h3>
         </div>
       </div>
-      {
-        !!lectures?.length && (
-          <div
-        class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
-        data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
-      >
-        <!-- start team member item -->
-        {
-          lectures.map((data) => (
-            <div class="col team-style-06 mb-30px">
-              <div class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative">
-                <div class="position-relative">
+      <ContentRenderer showContent={!!lectures?.length}>
+        <div
+          class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
+          data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          {
+            lectures?.map((data) => (
+              <div class="col team-style-06 mb-30px">
+                <div class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative">
+                  <div class="position-relative">
+                    <a
+                      href={data.foto}
+                      target="_blank"
+                      class="d-inline-block position-relative"
+                    >
+                      <ImageAutoBGColor
+                        class="mb-20px"
+                        src={data.foto}
+                        alt=""
+                        width="150"
+                        height="199"
+                        loading="lazy"
+                        bgColor="#F2F1EF"
+                        bgMode="fixed"
+                        style=" object-fit: cover;"
+                      />
+                    </a>
+                  </div>
                   <a
-                    href={data.foto}
-                    target="_blank"
-                    class="d-inline-block position-relative"
+                    href={`/${locale}/about/lectures/${data.id}`}
+                    class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
                   >
-                    <ImageAutoBGColor
-                      class="mb-20px"
-                      src={data.foto}
-                      alt=""
-                      width="150"
-                      height="199"
-                      loading="lazy"
-                      bgColor="#F2F1EF"
-                      bgMode="fixed"
-                      style=" object-fit: cover;"
-                    />
+                    {data.gelar_depan && <span>{data.gelar_depan}</span>}
+                    {data.nama}
+                    {data.gelar_belakang && <span>{data.gelar_belakang}</span>}
                   </a>
-                </div>
-                <a
-                  href={`/${locale}/about/lectures/${data.id}`}
-                  class="text-dark-gray alt-font fs-19 fw-600 mb-5px"
-                >
-                  {data.gelar_depan && <span>{data.gelar_depan}</span>}
-                  {data.nama}
-                  {data.gelar_belakang && <span>{data.gelar_belakang}</span>}
-                </a>
-                <p class="w-90 mx-auto lh-28">{data.nip}</p>
-                <div class="text-center elements-social social-icon-style-02 border-top border-color-light-medium-gray w-100 pt-15px">
-                  <ul class="small-icon dark">
-                    <li>
-                      <detail-button
-                        data-detail={JSON.stringify(data)}
-                        data-template="#detail-template"
-                      >
-                        <div class="d-flex gap-1 justify-content-center align-items-center">
-                          <i class="fa-solid fa-magnifying-glass" />
-                          <span>{tWords.read_more}</span>
-                        </div>
-                      </detail-button>
-                    </li>
-                  </ul>
+                  <p class="w-90 mx-auto lh-28">{data.nip}</p>
+                  <div class="text-center elements-social social-icon-style-02 border-top border-color-light-medium-gray w-100 pt-15px">
+                    <ul class="small-icon dark">
+                      <li>
+                        <detail-button
+                          data-detail={JSON.stringify(data)}
+                          data-template="#detail-template"
+                        >
+                          <div class="d-flex gap-1 justify-content-center align-items-center">
+                            <i class="fa-solid fa-magnifying-glass" />
+                            <span>{tWords.read_more}</span>
+                          </div>
+                        </detail-button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        }
-        <!-- end team member item -->
-      </div>
-        )
-      }
-      {
-        !lectures?.length && (
-          <ContentContainer/>
-        )
-      }
+            ))
+          }
+        </div>
+      </ContentRenderer>
     </div>
   </section>
   <template id="detail-template">
@@ -324,8 +316,7 @@ const lectures = serviceGetLectures?.data;
 </Layout>
 
 <script>
- 
-import "@components/customComponents/swalDetailButton";
+  import "@components/customComponents/swalDetailButton";
 </script>
 <style is:global>
   /* ====== CARD ====== */

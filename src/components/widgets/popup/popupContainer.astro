@@ -1,0 +1,13 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface props extends HTMLAttributes<"div"> {
+  type: "gallery-box";
+}
+
+const { type, class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={[type, className]} {...attrs}>
+  <slot />
+</div>

@@ -1,0 +1,57 @@
+---
+import { getLocale, useI18n } from "@/i18n/i18n";
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  fallbackText?: string;
+  showContent?: boolean;
+}
+
+const {
+  fallbackText,
+  class: className,
+  showContent = true,
+  ...attrs
+} = Astro.props;
+
+const dict = {
+  id: {
+    contentNotAvailableYet: "Konten belum tersedia saat ini",
+  },
+  en: {
+    contentNotAvailableYet: "Content is not available yet",
+  },
+};
+
+const locale = getLocale(Astro);
+const t = useI18n(dict, locale);
+---
+
+<div class:list={["row", className]} {...attrs}>
+  {
+    showContent && (
+      <slot>
+        <div class="py-4 text-center" style="background-color: #f0f4fd;">
+          <p class="text-center mb-0 text-secondary">Content placeholder</p>
+          <p class="text-center mb-0 text-secondary">
+            Add attribute "<span class="text-danger">showContent</span>" inside
+            the component.
+          </p>
+        </div>
+      </slot>
+    )
+  }
+  {
+    !showContent && (
+      <slot name="fallback">
+        <div class="py-4 text-center" style="background-color: #f0f4fd;">
+          <slot name="fallback-text">
+            <p class="text-center mb-0 text-secondary">
+              {fallbackText || t.contentNotAvailableYet}
+            </p>
+          </slot>
+        </div>
+      </slot>
+    )
+  }
+</div>

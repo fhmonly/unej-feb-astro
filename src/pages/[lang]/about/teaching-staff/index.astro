@@ -1,6 +1,7 @@
 ---
 import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
+
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
 import { teachingStaffService } from "@/services/teachingStaff.service";
@@ -97,13 +98,13 @@ const teachingStaffs = tssGetStaff?.data;
           </h3>
         </div>
       </div>
-      {
-        !!teachingStaffs?.length && (
-          <div
-            class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
-            data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
-          >
-            {teachingStaffs.map((data, index) => (
+      <ContentRenderer showContent={!!teachingStaffs?.length}>
+        <div
+          class="row row-cols-1 row-cols-xl-3 row-cols-lg-3 row-cols-sm-2 justify-content-center mb-6 xs-mb-10"
+          data-anime='{ "el": "childs", "perspective": [900, 1200], "scaleY": [1.1, 1], "rotateY": [-30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+        >
+          {
+            teachingStaffs?.map((data, index) => (
               <div class="col team-style-06 mb-30px">
                 <div class="d-flex flex-column p-40px pb-20px lg-p-30px text-center border-radius-6px bg-white box-shadow-quadruple-large position-relative">
                   <div class="position-relative">
@@ -152,11 +153,10 @@ const teachingStaffs = tssGetStaff?.data;
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )
-      }
-      {!teachingStaffs?.length && <ContentContainer />}
+            ))
+          }
+        </div>
+      </ContentRenderer>
     </div>
   </section>
 

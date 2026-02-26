@@ -1,6 +1,7 @@
 ---
 import ModulesGalleryCard from "@/components/modules/gallery/card.astro";
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
+
 import WidgetsHeroSlider from "@/components/widgets/pageTitleTypography.astro";
 import { galleryService } from "@/services/gallery.service";
 import { getLocale } from "@i18n/i18n";
@@ -51,25 +52,26 @@ const galleries = gsGetGalleries?.data || [];
   <section class="pt-0">
     <div class="container">
       <div class="row">
-        {
-          !!galleries?.length && (
-            <div class="col-12 filter-content">
-              <ul class="portfolio-boxed portfolio-wrapper grid-loading grid grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center">
-                <li class="grid-sizer" />
+        <ContentRenderer showContent={!!galleries?.length}>
+          <div class="col-12 filter-content">
+            <ul
+              class="portfolio-boxed portfolio-wrapper grid-loading grid grid-3col xxl-grid-3col xl-grid-3col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-large text-center"
+            >
+              <li class="grid-sizer"></li>
 
-                {galleries.map((gallery) => (
+              {
+                galleries.map((gallery) => (
                   <li class="grid-item selected digital transition-inner-all gallery-box">
                     <ModulesGalleryCard
                       image={gallery.file}
                       title={gallery.judul}
                     />
                   </li>
-                ))}
-              </ul>
-            </div>
-          )
-        }
-        {!galleries?.length && <ContentContainer />}
+                ))
+              }
+            </ul>
+          </div>
+        </ContentRenderer>
       </div>
     </div>
   </section>

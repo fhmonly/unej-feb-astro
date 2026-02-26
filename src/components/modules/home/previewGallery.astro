@@ -1,6 +1,6 @@
 ---
 import ModulesGalleryCard from "@/components/modules/gallery/card.astro";
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
 import ContentFilterGrid from "@/components/widgets/contentFilter/contentFilterGrid.astro";
 import ContentFilterGridItem from "@/components/widgets/contentFilter/contentFilterGridItem.astro";
 import ContentFilterNavTabItem from "@/components/widgets/contentFilter/contentFilterNavTabItem.astro";
@@ -8,7 +8,6 @@ import ContentFilterNavTabs from "@/components/widgets/contentFilter/contentFilt
 import PageSection from "@/components/widgets/pageSection.astro";
 import { getLocale } from "@/i18n/i18n";
 import { galleryService } from "@/services/gallery.service";
-
 
 const dict = {
   id: {
@@ -31,18 +30,18 @@ type ContentTabItem = {
   label: string;
 };
 function getAvailableJenis(data: typeof photoGallery): ContentTabItem[] {
-  const jenis = [...new Set(data.map(item => item.jenis))].map<ContentTabItem>(jenis => (
-    {
-      filter: `.${jenis}`,
+  const jenis = [
+    ...new Set(data.map((item) => item.jenis)),
+  ].map<ContentTabItem>((jenis) => ({
+    filter: `.${jenis}`,
     isActive: false,
     label: jenis,
-    }
-  ))
-  jenis.splice(0,0,{
+  }));
+  jenis.splice(0, 0, {
     filter: "*",
     isActive: true,
     label: "All",
-  })
+  });
 
   return jenis;
 }
@@ -66,38 +65,31 @@ function getAvailableJenis(data: typeof photoGallery): ContentTabItem[] {
     </div>
   </div>
   <div>
-    {
-      !!photoGallery.length && (
-        <ContentFilterNavTabs>
-      {
-        getAvailableJenis(photoGallery).map((item,i) => (
-          <ContentFilterNavTabItem
-            isActive={item.isActive}
-            filter={item.filter}
-          >
-            {item.label}
-          </ContentFilterNavTabItem>
-        ))
-      }
-    </ContentFilterNavTabs>
-    <ContentFilterGrid>
-      {
-        photoGallery.map((item) => (
-         <ContentFilterGridItem keywords={[item.jenis]}>
-            <ModulesGalleryCard
-              image={item.file}
-              title={item.judul}
-            />
-          </ContentFilterGridItem>
-        ))
-      }
-    </ContentFilterGrid>
-      )
-    }
-    {
-      !photoGallery.length && (
-        <ContentContainer placeholder={t.contentNotAvailableYet} />
-      )
-    }
+    <ContentRenderer
+      showContent={!!photoGallery.length}
+      fallbackText={t.contentNotAvailableYet}
+    >
+      <ContentFilterNavTabs>
+        {
+          getAvailableJenis(photoGallery).map((item, i) => (
+            <ContentFilterNavTabItem
+              isActive={item.isActive}
+              filter={item.filter}
+            >
+              {item.label}
+            </ContentFilterNavTabItem>
+          ))
+        }
+      </ContentFilterNavTabs>
+      <ContentFilterGrid>
+        {
+          photoGallery.map((item) => (
+            <ContentFilterGridItem keywords={[item.jenis]}>
+              <ModulesGalleryCard image={item.file} title={item.judul} />
+            </ContentFilterGridItem>
+          ))
+        }
+      </ContentFilterGrid>
+    </ContentRenderer>
   </div>
 </PageSection>

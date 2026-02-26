@@ -1,6 +1,6 @@
 ---
+import CenteredHeading from "@/components/widgets/heading/centeredHeading.astro";
 import ModulesLeadershipCard from "@/components/widgets/lectureCard.astro";
-import WidgetsCenteredSectionTitle from "@components/widgets/centeredSectionTitle.astro";
 interface Item {
   image: string;
   name: string;
@@ -18,7 +18,7 @@ const { title, suptitle, items } = Astro.props as Props;
 
 <section class="pb-0">
   <div class="container">
-    <WidgetsCenteredSectionTitle title={title} suptitle={suptitle} />
+    <CenteredHeading title={title} suptitle={suptitle} />
   </div>
 </section>
 

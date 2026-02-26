@@ -1,5 +1,5 @@
 ---
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { researchGroupService } from "@/services/researchGroup.service";
@@ -36,10 +36,13 @@ const items = rgsGetResearchGroups?.data;
           </h3>
         </div>
       </div>
-      {
-        !!items?.length && (
-          <div class="row row-cols-1 row-cols-lg-4 row-cols-md-4 row-cols-sm-2 gap-3">
-            {items.map((v) => (
+
+      <ContentRenderer showContent={!!items?.length}>
+        <div
+          class="row row-cols-1 row-cols-lg-4 row-cols-md-4 row-cols-sm-2 gap-3"
+        >
+          {
+            items?.map((v) => (
               <div class="bg-white box-shadow-quadruple-large border-radius-4px overflow-hidden">
                 <div class="p-40px lg-p-30px">
                   <span class="fs-24 alt-font text-dark-gray fw-700 d-block mb-2">
@@ -54,11 +57,10 @@ const items = rgsGetResearchGroups?.data;
                   </a>
                 </div>
               </div>
-            ))}
-          </div>
-        )
-      }
-      {!items?.length && <ContentContainer />}
+            ))
+          }
+        </div>
+      </ContentRenderer>
     </div>
   </section>
 </Layout>

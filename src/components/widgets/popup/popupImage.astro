@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+  image: string;
+}
+
+const { image, class: className, ...attrs } = Astro.props;
+---
+
+<a
+  data-group="lightbox-group-gallery-item-6"
+  href={image}
+  class:list={[className, "hiuiou789789jklknyiou"]}
+  {...attrs}
+>
+  <slot />
+</a>
+
+<style is:global>
+  a.hiuiou789789jklknyiou:nth-of-type(1):before {
+    display: block;
+    content: "Gallery item must be inside element <PopupContainer/> with type='gallery-box' or inside any component with class='gallery-box'";
+    color: red;
+  }
+
+  .gallery-box a.hiuiou789789jklknyiou::before {
+    content: "";
+  }
+</style>

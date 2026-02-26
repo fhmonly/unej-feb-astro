@@ -1,5 +1,5 @@
 ---
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { journalService } from "@/services/journal.service";
 import PageTitleTypography from "@components/widgets/pageTitleTypography.astro";
@@ -51,13 +51,13 @@ const journals = jsGetJournals?.data;
 
       <div class="mb-5"></div>
 
-      {
-        !!journals?.length && (
-          <div
-            class="row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 justify-content-center"
-            data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-          >
-            {journals.map((journal) => (
+      <ContentRenderer showContent={!!journals?.length}>
+        <div
+          class="row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-2 justify-content-center"
+          data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+        >
+          {
+            journals?.map((journal) => (
               <div class="col custom-icon-with-text-style-02 p-1">
                 <div class="feature-box p-6 last-paragraph-no-margin overflow-hidden md-mb-20px">
                   <div class="feature-box-icon">
@@ -77,11 +77,10 @@ const journals = jsGetJournals?.data;
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )
-      }
-      {!journals?.length && <ContentContainer />}
+            ))
+          }
+        </div>
+      </ContentRenderer>
     </div>
   </section>
   <!-- end section -->

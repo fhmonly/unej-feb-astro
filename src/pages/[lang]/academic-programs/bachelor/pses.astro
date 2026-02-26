@@ -1,6 +1,7 @@
 ---
 import ProdiNewsPreview from "@/components/modules/academicPrograms/ProdiNewsPreview.astro";
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
+
 import ListProcess from "@/components/widgets/list/ListProcess.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import PageTitleTypography from "@/components/widgets/pageTitleTypography.astro";
@@ -334,19 +335,20 @@ const accreditationList = accreditation.map((item) => {
       text={t.academicRequirements}
       class="mb-3"
     />
-    <ContentContainer class="my-3 py-5" />
+    <ContentRenderer showContent={false} class="my-3 py-5" />
     <PillDivider
       icon="fa-regular fa-newspaper"
       text={t.graduateProfile}
       class="mb-3"
     />
-    <ContentContainer class="my-3 py-5" />
+    <ContentRenderer showContent={false} class="my-3 py-5" />
+
     <PillDivider
       icon="fa-regular fa-newspaper"
       text={t.curriculum}
       class="mb-3"
     />
-    <ContentContainer class="my-3 py-5" />
+    <ContentRenderer showContent={false} class="my-3 py-5" />
   </PageSection>
   <PageSection
     title={t.important_information_access}

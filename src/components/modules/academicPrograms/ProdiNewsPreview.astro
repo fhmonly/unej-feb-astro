@@ -1,5 +1,5 @@
 ---
-import ContentContainer from "@/components/widgets/contentContainer.astro";
+import ContentRenderer from "@/components/widgets/content/contentRenderer.astro";
 import PageSection from "@/components/widgets/pageSection.astro";
 import { getLocale } from "@/i18n/i18n";
 import { newsService } from "@/services/news.service";
@@ -30,15 +30,15 @@ const news = nsGetNewsByProdi?.data;
 
 <PageSection title={newsDict.news}>
   <div class="row">
-    {
-      !!news?.length && (
-        <div class="col-12 px-0">
-          <ul
-            class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
-            data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-          >
-            <li class="grid-sizer" />
-            {news.map((n, i) => (
+    <ContentRenderer showContent={!!news?.length}>
+      <div class="col-12 px-0">
+        <ul
+          class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-double-extra-large"
+          data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+        >
+          <li class="grid-sizer"></li>
+          {
+            news?.map((n, i) => (
               <li class="grid-item">
                 <NewsCard
                   date={n.tanggal}
@@ -49,12 +49,11 @@ const news = nsGetNewsByProdi?.data;
                   id={`news-${n.id}`}
                 />
               </li>
-            ))}
-          </ul>
-        </div>
-      )
-    }
-    {!news?.length && <ContentContainer />}
+            ))
+          }
+        </ul>
+      </div>
+    </ContentRenderer>
     <div class="d-flex justify-content-center mt-3">
       <a
         href="#"

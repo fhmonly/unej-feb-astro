@@ -11,5 +11,9 @@ const refinedUrl = refineYouTubeUrl(url) ?? "https://youtube.com/watch?v=";
 ---
 
 <a href={refinedUrl} class="popup-youtube">
-  <slot />
+  <slot>
+    <div class="d-flex justify-content-center align-items-center gap-1">
+      <i class="fa-brands fa-youtube"></i><span class="fs-14">Play</span>
+    </div>
+  </slot>
 </a>
