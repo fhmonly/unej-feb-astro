@@ -1,4 +1,5 @@
 ---
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
 import { lecturesService } from "@/services/lectures.service";
 import { getLocale, useI18n } from "@i18n/i18n";
 import Layout from "@layouts/main.astro";
@@ -48,8 +49,9 @@ if (!lectureDetail) return Astro.rewrite("/404");
 
         <div class="row">
           <div class="col-sm-3">
-            <img
+            <ImageAutoBGColor
               src={lectureDetail.foto}
+              style="width: 100%;aspect-ratio: 2 / 3;"
               class="img-thumbnail"
               alt="Responsive image"
             />

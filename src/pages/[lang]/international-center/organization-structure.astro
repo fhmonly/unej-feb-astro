@@ -1,4 +1,5 @@
 ---
+import PillHeading from "@/components/widgets/heading/pillHeading.astro";
 import ListContainer from "@/components/widgets/list/ListContainer.astro";
 import ListProcess from "@/components/widgets/list/ListProcess.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
@@ -137,24 +138,9 @@ const partners = Array.from({ length: 10 });
   </section>
   <!-- end section -->
 
-  <section class="py-0 sm-pt-50px">
-    <div class="container overlap-section">
-      <div class="row justify-content-center g-0">
-        <div
-          class="col-auto text-center icon-with-text-style-08 pt-20px pb-20px ps-8 pe-8 bg-white border box-shadow-medium-bottom border-radius-100px"
-        >
-          <div
-            class="feature-box-content text-dark-gray text-uppercase fs-15 fw-700"
-          >
-            {t.partner}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="bg-gradient-solitude-blue-transparent big-section">
     <div class="container overlap-gap-section">
+      <PillHeading text={t.partner} class="mb-5 pb-5" />
       <div
         class="row justify-content-center row-cols-2 row-cols-md-4 row-cols-sm-3 clients-style-03"
       >

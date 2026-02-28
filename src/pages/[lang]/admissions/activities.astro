@@ -1,4 +1,5 @@
 ---
+import PageSection from "@/components/widgets/pageSection.astro";
 import { getLocale, useI18n } from "@/i18n/i18n";
 import { wordsJson } from "@/i18n/words";
 import PageTitleTypography from "@components/widgets/heading/typographyHeading.astro";
@@ -25,69 +26,67 @@ const items = Array.from({ length: 9 }, (_, i) => i + 1);
 
 <Layout title={t.pageTitle}>
   <PageTitleTypography title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
-  <section class="pt-0 ps-15 pe-15 xl-ps-2 xl-pe-2 lg-ps-2 lg-pe-2 sm-mx-0">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <ul
-            class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large"
-          >
-            <li class="grid-sizer"></li>
+  <PageSection title={t.pageTitle} class="pt-0">
+    <div class="row">
+      <div class="col-12">
+        <ul
+          class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large"
+        >
+          <li class="grid-sizer"></li>
 
-            {
-              items.map((value) => (
-                <li class="grid-item">
-                  <div class="card bg-transparent border-0 h-100">
-                    <div class="blog-image position-relative overflow-hidden border-radius-4px">
-                      <a href="#">
-                        <img
-                          src="https://newglobe.education/wp-content/uploads/2022/10/1M1A8428-scaled.jpg"
-                          alt=""
-                        />
-                      </a>
-                    </div>
-
-                    <div class="card-body px-0 pt-30px pb-30px">
-                      <a
-                        href="#"
-                        class="card-title mb-10px fw-600 fs-17 lh-26 text-dark-gray text-dark-gray-hover d-inline-block w-95"
-                      >
-                        Campus Ambassador (2023)
-                      </a>
-
-                      <p class="mb-10px w-95">
-                        Congratulations to all students of the UNEJ Faculty of
-                        Economics and Business who have been selected as Campus
-                        Ambassadors for the Faculty of Economics and Business
-                        UNEJ 2023.
-                      </p>
-
-                      <a
-                        href="#"
-                        class="card-link alt-font fs-12 text-uppercase text-dark-gray text-dark-gray-hover fw-700"
-                      >
-                        {tWords.read_more}
-                        <i class="feather icon-feather-arrow-right icon-very-small" />
-                      </a>
-                    </div>
+          {
+            items.map((value) => (
+              <li class="grid-item">
+                <div class="card bg-transparent border-0 h-100">
+                  <div class="blog-image position-relative overflow-hidden border-radius-4px">
+                    <a href="#">
+                      <img
+                        src="https://newglobe.education/wp-content/uploads/2022/10/1M1A8428-scaled.jpg"
+                        alt=""
+                      />
+                    </a>
                   </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
 
-        <div class="row">
-          <div class="col-12 mt-2 d-flex justify-content-center">
-            <WidgetsPagination
-              currentPage={page}
-              perPage={limit}
-              total={totalItem}
-              basePath={`/${getLocale(Astro)}/admissions/activities`}
-            />
-          </div>
+                  <div class="card-body px-0 pt-30px pb-30px">
+                    <a
+                      href="#"
+                      class="card-title mb-10px fw-600 fs-17 lh-26 text-dark-gray text-dark-gray-hover d-inline-block w-95"
+                    >
+                      Campus Ambassador (2023)
+                    </a>
+
+                    <p class="mb-10px w-95">
+                      Congratulations to all students of the UNEJ Faculty of
+                      Economics and Business who have been selected as Campus
+                      Ambassadors for the Faculty of Economics and Business UNEJ
+                      2023.
+                    </p>
+
+                    <a
+                      href="#"
+                      class="card-link alt-font fs-12 text-uppercase text-dark-gray text-dark-gray-hover fw-700"
+                    >
+                      {tWords.read_more}
+                      <i class="feather icon-feather-arrow-right icon-very-small" />
+                    </a>
+                  </div>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="row">
+        <div class="col-12 mt-2 d-flex justify-content-center">
+          <WidgetsPagination
+            currentPage={page}
+            perPage={limit}
+            total={totalItem}
+            basePath={`/${getLocale(Astro)}/admissions/activities`}
+          />
         </div>
       </div>
     </div>
-  </section>
+  </PageSection>
 </Layout>

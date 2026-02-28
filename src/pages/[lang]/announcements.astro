@@ -1,13 +1,10 @@
 ---
-import {
-  generateMultiLocaleStaticPaths,
-  getLocale,
-  useI18n,
-} from "@/i18n/i18n";
-import WidgetsHeroSlider from "@components/widgets/heading/typographyHeading.astro";
+import ImageAutoBGColor from "@/components/base/img/imageAutoBGColor.astro";
+import PageSection from "@/components/widgets/pageSection.astro";
+import { getLocale, useI18n } from "@/i18n/i18n";
 import WidgetsPillDivider from "@components/widgets/heading/pillHeading.astro";
+import WidgetsHeroSlider from "@components/widgets/heading/typographyHeading.astro";
 import Layout from "@layouts/main.astro";
-
 
 const messages = {
   en: {
@@ -25,18 +22,18 @@ const t = useI18n(messages, getLocale(Astro));
 
 <Layout title={t.pageTitle}>
   <WidgetsHeroSlider title={t.pageTitle} image="/_astro/images/bg-feb.webp" />
-    {
-      Array.from({ length: 4 }).map((_, i) => (
-        <section class="py-4"></section>
-          <WidgetsPillDivider text={"Announcement " + i + 1} />
-
-          <section class="px-md-5 p-2">
-            <img
-              src="https://images.pexels.com/photos/4663107/pexels-photo-4663107.jpeg"
-              alt=""
-              class="border-radius-5px"
-            />
-          </section>
+  <PageSection title={t.title} class="pt-0">
+  {
+    Array.from({ length: 4 }).map((_, i) => (
+        <WidgetsPillDivider class:list={[ i >0?"py-5":"pb-5"]} text={`${t.title} ${i + 1}`} />
+        <ImageAutoBGColor
+          width="1000"
+          height="1000"
+          src=""
+          alt=""
+          class="border-radius-5px"
+        />
       ))
     }
+    </PageSection>
 </Layout>

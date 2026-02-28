@@ -6,11 +6,11 @@ interface Props extends HTMLAttributes<"div"> {
   icon?: string;
 }
 
-const { text, icon, ...attrs } = Astro.props;
+const { text, icon, class: className, ...attrs } = Astro.props;
 ---
 
 <div
-  class="row row-cols-1 justify-content-center"
+  class:list={["row row-cols-1 justify-content-center", className]}
   data-anime='{ "translateY": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
   {...attrs}
 >
